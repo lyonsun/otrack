@@ -2,6 +2,7 @@
 <?php $this->load->view('otrack/common/navbar'); ?>
 
 <div class="container">
+  <h3 class="page-header">Create Customer</h3>
   <?php 
   $form_attributes = array('id'=>'form-create-order', 'class'=>'form-create-order');
 
@@ -62,13 +63,12 @@
   );
    ?>
 
-  <?php echo form_open($this->uri->uri_string(), $form_attributes); ?>
-
   <div class="panel panel-default">
     <div class="panel-heading">
       <h3 class="panel-title">Customer Information</h3>
     </div>
     <div class="panel-body">
+      <?php echo form_open($this->uri->uri_string(), $form_attributes); ?>
       <div class="form-group">
         <?php echo form_label('Customer Name', 'name', array('class'=>'control-label')); ?>
         <?php echo form_input($name); ?>
@@ -107,10 +107,9 @@
       <div class="form-group">
         <?php echo form_button($submit); ?>
       </div>
+      <?php echo form_close(); ?>
     </div>
   </div>
-
-  <?php echo form_close(); ?>
 </div>
 
 <?php $this->load->view('otrack/common/footer'); ?>
