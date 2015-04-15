@@ -19,7 +19,7 @@
         <li <?php echo explode('/', uri_string())[0]== 'orders'?'class="active"':""; ?>><a href="<?php echo base_url('orders'); ?>">Orders</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right" style="padding-right:20px;">
-        <li><a href="<?php echo base_url('logout'); ?>">Logout</a></li>
+        <li><a href="<?php echo base_url('auth/logout'); ?>">Logout</a></li>
       </ul>
     </div>
   </nav>
