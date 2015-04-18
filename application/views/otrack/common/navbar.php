@@ -1,5 +1,5 @@
-<div class="container" style="margin-bottom:2em;">
-  <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+<nav class="navbar navbar-default navbar-static-top" role="navigation">
+  <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
@@ -13,14 +13,21 @@
     
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse navbar-ex1-collapse">
+      <?php if ($this->ion_auth->logged_in()): ?>
+      
       <ul class="nav navbar-nav">
-        <li <?php echo explode('/', uri_string())[0]==''?'class="active"':""; ?>><a href="<?php echo base_url(); ?>">Home</a></li>
-        <li <?php echo explode('/', uri_string())[0]== 'customers'?'class="active"':""; ?>><a href="<?php echo base_url('customers'); ?>">Customers</a></li>
-        <li <?php echo explode('/', uri_string())[0]== 'orders'?'class="active"':""; ?>><a href="<?php echo base_url('orders'); ?>">Orders</a></li>
+        <li <?php echo $this->uri->segment(1)==''?'class="active"':""; ?>><a href="<?php echo base_url(); ?>"><i class="fa fa-fw fa-home"></i> Home</a></li>
+        <li <?php echo $this->uri->segment(1)== 'customers'?'class="active"':""; ?>><a href="<?php echo base_url('customers'); ?>"><i class="fa fa-fw fa-users"></i> Customers</a></li>
+        <li <?php echo $this->uri->segment(1)== 'orders'?'class="active"':""; ?>><a href="<?php echo base_url('orders'); ?>"><i class="fa fa-fw fa-file"></i> Orders</a></li>
       </ul>
-      <ul class="nav navbar-nav navbar-right" style="padding-right:20px;">
-        <li><a href="<?php echo base_url('auth/logout'); ?>">Logout</a></li>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="<?php echo base_url('auth/logout'); ?>"><i class="fa fa-fw fa-sign-out"></i> Logout</a></li>
       </ul>
+      <?php else: ?>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="<?php echo base_url(); ?>"><i class="fa fa-fw fa-sign-in"></i> Login</a></li>
+      </ul>
+      <?php endif ?>
     </div>
-  </nav>
-</div>
+  </div>
+</nav>
