@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="Lyon Sun <sunly917@gmail.com>">
-    <title>O, Track</title>
+    <title><?php echo $title; ?> - O, Track</title>
 
     <!-- Bootstrap CSS -->
     <link href="<?php echo base_url(); ?>/static/bs3/css/bootstrap.min.css" rel="stylesheet">

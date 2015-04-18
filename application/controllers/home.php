@@ -19,7 +19,7 @@ class Home extends CI_Controller {
 
 	function index()
 	{
-
+		$this->data['title'] = 'Home';
 		$this->data['status'] = $this->session->flashdata('status');
 		$this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
 		

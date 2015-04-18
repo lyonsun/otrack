@@ -1,6 +1,10 @@
 <?php $this->load->view('otrack/common/header'); ?>
 <?php $this->load->view('otrack/common/navbar'); ?>
+
 <div class="container">
+  <?php if ($message): ?>
+  <div class="alert alert-<?php if ($status): ?><?php echo $status; ?><?php else: ?>danger<?php endif ?>"><?php echo $message;?></div>
+  <?php endif ?>
   <h3 class="page-header">Create Customer</h3>
   <?php
   $form_attributes = array('id'=>'form-create-order', 'class'=>'form-create-order');
@@ -56,6 +60,7 @@
   'id' => 'btn-create-customer',
   'name' => 'btn-create-customer',
   'class' => 'btn btn-primary',
+  'type' => 'submit',
   'content' => 'Create',
   );
   ?>
