@@ -60,7 +60,12 @@ class Ion_auth
 	public function __construct()
 	{
 		$this->load->config('ion_auth', TRUE);
-		$this->load->library(array('email'));
+		// $this->load->library(array('email'));
+
+		$this->config->load('email', TRUE);
+    $email_config = $this->config->item('email');
+    $this->load->library('email', $email_config);
+    
 		$this->lang->load('ion_auth');
 		$this->load->helper(array('cookie', 'language','url'));
 

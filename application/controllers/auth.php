@@ -67,21 +67,23 @@ class Auth extends CI_Controller {
 			{
 				//if the login is successful
 				//redirect them back to the home page
+				$this->session->set_flashdata('status', 'success');
 				$this->session->set_flashdata('message', $this->ion_auth->messages());
-				redirect('/', 'refresh');
+				redirect(base_url(), 'refresh');
 			}
 			else
 			{
 				//if the login was un-successful
 				//redirect them back to the login page
 				$this->session->set_flashdata('message', $this->ion_auth->errors());
-				redirect('auth/login', 'refresh'); //use redirects instead of loading views for compatibility with MY_Controller libraries
+				redirect(base_url('auth/login'), 'refresh'); //use redirects instead of loading views for compatibility with MY_Controller libraries
 			}
 		}
 		else
 		{
 			//the user is not logging in so display the login page
 			//set the flash data error message if there is one
+			$this->data['status'] = $this->session->flashdata('status');
 			$this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
 
 			$this->data['identity'] = array('name' => 'identity',
@@ -108,7 +110,7 @@ class Auth extends CI_Controller {
 
 		//redirect them to the login page
 		$this->session->set_flashdata('message', $this->ion_auth->messages());
-		redirect('auth/login', 'refresh');
+		redirect(base_url('auth/login'), 'refresh');
 	}
 
 	//change password
@@ -185,11 +187,11 @@ class Auth extends CI_Controller {
 		//setting validation rules by checking wheather identity is username or email
 		if($this->config->item('identity', 'ion_auth') == 'username' )
 		{
-		   $this->form_validation->set_rules('email', $this->lang->line('forgot_password_username_identity_label'), 'required');
+	   	$this->form_validation->set_rules('email', $this->lang->line('forgot_password_username_identity_label'), 'required');
 		}
 		else
 		{
-		   $this->form_validation->set_rules('email', $this->lang->line('forgot_password_validation_email_label'), 'required|valid_email');
+	   	$this->form_validation->set_rules('email', $this->lang->line('forgot_password_validation_email_label'), 'required|valid_email');
 		}
 
 
@@ -209,6 +211,7 @@ class Auth extends CI_Controller {
 			}
 
 			//set any errors and display the form
+			$this->data['status'] = $this->session->flashdata('status');
 			$this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
 			$this->_render_page('auth/forgot_password', $this->data);
 		}
@@ -222,20 +225,20 @@ class Auth extends CI_Controller {
 			{
 				$identity = $this->ion_auth->where('email', strtolower($this->input->post('email')))->users()->row();
 			}
-	            	if(empty($identity)) {
+    	if(empty($identity)) {
 
-	            		if($this->config->item('identity', 'ion_auth') == 'username')
-		            	{
-                                   $this->ion_auth->set_message('forgot_password_username_not_found');
-		            	}
-		            	else
-		            	{
-		            	   $this->ion_auth->set_message('forgot_password_email_not_found');
-		            	}
+    		if($this->config->item('identity', 'ion_auth') == 'username')
+      	{
+         	$this->ion_auth->set_message('forgot_password_username_not_found');
+      	}
+      	else
+      	{
+      	   $this->ion_auth->set_message('forgot_password_email_not_found');
+      	}
 
-		                $this->session->set_flashdata('message', $this->ion_auth->messages());
-                		redirect("auth/forgot_password", 'refresh');
-            		}
+          $this->session->set_flashdata('message', $this->ion_auth->messages());
+      		redirect("auth/forgot_password", 'refresh');
+  		}
 
 			//run the forgotten password method to email an activation code to the user
 			$forgotten = $this->ion_auth->forgotten_password($identity->{$this->config->item('identity', 'ion_auth')});
@@ -243,6 +246,7 @@ class Auth extends CI_Controller {
 			if ($forgotten)
 			{
 				//if there were no errors
+				$this->session->set_flashdata('status', 'success');
 				$this->session->set_flashdata('message', $this->ion_auth->messages());
 				redirect("auth/login", 'refresh'); //we should display a confirmation page here instead of the login page
 			}
