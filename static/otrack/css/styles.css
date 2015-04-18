@@ -1,0 +1,38 @@
+
+
+.alert {
+  padding: 5px 15px;
+}
+
+.page-header {
+  margin-top: 0;
+}
+
+
+
+/* FOOTER */
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #f5f5f5;
+}
+.footer .container {
+  padding: 20px;
+}
+.footer .fa-heart {
+  color: #d00;
+}
