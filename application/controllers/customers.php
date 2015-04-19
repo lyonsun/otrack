@@ -9,7 +9,7 @@ class Customers extends CI_Controller {
     //redirect them to the login page
     if (!$this->ion_auth->logged_in())
     {
-      redirect(base_url('auth/login'), 'refresh');
+      redirect(base_url('login'), 'refresh');
     }
     
     //redirect them to the home page because they must be an administrator to view this
@@ -80,4 +80,24 @@ class Customers extends CI_Controller {
 		  $this->load->view('otrack/customers/create', $this->data);
     }
 	}
+
+  function delete()
+  {
+    $this->data['title'] = "Delete Customer";
+
+    //validate form input
+    $this->form_validation->set_rules('cid', 'Customer ID', 'required');
+
+    if ($this->form_validation->run() == true)
+    {
+      header('Content-Type: application/json');
+
+      $cid = $this->input->post('cid');
+      $result = $this->customer->delete($cid);
+      echo json_encode($result);
+    } else {
+      $this->session->set_flashdata('message', 'Page not found.');
+      redirect(base_url(), 'refresh');
+    }
+  }
 }

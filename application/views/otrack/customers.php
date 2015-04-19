@@ -41,7 +41,10 @@
           $customer->city,
           $customer->province,
           $customer->zipcode,
-          'TODO',
+          '<div class="btn-group">'.
+          anchor(base_url('customers/edit').'/'.$customer->id,'<i class="fa fa-fw fa-edit"></i> Edit',array('class'=>'btn btn-xs btn-info')).
+          anchor('#modal-delete','<i class="fa fa-fw fa-trash"></i> Delete',array('class'=>'btn btn-xs btn-danger btn-modal-delete','data-toggle'=>'modal','data-cid'=>$customer->id,'data-name'=>$customer->name)).
+          '</div>',
         );
 
         $this->table->add_row($row);
@@ -50,6 +53,53 @@
       echo $table = $this->table->generate();
   }
    ?>
+
 </div>
+
+<script>
+  $(function() {
+    $('.btn-modal-delete').on('click', function(e) {
+      cid = $(this).data('cid');
+      name = $(this).data('name');
+      BootstrapDialog.show({
+        title: 'Delete Customer: '+name,
+        message: 'Caution! Are you sure to delete this customer?',
+        type: 'type-danger',
+        buttons: [{
+            id: 'btn-delete',
+            icon: 'glyphicon glyphicon-trash',
+            label: 'Delete',
+            action: function(dialog) {
+              ajax_delete(cid, name, dialog, this)
+            }
+        }],
+      });
+    });
+
+    function ajax_delete (cid, name, dialog, button) {
+      $.ajax({
+        url: '<?php echo base_url("customers/delete") ?>',
+        type: 'POST',
+        dataType: 'json',
+        data: {cid: cid},
+        beforeSend: function () {
+          button.disable();
+          button.spin();
+          dialog.setClosable(false);
+        },
+        success: function (data) {
+          if (data) {
+            dialog.close();
+            BootstrapDialog.alert(name+' Deleted.');            
+          } else {
+            button.enable();
+            button.stopSpin();
+            dialog.setClosable(true);
+          }
+        }
+      });
+    }
+  });
+</script>
 
 <?php $this->load->view('otrack/common/footer'); ?>

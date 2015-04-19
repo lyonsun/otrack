@@ -28,4 +28,12 @@ class Customer extends CI_Model
     $id = $this->db->insert($this->table_name, $customer_data);
     return $id > 0 ? $id : FALSE;
   }
+
+  function delete($id)
+  {
+    $this->db->where('id', $id);
+    $this->db->delete($this->table_name);
+
+    return $this->db->affected_rows() > 0 ? TRUE : FALSE;
+  }
 }
