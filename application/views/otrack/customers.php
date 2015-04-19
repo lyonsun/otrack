@@ -9,7 +9,7 @@
   <a class="btn btn-default" href="<?php echo base_url('customers/create'); ?>"><i class="fa fa-fw fa-plus"></i> Add Customer</a>
   <hr>
 
-  <?php 
+  <?php
     if ($customers) {
       $tmpl = array (
         'table_open'  => '<div class="table-responsive"><table class="table table-hover">',
@@ -22,7 +22,8 @@
       $heading = array(
         'Name',
         'Phone Number',
-        'Address',
+        'Primary Address',
+        'Secondary Address',
         'District',
         'City',
         'Province',
@@ -32,18 +33,19 @@
 
       $this->table->set_heading($heading);
 
-      foreach ($customers as $customer) {        
+      foreach ($customers as $customer) {
         $row = array(
           $customer->name,
           $customer->phone,
           $customer->address_1,
+          $customer->address_2,
           $customer->district,
           $customer->city,
           $customer->province,
           $customer->zipcode,
           '<div class="btn-group">'.
-          anchor(base_url('customers/edit').'/'.$customer->id,'<i class="fa fa-fw fa-edit"></i> Edit',array('class'=>'btn btn-xs btn-info')).
-          anchor('#modal-delete','<i class="fa fa-fw fa-trash"></i> Delete',array('class'=>'btn btn-xs btn-danger btn-modal-delete','data-toggle'=>'modal','data-cid'=>$customer->id,'data-name'=>$customer->name)).
+          anchor(base_url('customers/edit').'/'.$customer->id,'<i class="fa fa-fw fa-edit"></i><span class="hidden-xs">Edit</span>',array('class'=>'btn btn-xs btn-info')).
+          anchor('#modal-delete','<i class="fa fa-fw fa-trash"></i><span class="hidden-xs">Delete</span>',array('class'=>'btn btn-xs btn-danger btn-modal-delete','data-toggle'=>'modal','data-cid'=>$customer->id,'data-name'=>$customer->name)).
           '</div>',
         );
 

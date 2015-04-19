@@ -4,65 +4,73 @@
   <?php if ($message): ?>
   <div class="alert alert-<?php if ($status): ?><?php echo $status; ?><?php else: ?>danger<?php endif ?>"><?php echo $message;?></div>
   <?php endif ?>
-  <h3 class="page-header">Create Customer</h3>
+  <h3 class="page-header"><?php echo $title; ?></h3>
   <div class="row">
     <div class="col-md-offset-2 col-md-8">
       <?php
-      $form_attributes = array('id'=>'form-create-customer', 'class'=>'form-create-customer');
+      $form_attributes = array('id'=>'form-update-customer', 'class'=>'form-update-customer');
       $name = array(
       'id' => 'name',
       'name' => 'name',
       'class' => 'form-control',
+      'value' => $this->form_validation->set_value('name', $customer->name),
       'placeholder' => 'Customer Name',
       );
       $phone = array(
       'id' => 'phone',
       'name' => 'phone',
       'class' => 'form-control',
+      'value' => $this->form_validation->set_value('phone', $customer->phone),
       'placeholder' => 'Phone Number',
       );
       $address_1 = array(
       'id' => 'address_1',
       'name' => 'address_1',
       'class' => 'form-control',
+      'value' => $this->form_validation->set_value('address_1', $customer->address_1),
       'placeholder' => 'Addresss Line 1',
       );
       $address_2 = array(
       'id' => 'address_2',
       'name' => 'address_2',
       'class' => 'form-control',
+      'value' => $this->form_validation->set_value('address_2', $customer->address_2),
       'placeholder' => 'Addresss',
       );
       $city = array(
       'id' => 'city',
       'name' => 'city',
       'class' => 'form-control',
+      'value' => $this->form_validation->set_value('city', $customer->city),
       'placeholder' => 'City',
       );
       $district = array(
       'id' => 'district',
       'name' => 'district',
       'class' => 'form-control',
+      'value' => $this->form_validation->set_value('district', $customer->district),
       'placeholder' => 'County/District',
       );
       $province = array(
       'id' => 'province',
       'name' => 'province',
       'class' => 'form-control',
+      'value' => $this->form_validation->set_value('province', $customer->province),
       'placeholder' => 'Province',
       );
       $zipcode = array(
       'id' => 'zipcode',
       'name' => 'zipcode',
       'class' => 'form-control',
+      'value' => $this->form_validation->set_value('zipcode', $customer->zipcode),
       'placeholder' => 'Zip Code',
       );
       $submit = array(
-      'id' => 'btn-create-customer',
-      'name' => 'btn-create-customer',
+      'id' => 'btn-update-customer',
+      'name' => 'btn-update-customer',
       'class' => 'btn btn-primary btn-block',
       'type' => 'submit',
-      'content' => 'Create',
+      'content' => 'Update',
       );
       ?>
       <div class="panel panel-default">
@@ -114,7 +122,7 @@
 </div>
 <script>
 $(function() {
-  $('#form-create-customer').formValidation({
+  $('#form-update-customer').formValidation({
     framework: 'bootstrap',
     locale: 'en',
     icon: {

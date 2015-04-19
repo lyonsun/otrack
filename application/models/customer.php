@@ -11,9 +11,17 @@ class Customer extends CI_Model
     $this->table_name = 'customers';
   }
 
-  function get()
+  function get_all()
   {
     $result = $this->db->get($this->table_name)->result();
+
+    return $result ? $result : NULL;
+  }
+
+  function get($id)
+  {
+    $this->db->where('id', $id);
+    $result = $this->db->get($this->table_name)->row();
 
     return $result ? $result : NULL;
   }
@@ -27,6 +35,14 @@ class Customer extends CI_Model
   {
     $id = $this->db->insert($this->table_name, $customer_data);
     return $id > 0 ? $id : FALSE;
+  }
+
+  function update($id, $customer_data)
+  {
+    $this->db->where('id', $id);
+    $this->db->update($this->table_name, $customer_data);
+
+    return $this->db->affected_rows() > 0 ? TRUE : FALSE;
   }
 
   function delete($id)

@@ -30,7 +30,7 @@ class Customers extends CI_Controller {
     $this->data['message'] = (validation_errors() ? validation_errors() : $this->session->flashdata('message'));
 
     $this->data['number_of_customers'] = $this->customer->count();
-    $this->data['customers'] = $this->customer->get();
+    $this->data['customers'] = $this->customer->get_all();
 
 		$this->load->view('otrack/customers', $this->data);
 	}
@@ -64,22 +64,68 @@ class Customers extends CI_Controller {
 
     if ($this->form_validation->run() == true && $this->customer->create($customer_data))
     {
-      //check to see if we are creating the user
-      //redirect them back to the admin page
       $this->session->set_flashdata('status', 'success');
-      $this->session->set_flashdata('message', 'Customer created Successfully.');
+      $this->session->set_flashdata('message', 'Customer created successfully.');
       redirect(base_url('customers'), 'refresh');
     }
     else
     {
-      //display the create user form
-      //set the flash data error message if there is one
       $this->data['status'] = $this->session->flashdata('status');
       $this->data['message'] = (validation_errors() ? validation_errors() : ($this->ion_auth->errors() ? $this->ion_auth->errors() : $this->session->flashdata('message')));
 
 		  $this->load->view('otrack/customers/create', $this->data);
     }
 	}
+
+  function edit($id='')
+  {
+    $this->data['title'] = "Edit Customer";
+
+    if (empty($id)) {
+      $this->session->set_flashdata('message', 'Page not found.');
+      redirect(base_url('customers'),'refresh');
+    }
+
+    //validate form input
+    $this->form_validation->set_rules('name', 'Customer Name', 'required');
+    $this->form_validation->set_rules('phone', 'Phone Number', 'required');
+    $this->form_validation->set_rules('address_1', 'Address 1', 'required');
+    $this->form_validation->set_rules('district', 'District', 'required');
+    $this->form_validation->set_rules('city', 'City', 'required');
+    $this->form_validation->set_rules('province', 'Province', 'required');
+
+    if ($this->form_validation->run() == true)
+    {
+      $customer_data = array(
+        'name'        => $this->input->post('name'),
+        'phone'       => $this->input->post('phone'),
+        'address_1'   => $this->input->post('address_1'),
+        'address_2'   => $this->input->post('address_2'),
+        'district'    => $this->input->post('district'),
+        'city'        => $this->input->post('city'),
+        'province'    => $this->input->post('province'),
+        'zipcode'     => $this->input->post('zipcode'),
+        'updated_on'  => time(),
+      );
+
+      if ($this->customer->update($id, $customer_data)) {
+        $this->session->set_flashdata('status', 'success');
+        $this->session->set_flashdata('message', 'Customer updated successfully.');
+        redirect(base_url('customers'), 'refresh');
+      } else {
+        $this->session->set_flashdata('message', 'Failed to update customer, try again.');
+        redirect(base_url('customers'), 'refresh');
+      }      
+    } else {
+      $customer = $this->customer->get($id);
+      $this->data['customer'] = $customer;
+
+      $this->data['status'] = $this->session->flashdata('status');
+      $this->data['message'] = (validation_errors() ? validation_errors() : ($this->ion_auth->errors() ? $this->ion_auth->errors() : $this->session->flashdata('message')));
+
+      $this->load->view('otrack/customers/edit', $this->data);      
+    }
+  }
 
   function delete()
   {
