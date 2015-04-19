@@ -8,62 +8,62 @@
   <div class="row">
     <div class="col-md-offset-2 col-md-8">
       <?php
-      $form_attributes = array('id'=>'form-create-customer', 'class'=>'form-create-customer');
-      $name = array(
-      'id' => 'name',
-      'name' => 'name',
-      'class' => 'form-control',
-      'placeholder' => 'Customer Name',
-      );
-      $phone = array(
-      'id' => 'phone',
-      'name' => 'phone',
-      'class' => 'form-control',
-      'placeholder' => 'Phone Number',
-      );
-      $province = array(
-      'id' => 'province',
-      'name' => 'province',
-      'class' => 'form-control',
-      'options' => array(''=>''),
-      );
-      $district = array(
-      'id' => 'district',
-      'name' => 'district',
-      'class' => 'form-control',
-      'options' => array(''=>''),
-      );
-      $city = array(
-      'id' => 'city',
-      'name' => 'city',
-      'class' => 'form-control',
-      'options' => array(''=>''),
-      );
-      $address_1 = array(
-      'id' => 'address_1',
-      'name' => 'address_1',
-      'class' => 'form-control',
-      'placeholder' => 'Addresss Line 1',
-      );
-      $address_2 = array(
-      'id' => 'address_2',
-      'name' => 'address_2',
-      'class' => 'form-control',
-      'placeholder' => 'Addresss',
-      );
-      $zipcode = array(
-      'id' => 'zipcode',
-      'name' => 'zipcode',
-      'class' => 'form-control',
-      'placeholder' => 'Zip Code',
-      );
-      $submit = array(
-      'id' => 'btn-create-customer',
-      'name' => 'btn-create-customer',
-      'class' => 'btn btn-primary btn-block',
-      'type' => 'submit',
-      'content' => 'Create',
-      );
+        $form_attributes = array('id'=>'form-create-customer', 'class'=>'form-create-customer col-md-offset-1 col-md-10');
+        $name = array(
+        'id' => 'name',
+        'name' => 'name',
+        'class' => 'form-control',
+        'placeholder' => 'Customer Name',
+        );
+        $phone = array(
+        'id' => 'phone',
+        'name' => 'phone',
+        'class' => 'form-control',
+        'placeholder' => 'Phone Number',
+        );
+        $province = array(
+        'id' => 'province',
+        'name' => 'province',
+        'class' => 'form-control',
+        'options' => array(''=>''),
+        );
+        $city = array(
+        'id' => 'city',
+        'name' => 'city',
+        'class' => 'form-control',
+        'options' => array(''=>''),
+        );
+        $district = array(
+        'id' => 'district',
+        'name' => 'district',
+        'class' => 'form-control',
+        'options' => array(''=>''),
+        );
+        $address_1 = array(
+        'id' => 'address_1',
+        'name' => 'address_1',
+        'class' => 'form-control',
+        'placeholder' => 'Primary Addresss',
+        );
+        $address_2 = array(
+        'id' => 'address_2',
+        'name' => 'address_2',
+        'class' => 'form-control',
+        'placeholder' => 'Secondary Addresss',
+        );
+        $zipcode = array(
+        'id' => 'zipcode',
+        'name' => 'zipcode',
+        'class' => 'form-control',
+        'placeholder' => 'Zip Code',
+        );
+        $submit = array(
+        'id' => 'btn-create-customer',
+        'name' => 'btn-create-customer',
+        'class' => 'btn btn-primary btn-block',
+        'type' => 'submit',
+        'content' => 'Create',
+        );
       ?>
       <div class="panel panel-default">
         <div class="panel-heading">
@@ -92,11 +92,11 @@
             <?php echo form_dropdown($district); ?>
           </div>
           <div class="form-group">
-            <?php echo form_label('Address 1', 'address_1', array('class'=>'control-label')); ?>
+            <?php echo form_label('Primary Address', 'address_1', array('class'=>'control-label')); ?>
             <?php echo form_input($address_1); ?>
           </div>
           <div class="form-group">
-            <?php echo form_label('Address 2', 'address_2', array('class'=>'control-label')); ?>
+            <?php echo form_label('Secondary Address', 'address_2', array('class'=>'control-label')); ?>
             <?php echo form_input($address_2); ?>
           </div>
           <div class="form-group">
@@ -114,6 +114,19 @@
 </div>
 <script>
 $(function() {
+
+  $('#province').select2({
+    placeholder: "Select a province",
+  });
+
+  $('#city').select2({
+    placeholder: "Select a city",
+  });
+
+  $('#district').select2({
+    placeholder: "Select a district",
+  });
+
   jQuery.extend({
     getValues: function(url) {
       var result = null;
@@ -175,10 +188,6 @@ $(function() {
       });
     });
   }
-
-  $('#province, #city, #district').select2({
-    placeholder: 'Please Select',
-  });
 
   $('#form-create-customer')
   .find('[name="province"]')

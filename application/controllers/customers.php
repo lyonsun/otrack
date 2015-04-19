@@ -22,7 +22,7 @@ class Customers extends CI_Controller {
     $this->load->model(array('customer'));
   }
 
-	public function index()
+	function index()
 	{
     $this->load->library('table');
 
@@ -32,13 +32,44 @@ class Customers extends CI_Controller {
 
     $this->data['number_of_customers'] = $this->customer->count();
 
-    $page = intval($this->input->get('page'));
-    $page = empty($page) ? 1 : $page;
-    $offset = ($page - 1) * PAGE_SIZE;
-    
-    $this->data['customers'] = $this->customer->get_all($offset, PAGE_SIZE);
+    $postData = $this->input->post();
 
-    $pagelink = $this->pagination($this->data['number_of_customers'], 'customers');
+    if ($postData) {      
+      $names = isset($postData['names']) ? $postData['names'] : array();
+      $phones = isset($postData['phones']) ? $postData['phones'] : array();
+      $provinces = isset($postData['provinces']) ? $postData['provinces'] : array();
+      $cities = isset($postData['cities']) ? $postData['cities'] : array();
+      $districts = isset($postData['districts']) ? $postData['districts'] : array();
+
+      $criteria = array(
+        'name'=>$names,
+        'phone' => $phones,
+        'province' => $provinces,
+        'city' => $cities,
+        'district' => $districts
+      );
+
+      $this->data['customers'] = $this->customer->search($criteria);
+
+      $this->data['selected_names'] = $names;
+      $this->data['selected_phones'] = $phones;
+      $this->data['selected_provinces'] = $provinces;
+      $this->data['selected_cities'] = $cities;
+      $this->data['selected_districts'] = $districts;
+    } else {
+      $page = intval($this->input->get('page'));
+      $page = empty($page) ? 1 : $page;
+      $offset = ($page - 1) * PAGE_SIZE;
+      $pagelink = $this->pagination($this->data['number_of_customers'], 'customers');
+
+      $this->data['customers'] = $this->customer->get_all($offset, PAGE_SIZE);
+    }
+
+    $this->data['names'] = (array)$this->customer->get_distinct('name');
+    $this->data['phones'] = (array)$this->customer->get_distinct('phone');
+    $this->data['provinces'] = (array)$this->customer->get_distinct('province');
+    $this->data['cities'] = (array)$this->customer->get_distinct('city');
+    $this->data['districts'] = (array)$this->customer->get_distinct('district');
 
 		$this->load->view('otrack/customers', $this->data);
 	}
@@ -170,6 +201,25 @@ class Customers extends CI_Controller {
 
       $cid = $this->input->post('cid');
       $result = $this->customer->delete($cid);
+      echo json_encode($result);
+    } else {
+      $this->session->set_flashdata('message', 'Page not found.');
+      redirect(base_url(), 'refresh');
+    }
+  }
+
+  function delete_all()
+  {
+    $this->data['title'] = "Delete Customer";
+
+    //validate form input
+    $this->form_validation->set_rules('uid', 'User ID', 'required');
+
+    if ($this->form_validation->run() == true && $this->input->post('uid') == $this->session->userdata('user_id'))
+    {
+      header('Content-Type: application/json');
+
+      $result = $this->customer->truncate();
       echo json_encode($result);
     } else {
       $this->session->set_flashdata('message', 'Page not found.');
