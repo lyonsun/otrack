@@ -11,6 +11,8 @@
     <link href="<?php echo base_url(); ?>/static/bs3/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome CSS -->
     <link href="<?php echo base_url(); ?>/static/fa/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Bootstrap Dialog CSS -->
+    <link href="<?php echo base_url(); ?>/static/bs3-dialog/css/bootstrap-dialog.min.css" rel="stylesheet">
     <!-- Otrack CSS -->
     <link href="<?php echo base_url(); ?>/static/otrack/css/styles.css" rel="stylesheet">
 
@@ -25,5 +27,7 @@
     <script src="<?php echo base_url(); ?>/static/jquery-2.1.0.min.js"></script>
     <!-- Bootstrap JavaScript -->
     <script src="<?php echo base_url(); ?>/static/bs3/js/bootstrap.min.js"></script>
+    <!-- Bootstrap Dialog JavaScript -->
+    <script src="<?php echo base_url(); ?>/static/bs3-dialog/js/bootstrap-dialog.min.js"></script>
   </head>
   <body>
