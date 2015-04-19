@@ -25,21 +25,18 @@
       'id' => 'province',
       'name' => 'province',
       'class' => 'form-control',
-      // 'placeholder' => 'Province',
       'options' => array(''=>''),
       );
       $district = array(
       'id' => 'district',
       'name' => 'district',
       'class' => 'form-control',
-      // 'placeholder' => 'County/District',
       'options' => array(''=>''),
       );
       $city = array(
       'id' => 'city',
       'name' => 'city',
       'class' => 'form-control',
-      // 'placeholder' => 'City',
       'options' => array(''=>''),
       );
       $address_1 = array(
@@ -183,8 +180,31 @@ $(function() {
     placeholder: 'Please Select',
   });
 
-  $('#form-create-customer').formValidation({
+  $('#form-create-customer')
+  .find('[name="province"]')
+    .select2()
+    // Revalidate the color when it is changed
+    .change(function(e) {
+        $('#form-create-customer').formValidation('revalidateField', 'province');
+    })
+    .end()
+  .find('[name="city"]')
+    .select2()
+    // Revalidate the color when it is changed
+    .change(function(e) {
+        $('#form-create-customer').formValidation('revalidateField', 'city');
+    })
+    .end()
+  .find('[name="district"]')
+    .select2()
+    // Revalidate the color when it is changed
+    .change(function(e) {
+        $('#form-create-customer').formValidation('revalidateField', 'district');
+    })
+    .end()
+  .formValidation({
     framework: 'bootstrap',
+    excluded: ':disabled',
     locale: 'en',
     icon: {
       valid: 'glyphicon glyphicon-ok',
