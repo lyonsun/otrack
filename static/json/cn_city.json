@@ -510,80 +510,85 @@
         ]
     },
     {
-        "name": "北京市",
+        "name": "北京",
         "children": [
-            {
-                "name": "昌平区",
-                "children": []
-            },
-            {
-                "name": "朝阳区",
-                "children": []
-            },
-            {
-                "name": "崇文区",
-                "children": []
-            },
-            {
-                "name": "大兴区",
-                "children": []
-            },
-            {
-                "name": "东城区",
-                "children": []
-            },
-            {
-                "name": "房山区",
-                "children": []
-            },
-            {
-                "name": "丰台区",
-                "children": []
-            },
-            {
-                "name": "海淀区",
-                "children": []
-            },
-            {
-                "name": "怀柔区",
-                "children": []
-            },
-            {
-                "name": "门头沟区",
-                "children": []
-            },
-            {
-                "name": "密云县",
-                "children": []
-            },
-            {
-                "name": "平谷区",
-                "children": []
-            },
-            {
-                "name": "石景山区",
-                "children": []
-            },
-            {
-                "name": "顺义区",
-                "children": []
-            },
-            {
-                "name": "通州区",
-                "children": []
-            },
-            {
-                "name": "西城区",
-                "children": []
-            },
-            {
-                "name": "宣武区",
-                "children": []
-            },
-            {
-                "name": "延庆县",
-                "children": []
-            }
+         {
+            "name": "北京市",
+            "children": [
+                {
+                    "name": "昌平区",
+                    "children": []
+                },
+                {
+                    "name": "朝阳区",
+                    "children": []
+                },
+                {
+                    "name": "崇文区",
+                    "children": []
+                },
+                {
+                    "name": "大兴区",
+                    "children": []
+                },
+                {
+                    "name": "东城区",
+                    "children": []
+                },
+                {
+                    "name": "房山区",
+                    "children": []
+                },
+                {
+                    "name": "丰台区",
+                    "children": []
+                },
+                {
+                    "name": "海淀区",
+                    "children": []
+                },
+                {
+                    "name": "怀柔区",
+                    "children": []
+                },
+                {
+                    "name": "门头沟区",
+                    "children": []
+                },
+                {
+                    "name": "密云县",
+                    "children": []
+                },
+                {
+                    "name": "平谷区",
+                    "children": []
+                },
+                {
+                    "name": "石景山区",
+                    "children": []
+                },
+                {
+                    "name": "顺义区",
+                    "children": []
+                },
+                {
+                    "name": "通州区",
+                    "children": []
+                },
+                {
+                    "name": "西城区",
+                    "children": []
+                },
+                {
+                    "name": "宣武区",
+                    "children": []
+                },
+                {
+                    "name": "延庆县",
+                    "children": []
+                }
+            ]
+          }
         ]
     },
     {
@@ -10356,79 +10361,84 @@
         ]
     },
     {
-        "name": "上海市",
+        "name": "上海",
         "children": [
-            {
-                "name": "宝山区",
-                "children": []
-            },
-            {
-                "name": "长宁区",
-                "children": []
-            },
-            {
-                "name": "崇明县",
-                "children": []
-            },
-            {
-                "name": "奉贤区",
-                "children": []
-            },
-            {
-                "name": "虹口区",
-                "children": []
-            },
-            {
-                "name": "黄浦区",
-                "children": []
-            },
-            {
-                "name": "嘉定区",
-                "children": []
-            },
-            {
-                "name": "金山区",
-                "children": []
-            },
-            {
-                "name": "静安区",
-                "children": []
-            },
-            {
-                "name": "卢湾区",
-                "children": []
-            },
-            {
-                "name": "普陀区",
-                "children": []
-            },
-            {
-                "name": "浦东新区",
-                "children": []
-            },
-            {
-                "name": "青浦区",
-                "children": []
-            },
-            {
-                "name": "松江区",
-                "children": []
-            },
-            {
-                "name": "徐汇区",
-                "children": []
-            },
-            {
-                "name": "杨浦区",
-                "children": []
-            },
-            {
-                "name": "闸北区",
-                "children": []
-            },
-            {
-                "name": "闵行区",
-                "children": []
+            {              
+                "name": "上海市",
+                "children": [
+                    {
+                        "name": "宝山区",
+                        "children": []
+                    },
+                    {
+                        "name": "长宁区",
+                        "children": []
+                    },
+                    {
+                        "name": "崇明县",
+                        "children": []
+                    },
+                    {
+                        "name": "奉贤区",
+                        "children": []
+                    },
+                    {
+                        "name": "虹口区",
+                        "children": []
+                    },
+                    {
+                        "name": "黄浦区",
+                        "children": []
+                    },
+                    {
+                        "name": "嘉定区",
+                        "children": []
+                    },
+                    {
+                        "name": "金山区",
+                        "children": []
+                    },
+                    {
+                        "name": "静安区",
+                        "children": []
+                    },
+                    {
+                        "name": "卢湾区",
+                        "children": []
+                    },
+                    {
+                        "name": "普陀区",
+                        "children": []
+                    },
+                    {
+                        "name": "浦东新区",
+                        "children": []
+                    },
+                    {
+                        "name": "青浦区",
+                        "children": []
+                    },
+                    {
+                        "name": "松江区",
+                        "children": []
+                    },
+                    {
+                        "name": "徐汇区",
+                        "children": []
+                    },
+                    {
+                        "name": "杨浦区",
+                        "children": []
+                    },
+                    {
+                        "name": "闸北区",
+                        "children": []
+                    },
+                    {
+                        "name": "闵行区",
+                        "children": []
+                    }
+                ]
             }
         ]
     },
@@ -11267,71 +11277,76 @@
         ]
     },
     {
-        "name": "天津市",
+        "name": "天津",
         "children": [
-            {
-                "name": "宝坻区",
-                "children": []
-            },
-            {
-                "name": "北辰区",
-                "children": []
-            },
-            {
-                "name": "滨海新区",
-                "children": []
-            },
-            {
-                "name": "东丽区",
-                "children": []
-            },
-            {
-                "name": "和平区",
-                "children": []
-            },
-            {
-                "name": "河北区",
-                "children": []
-            },
-            {
-                "name": "河东区",
-                "children": []
-            },
-            {
-                "name": "河西区",
-                "children": []
-            },
-            {
-                "name": "红桥区",
-                "children": []
-            },
-            {
-                "name": "蓟县",
-                "children": []
-            },
-            {
-                "name": "津南区",
-                "children": []
-            },
-            {
-                "name": "静海县",
-                "children": []
-            },
-            {
-                "name": "南开区",
-                "children": []
-            },
-            {
-                "name": "宁河县",
-                "children": []
-            },
-            {
-                "name": "武清区",
-                "children": []
-            },
-            {
-                "name": "西青区",
-                "children": []
+            {              
+                "name": "天津市",
+                "children": [
+                    {
+                        "name": "宝坻区",
+                        "children": []
+                    },
+                    {
+                        "name": "北辰区",
+                        "children": []
+                    },
+                    {
+                        "name": "滨海新区",
+                        "children": []
+                    },
+                    {
+                        "name": "东丽区",
+                        "children": []
+                    },
+                    {
+                        "name": "和平区",
+                        "children": []
+                    },
+                    {
+                        "name": "河北区",
+                        "children": []
+                    },
+                    {
+                        "name": "河东区",
+                        "children": []
+                    },
+                    {
+                        "name": "河西区",
+                        "children": []
+                    },
+                    {
+                        "name": "红桥区",
+                        "children": []
+                    },
+                    {
+                        "name": "蓟县",
+                        "children": []
+                    },
+                    {
+                        "name": "津南区",
+                        "children": []
+                    },
+                    {
+                        "name": "静海县",
+                        "children": []
+                    },
+                    {
+                        "name": "南开区",
+                        "children": []
+                    },
+                    {
+                        "name": "宁河县",
+                        "children": []
+                    },
+                    {
+                        "name": "武清区",
+                        "children": []
+                    },
+                    {
+                        "name": "西青区",
+                        "children": []
+                    }
+                ]
             }
         ]
     },
@@ -13212,167 +13227,172 @@
         ]
     },
     {
-        "name": "重庆市",
+        "name": "重庆",
         "children": [
             {
-                "name": "巴南区",
-                "children": []
-            },
-            {
-                "name": "北碚区",
-                "children": []
-            },
-            {
-                "name": "长寿区",
-                "children": []
-            },
-            {
-                "name": "城口县",
-                "children": []
-            },
-            {
-                "name": "大渡口区",
-                "children": []
-            },
-            {
-                "name": "大足县",
-                "children": []
-            },
-            {
-                "name": "垫江县",
-                "children": []
-            },
-            {
-                "name": "丰都县",
-                "children": []
-            },
-            {
-                "name": "奉节县",
-                "children": []
-            },
-            {
-                "name": "涪陵区",
-                "children": []
-            },
-            {
-                "name": "合川区",
-                "children": []
-            },
-            {
-                "name": "江北区",
-                "children": []
-            },
-            {
-                "name": "江津区",
-                "children": []
-            },
-            {
-                "name": "九龙坡区",
-                "children": []
-            },
-            {
-                "name": "开县",
-                "children": []
-            },
-            {
-                "name": "梁平县",
-                "children": []
-            },
-            {
-                "name": "南岸区",
-                "children": []
-            },
-            {
-                "name": "南川区",
-                "children": []
-            },
-            {
-                "name": "彭水苗族土家族自治县",
-                "children": []
-            },
-            {
-                "name": "黔江区",
-                "children": []
-            },
-            {
-                "name": "荣昌县",
-                "children": []
-            },
-            {
-                "name": "沙坪坝区",
-                "children": []
-            },
-            {
-                "name": "石柱土家族自治县",
-                "children": []
-            },
-            {
-                "name": "双桥区",
-                "children": []
-            },
-            {
-                "name": "铜梁县",
-                "children": []
-            },
-            {
-                "name": "万盛区",
-                "children": []
-            },
-            {
-                "name": "万州区",
-                "children": []
-            },
-            {
-                "name": "巫山县",
-                "children": []
-            },
-            {
-                "name": "巫溪县",
-                "children": []
-            },
-            {
-                "name": "武隆县",
-                "children": []
-            },
-            {
-                "name": "秀山土家族苗族自治县",
-                "children": []
-            },
-            {
-                "name": "永川区",
-                "children": []
-            },
-            {
-                "name": "酉阳土家族苗族自治县",
-                "children": []
-            },
-            {
-                "name": "渝北区",
-                "children": []
-            },
-            {
-                "name": "渝中区",
-                "children": []
-            },
-            {
-                "name": "云阳县",
-                "children": []
-            },
-            {
-                "name": "忠县",
-                "children": []
-            },
-            {
-                "name": "潼南县",
-                "children": []
-            },
-            {
-                "name": "璧山县",
-                "children": []
-            },
-            {
-                "name": "綦江县",
-                "children": []
+                "name": "重庆市",
+                "children": [
+                    {
+                        "name": "巴南区",
+                        "children": []
+                    },
+                    {
+                        "name": "北碚区",
+                        "children": []
+                    },
+                    {
+                        "name": "长寿区",
+                        "children": []
+                    },
+                    {
+                        "name": "城口县",
+                        "children": []
+                    },
+                    {
+                        "name": "大渡口区",
+                        "children": []
+                    },
+                    {
+                        "name": "大足县",
+                        "children": []
+                    },
+                    {
+                        "name": "垫江县",
+                        "children": []
+                    },
+                    {
+                        "name": "丰都县",
+                        "children": []
+                    },
+                    {
+                        "name": "奉节县",
+                        "children": []
+                    },
+                    {
+                        "name": "涪陵区",
+                        "children": []
+                    },
+                    {
+                        "name": "合川区",
+                        "children": []
+                    },
+                    {
+                        "name": "江北区",
+                        "children": []
+                    },
+                    {
+                        "name": "江津区",
+                        "children": []
+                    },
+                    {
+                        "name": "九龙坡区",
+                        "children": []
+                    },
+                    {
+                        "name": "开县",
+                        "children": []
+                    },
+                    {
+                        "name": "梁平县",
+                        "children": []
+                    },
+                    {
+                        "name": "南岸区",
+                        "children": []
+                    },
+                    {
+                        "name": "南川区",
+                        "children": []
+                    },
+                    {
+                        "name": "彭水苗族土家族自治县",
+                        "children": []
+                    },
+                    {
+                        "name": "黔江区",
+                        "children": []
+                    },
+                    {
+                        "name": "荣昌县",
+                        "children": []
+                    },
+                    {
+                        "name": "沙坪坝区",
+                        "children": []
+                    },
+                    {
+                        "name": "石柱土家族自治县",
+                        "children": []
+                    },
+                    {
+                        "name": "双桥区",
+                        "children": []
+                    },
+                    {
+                        "name": "铜梁县",
+                        "children": []
+                    },
+                    {
+                        "name": "万盛区",
+                        "children": []
+                    },
+                    {
+                        "name": "万州区",
+                        "children": []
+                    },
+                    {
+                        "name": "巫山县",
+                        "children": []
+                    },
+                    {
+                        "name": "巫溪县",
+                        "children": []
+                    },
+                    {
+                        "name": "武隆县",
+                        "children": []
+                    },
+                    {
+                        "name": "秀山土家族苗族自治县",
+                        "children": []
+                    },
+                    {
+                        "name": "永川区",
+                        "children": []
+                    },
+                    {
+                        "name": "酉阳土家族苗族自治县",
+                        "children": []
+                    },
+                    {
+                        "name": "渝北区",
+                        "children": []
+                    },
+                    {
+                        "name": "渝中区",
+                        "children": []
+                    },
+                    {
+                        "name": "云阳县",
+                        "children": []
+                    },
+                    {
+                        "name": "忠县",
+                        "children": []
+                    },
+                    {
+                        "name": "潼南县",
+                        "children": []
+                    },
+                    {
+                        "name": "璧山县",
+                        "children": []
+                    },
+                    {
+                        "name": "綦江县",
+                        "children": []
+                    }
+                ]
             }
         ]
     }
