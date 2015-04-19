@@ -18,6 +18,7 @@ class Customers extends CI_Controller {
       return show_error('You must be an administrator to view this page.');
     }
 
+    $this->load->library(array('pagination'));
     $this->load->model(array('customer'));
   }
 
@@ -30,7 +31,14 @@ class Customers extends CI_Controller {
     $this->data['message'] = (validation_errors() ? validation_errors() : $this->session->flashdata('message'));
 
     $this->data['number_of_customers'] = $this->customer->count();
-    $this->data['customers'] = $this->customer->get_all();
+
+    $page = intval($this->input->get('page'));
+    $page = empty($page) ? 1 : $page;
+    $offset = ($page - 1) * PAGE_SIZE;
+    
+    $this->data['customers'] = $this->customer->get_all($offset, PAGE_SIZE);
+
+    $pagelink = $this->pagination($this->data['number_of_customers'], 'customers');
 
 		$this->load->view('otrack/customers', $this->data);
 	}
@@ -167,5 +175,16 @@ class Customers extends CI_Controller {
       $this->session->set_flashdata('message', 'Page not found.');
       redirect(base_url(), 'refresh');
     }
+  }
+
+  function pagination($total_rows = 100000, $base_url) {
+    $config['base_url'] = base_url($base_url) . "?";
+    $config['total_rows'] = $total_rows;
+    $config['per_page'] = PAGE_SIZE;
+    $config['use_page_numbers'] = TRUE;
+    $config['page_query_string'] = TRUE;
+    $config['query_string_segment'] = 'page';
+
+    return $this->pagination->initialize($config);
   }
 }

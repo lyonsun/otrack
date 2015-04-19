@@ -53,7 +53,9 @@
       }
 
       echo $table = $this->table->generate();
-  }
+
+      echo $this->pagination->create_links();
+    }
    ?>
 
 </div>

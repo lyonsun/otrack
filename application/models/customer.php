@@ -11,9 +11,9 @@ class Customer extends CI_Model
     $this->table_name = 'customers';
   }
 
-  function get_all()
+  function get_all($offset=0, $limit='10')
   {
-    $result = $this->db->get($this->table_name)->result();
+    $result = $this->db->get($this->table_name, $limit, $offset)->result();
 
     return $result ? $result : NULL;
   }

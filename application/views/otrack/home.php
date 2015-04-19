@@ -13,7 +13,7 @@
   <hr>
   <div class="list-group">
     <a class="list-group-item" href="<?php echo base_url('customers'); ?>">
-      <span class="badge"><?php echo $number_of_customers; ?></span>
+      <span class="progress-bar-success badge"><?php echo $number_of_customers; ?></span>
       <b>Customers</b>
     </a>
   </div>
