@@ -15,6 +15,9 @@
     <link href="<?php echo base_url(); ?>/static/bs3-dialog/css/bootstrap-dialog.min.css" rel="stylesheet">
     <!-- FormValidation CSS -->
     <link href="<?php echo base_url(); ?>/static/fv/css/formValidation.min.css" rel="stylesheet">
+    <!-- Select2 CSS -->
+    <link href="<?php echo base_url(); ?>static/select2-3.5.2/select2.css" rel="stylesheet" />
+    <link href="<?php echo base_url(); ?>static/select2-3.5.2/select2-bootstrap.css" rel="stylesheet" />
     <!-- Otrack CSS -->
     <link href="<?php echo base_url(); ?>/static/otrack/css/styles.css" rel="stylesheet">
 
@@ -35,5 +38,7 @@
     <script src="<?php echo base_url(); ?>/static/fv/js/formValidation.min.js"></script>
     <script src="<?php echo base_url(); ?>/static/fv/js/framework/bootstrap.min.js"></script>
     <script src="<?php echo base_url(); ?>/static/fv/js/language/zh_CN.js"></script>
+    <!-- Select2 JavaScript -->
+    <script src="<?php echo base_url(); ?>static/select2-3.5.2/select2.min.js"></script>
   </head>
   <body>
