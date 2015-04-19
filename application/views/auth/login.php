@@ -32,11 +32,11 @@
           </div>
           <div class="form-group">
             <?php echo form_label(lang('login_password_label', 'password'),'password',array('class'=>'control-label')); ?>
+            <p class="pull-right"><a href="<?php echo base_url('forgot_password'); ?>"><?php echo lang('login_forgot_password');?></a></p>
             <?php echo form_input($password); ?>
           </div>
           <div class="form-group">
             <?php echo form_label(form_checkbox('remember', '1', FALSE, 'id="remember"').lang('login_remember_label', 'remember'),'remember',array('class'=>'control-label')); ?>
-            <p class="pull-right"><a href="<?php echo base_url('forgot_password'); ?>"><?php echo lang('login_forgot_password');?></a></p>
           </div>
           <div class="form-group">
             <?php echo form_button($submit);?>

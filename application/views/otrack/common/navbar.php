@@ -24,7 +24,7 @@
         <li><a href="<?php echo base_url('auth/logout'); ?>"><i class="fa fa-fw fa-sign-out"></i> Logout</a></li>
       </ul>
       <?php else: ?>
-        <?php if ($this->uri->segment(2) != 'login'): ?>
+        <?php if ($this->uri->segment(1) != 'login'): ?>
         <ul class="nav navbar-nav navbar-right">
           <li><a href="<?php echo base_url(); ?>"><i class="fa fa-fw fa-sign-in"></i> Login</a></li>
         </ul>
