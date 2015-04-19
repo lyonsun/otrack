@@ -8,15 +8,14 @@
           <h1 class="panel-title"><?php echo lang('login_heading');?></h1>
         </div>
         <div class="panel-body">
-          <p class="text-muted"><?php echo lang('login_subheading');?></p>
-          <hr>
+          <p class="text-muted page-header"><?php echo lang('login_subheading');?></p>
           <?php if ($message): ?>
           <div class="alert alert-<?php if ($status): ?><?php echo $status; ?><?php else: ?>danger<?php endif ?>"><?php echo $message;?></div>
           <?php endif ?>
           <?php
           $form_attributes = array(
           'id' => 'form-login',
-          'class' => '',
+          'class' => 'col-md-offset-1 col-md-10 col-sm-offset-2 col-sm-8',
           );
           $identity['class'] = $password['class'] = 'form-control';
           $submit = array(
