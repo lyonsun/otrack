@@ -26,7 +26,7 @@
             'content' => '<i class="fa fa-fw fa-sign-in"></i> '.lang('login_submit_btn'),
           );
           ?>
-          <?php echo form_open(base_url('auth/login'), $form_attributes);?>
+          <?php echo form_open(base_url('login'), $form_attributes);?>
           <div class="form-group">
             <?php echo form_label(lang('login_identity_label', 'identity'),'identity',array('class'=>'control-label')); ?>
             <?php echo form_input($identity); ?>
@@ -37,7 +37,7 @@
           </div>
           <div class="form-group">
             <?php echo form_label(form_checkbox('remember', '1', FALSE, 'id="remember"').lang('login_remember_label', 'remember'),'remember',array('class'=>'control-label')); ?>
-            <p class="pull-right"><a href="<?php echo base_url('auth/forgot_password'); ?>"><?php echo lang('login_forgot_password');?></a></p>
+            <p class="pull-right"><a href="<?php echo base_url('forgot_password'); ?>"><?php echo lang('login_forgot_password');?></a></p>
           </div>
           <div class="form-group">
             <?php echo form_button($submit);?>

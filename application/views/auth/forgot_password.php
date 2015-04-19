@@ -26,7 +26,7 @@
             'content' => '<i class="fa fa-fw fa-send"></i> '.lang('forgot_password_submit_btn'),
           );
           ?>
-          <?php echo form_open(base_url('auth/forgot_password'), $form_attributes);?>
+          <?php echo form_open(base_url('forgot_password'), $form_attributes);?>
           <div class="form-group">
             <?php echo form_label(sprintf(lang('forgot_password_email_label'),$identity_label),'email',array('class'=>'control-label')); ?>
             <?php echo form_input($email); ?>
