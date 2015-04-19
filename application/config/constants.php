@@ -86,7 +86,7 @@ define('EXIT__AUTO_MIN', 9); // lowest automatically-assigned error code
 define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
 
 
-define('PAGE_SIZE', 10);
+define('PAGE_SIZE', 8);
 
 
 
