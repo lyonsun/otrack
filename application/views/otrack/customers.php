@@ -65,6 +65,8 @@
         title: 'Delete Customer: '+name,
         message: 'Caution! Are you sure to delete this customer?',
         type: 'type-danger',
+        closable: true,
+        closeByBackdrop: false,
         buttons: [{
             id: 'btn-delete',
             icon: 'glyphicon glyphicon-trash',
@@ -90,7 +92,9 @@
         success: function (data) {
           if (data) {
             dialog.close();
-            BootstrapDialog.alert(name+' Deleted.');            
+            BootstrapDialog.alert('Customer '+name+' Deleted.', function () {
+              location.reload();
+            });
           } else {
             button.enable();
             button.stopSpin();

@@ -45,7 +45,7 @@ class Customers extends CI_Controller {
     $this->form_validation->set_rules('address_1', 'Address 1', 'required');
     $this->form_validation->set_rules('district', 'District', 'required');
     $this->form_validation->set_rules('city', 'City', 'required');
-    $this->form_validation->set_rules('Province', 'Province', 'required');
+    $this->form_validation->set_rules('province', 'Province', 'required');
 
     if ($this->form_validation->run() == true)
     {
