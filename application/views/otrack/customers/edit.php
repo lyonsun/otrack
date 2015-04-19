@@ -23,6 +23,27 @@
       'value' => $this->form_validation->set_value('phone', $customer->phone),
       'placeholder' => 'Phone Number',
       );
+      $province = array(
+      'id' => 'province',
+      'name' => 'province',
+      'class' => 'form-control',
+      'selected' => $this->form_validation->set_value('province', $customer->province),
+      'options' => $provinces,
+      );
+      $city = array(
+      'id' => 'city',
+      'name' => 'city',
+      'class' => 'form-control',
+      'selected' => $this->form_validation->set_value('city', $customer->city),
+      'options' => $cities,
+      );
+      $district = array(
+      'id' => 'district',
+      'name' => 'district',
+      'class' => 'form-control',
+      'selected' => $this->form_validation->set_value('district', $customer->district),
+      'options' => $districts,
+      );
       $address_1 = array(
       'id' => 'address_1',
       'name' => 'address_1',
@@ -36,27 +57,6 @@
       'class' => 'form-control',
       'value' => $this->form_validation->set_value('address_2', $customer->address_2),
       'placeholder' => 'Addresss',
-      );
-      $city = array(
-      'id' => 'city',
-      'name' => 'city',
-      'class' => 'form-control',
-      'value' => $this->form_validation->set_value('city', $customer->city),
-      'placeholder' => 'City',
-      );
-      $district = array(
-      'id' => 'district',
-      'name' => 'district',
-      'class' => 'form-control',
-      'value' => $this->form_validation->set_value('district', $customer->district),
-      'placeholder' => 'County/District',
-      );
-      $province = array(
-      'id' => 'province',
-      'name' => 'province',
-      'class' => 'form-control',
-      'value' => $this->form_validation->set_value('province', $customer->province),
-      'placeholder' => 'Province',
       );
       $zipcode = array(
       'id' => 'zipcode',
@@ -88,24 +88,24 @@
             <?php echo form_input($phone); ?>
           </div>
           <div class="form-group">
+            <?php echo form_label('Province', 'province', array('class'=>'control-label')); ?>
+            <?php echo form_dropdown($province); ?>
+          </div>
+          <div class="form-group">
+            <?php echo form_label('City', 'city', array('class'=>'control-label')); ?>
+            <?php echo form_dropdown($city); ?>
+          </div>
+          <div class="form-group">
+            <?php echo form_label('County/District', 'district', array('class'=>'control-label')); ?>
+            <?php echo form_dropdown($district); ?>
+          </div>
+          <div class="form-group">
             <?php echo form_label('Address 1', 'address_1', array('class'=>'control-label')); ?>
             <?php echo form_input($address_1); ?>
           </div>
           <div class="form-group">
             <?php echo form_label('Address 2', 'address_2', array('class'=>'control-label')); ?>
             <?php echo form_input($address_2); ?>
-          </div>
-          <div class="form-group">
-            <?php echo form_label('County/District', 'district', array('class'=>'control-label')); ?>
-            <?php echo form_input($district); ?>
-          </div>
-          <div class="form-group">
-            <?php echo form_label('City', 'city', array('class'=>'control-label')); ?>
-            <?php echo form_input($city); ?>
-          </div>
-          <div class="form-group">
-            <?php echo form_label('Province', 'province', array('class'=>'control-label')); ?>
-            <?php echo form_input($province); ?>
           </div>
           <div class="form-group">
             <?php echo form_label('Zip Code', 'zipcode', array('class'=>'control-label')); ?>
@@ -122,8 +122,97 @@
 </div>
 <script>
 $(function() {
-  $('#form-update-customer').formValidation({
+  jQuery.extend({
+    getValues: function(url) {
+      var result = null;
+      $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'json',
+        async: false,
+        success: function(data) {
+            result = data;
+        }
+      });
+     return result;
+    }
+  });
+
+  var provinces = $.getValues('<?php echo base_url(); ?>/static/json/cn_city.json');
+
+  load_states();
+
+  function load_states () {
+    $.each(provinces, function(province_index, province) {
+      $('#province').append('<option value="'+province.name+'">'+province.name+'</option>');
+    });
+  }
+
+  $('#province').on('change', function(e) {
+    $('#city').select2('val', 'All');
+    $('#city').html('<option value=""></option>');
+    $('#district').select2('val', 'All');
+    $('#district').html('<option value=""></option>');
+    load_cities($(this).val());
+  });
+
+  function load_cities (state) {
+    $.each(provinces, function(province_index, province) {
+      if (province.name == state) {
+        $.each(province.children, function(city_index, city) {
+          $('#city').append('<option value="'+city.name+'">'+city.name+'</option>');
+        });
+      };
+    });
+  }
+
+  $('#city').on('change', function(e) {
+    $('#district').select2('val', 'All');
+    $('#district').html('<option value=""></option>');
+    load_districts($(this).val());
+  });
+
+  function load_districts (city) {
+    $.each(provinces, function(province_index, province) {
+      $.each(province.children, function(city_index, val) {        
+        if (val.name == city) {
+          $.each(val.children, function(district_index, district) {
+            $('#district').append('<option value="'+district.name+'">'+district.name+'</option>');
+          });
+        };
+      });
+    });
+  }
+
+  $('#province, #city, #district').select2({
+    placeholder: 'Please Select',
+  });
+
+  $('#form-update-customer')
+  .find('[name="province"]')
+    .select2()
+    // Revalidate the color when it is changed
+    .change(function(e) {
+        $('#form-update-customer').formValidation('revalidateField', 'province');
+    })
+    .end()
+  .find('[name="city"]')
+    .select2()
+    // Revalidate the color when it is changed
+    .change(function(e) {
+        $('#form-update-customer').formValidation('revalidateField', 'city');
+    })
+    .end()
+  .find('[name="district"]')
+    .select2()
+    // Revalidate the color when it is changed
+    .change(function(e) {
+        $('#form-update-customer').formValidation('revalidateField', 'district');
+    })
+    .end()
+  .formValidation({
     framework: 'bootstrap',
+    excluded: ':disabled',
     locale: 'en',
     icon: {
       valid: 'glyphicon glyphicon-ok',
@@ -144,12 +233,7 @@ $(function() {
           notEmpty: {},
         }
       },
-      address_1: {
-        validators: {
-          notEmpty: {},
-        }
-      },
-      district: {
+      province: {
         validators: {
           notEmpty: {},
         }
@@ -159,7 +243,12 @@ $(function() {
           notEmpty: {},
         }
       },
-      province: {
+      district: {
+        validators: {
+          notEmpty: {},
+        }
+      },
+      address_1: {
         validators: {
           notEmpty: {},
         }

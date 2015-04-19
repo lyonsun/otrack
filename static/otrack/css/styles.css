@@ -8,6 +8,11 @@
   margin-top: 0;
 }
 
+/* Form Validation on Select 2 */
+#select2Form .form-control-feedback {
+    /* To make the feedback icon visible */
+    z-index: 100;
+}
 
 
 /* FOOTER */

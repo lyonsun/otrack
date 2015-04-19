@@ -146,6 +146,8 @@ $(function() {
   $('#province').on('change', function(e) {
     $('#city').select2('val', 'All');
     $('#city').html('<option value=""></option>');
+    $('#district').select2('val', 'All');
+    $('#district').html('<option value=""></option>');
     load_citys($(this).val());
   });
 

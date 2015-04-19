@@ -123,6 +123,28 @@ class Customers extends CI_Controller {
       $this->data['status'] = $this->session->flashdata('status');
       $this->data['message'] = (validation_errors() ? validation_errors() : ($this->ion_auth->errors() ? $this->ion_auth->errors() : $this->session->flashdata('message')));
 
+      $provinces = $cities = $districts = array(''=>'');
+      // get states
+      $china_states = json_decode(file_get_contents(base_url()."/static/json/cn_city.json"), TRUE);
+
+      foreach ($china_states as $province) {
+        $provinces[$province['name']] = $province['name'];
+        if ($province['name'] == $customer->province) {
+          foreach ($province['children'] as $city) {
+            $cities[$city['name']] = $city['name'];
+            if ($city['name'] == $customer->city) {
+              foreach ($city['children'] as $district) {
+                $districts[$district['name']] = $district['name'];
+              }
+            }
+          }
+        }
+      }
+
+      $this->data['provinces'] = $provinces;
+      $this->data['cities'] = $cities;
+      $this->data['districts'] = $districts;
+
       $this->load->view('otrack/customers/edit', $this->data);      
     }
   }
