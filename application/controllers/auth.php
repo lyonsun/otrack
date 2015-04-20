@@ -331,12 +331,12 @@ class Auth extends CI_Controller {
 					{
 						//if the password was successfully changed
 						$this->session->set_flashdata('message', $this->ion_auth->messages());
-						redirect("auth/login", 'refresh');
+						redirect(base_url("auth/login"), 'refresh');
 					}
 					else
 					{
 						$this->session->set_flashdata('message', $this->ion_auth->errors());
-						redirect('auth/reset_password/' . $code, 'refresh');
+						redirect(base_url('auth/reset_password') . "/" . $code, 'refresh');
 					}
 				}
 			}
@@ -345,7 +345,7 @@ class Auth extends CI_Controller {
 		{
 			//if the code is invalid then send them back to the forgot password page
 			$this->session->set_flashdata('message', $this->ion_auth->errors());
-			redirect("auth/forgot_password", 'refresh');
+			redirect(base_url("auth/forgot_password"), 'refresh');
 		}
 	}
 

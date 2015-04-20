@@ -15,13 +15,13 @@
           <?php endif ?>
           <?php
           $form_attributes = array(
-          'id' => 'form-login',
+          'id' => 'form-forgot-password',
           'class' => '',
           );
           $email['class'] = $password['class'] = 'form-control';
           $submit = array(
             'class' => 'btn btn-success btn-block',
-            'id' => 'btn-login',
+            'id' => 'btn-forgot-password',
             'type' => 'submit',
             'content' => '<i class="fa fa-fw fa-send"></i> '.lang('forgot_password_submit_btn'),
           );
