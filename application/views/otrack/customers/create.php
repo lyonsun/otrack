@@ -4,7 +4,7 @@
   <?php if ($message): ?>
   <div class="alert alert-<?php if ($status): ?><?php echo $status; ?><?php else: ?>danger<?php endif ?>"><?php echo $message;?></div>
   <?php endif ?>
-  <h3 class="page-header">Add Customer</h3>
+  <h3 class="page-header"><?php echo $title; ?></h3>
   <div class="row">
     <div class="col-md-offset-2 col-md-8">
       <?php
@@ -59,7 +59,6 @@
         );
         $submit = array(
         'id' => 'btn-create-customer',
-        'name' => 'btn-create-customer',
         'class' => 'btn btn-primary btn-block',
         'type' => 'submit',
         'content' => 'Add',

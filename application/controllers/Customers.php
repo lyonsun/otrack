@@ -76,7 +76,7 @@ class Customers extends CI_Controller {
 
 	function create()
 	{
-    $this->data['title'] = "Create Customer";
+    $this->data['title'] = "Add Customer";
 
     //validate form input
     $this->form_validation->set_rules('name', 'Customer Name', 'required');

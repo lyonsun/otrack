@@ -5,7 +5,7 @@
   <?php if ($message): ?>
   <div class="alert alert-<?php if ($status): ?><?php echo $status; ?><?php else: ?>danger<?php endif ?>"><?php echo $message;?></div>
   <?php endif ?>
-  <h3 class="page-header">Customers</h3>
+  <h3 class="page-header"><?php echo $title; ?></h3>
   <a class="btn btn-primary" href="<?php echo base_url('customers/create'); ?>"><i class="fa fa-fw fa-plus"></i><span class="hidden-xs"> Add</span></a>
   <a class="btn btn-default <?php if ($number_of_customers == 0): ?>hide<?php endif ?>" data-toggle="collapse" href="#collapse-search" aria-expanded="false" aria-controls="collapse-search"><i class="fa fa-fw fa-search"></i><span class="hidden-xs"> Search</span></a>
   <button type="button" class="btn btn-info <?php if ($number_of_customers == 0): ?>hide<?php endif ?>" id="btn-view-all"><i class="fa fa-fw fa-list"></i><span class="hidden-xs"> View All</span></button>
