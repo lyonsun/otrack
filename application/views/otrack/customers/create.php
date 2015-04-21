@@ -4,7 +4,7 @@
   <?php if ($message): ?>
   <div class="alert alert-<?php if ($status): ?><?php echo $status; ?><?php else: ?>danger<?php endif ?>"><?php echo $message;?></div>
   <?php endif ?>
-  <h3 class="page-header">Create Customer</h3>
+  <h3 class="page-header">Add Customer</h3>
   <div class="row">
     <div class="col-md-offset-2 col-md-8">
       <?php
@@ -62,7 +62,7 @@
         'name' => 'btn-create-customer',
         'class' => 'btn btn-primary btn-block',
         'type' => 'submit',
-        'content' => 'Create',
+        'content' => 'Add',
         );
       ?>
       <div class="panel panel-default">

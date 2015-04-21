@@ -6,10 +6,10 @@
   <div class="alert alert-<?php if ($status): ?><?php echo $status; ?><?php else: ?>danger<?php endif ?>"><?php echo $message;?></div>
   <?php endif ?>
   <h3 class="page-header">Customers</h3>
-  <a class="btn btn-primary" href="<?php echo base_url('customers/create'); ?>"><i class="fa fa-fw fa-plus"></i> Add Customer</a>
-  <a class="btn btn-default <?php if ($number_of_customers == 0): ?>hide<?php endif ?>" data-toggle="collapse" href="#collapse-search" aria-expanded="false" aria-controls="collapse-search"><i class="fa fa-fw fa-search"></i> Search Customer</a>
-  <button type="button" class="btn btn-info <?php if ($number_of_customers == 0): ?>hide<?php endif ?>" id="btn-view-all"><i class="fa fa-fw fa-list"></i> View All</button>
-  <button type="button" class="btn btn-danger pull-right <?php if ($number_of_customers == 0): ?>hide<?php endif ?>" id="btn-delete-all"><i class="fa fa-fw fa-trash"></i> Delete All</button>
+  <a class="btn btn-primary" href="<?php echo base_url('customers/create'); ?>"><i class="fa fa-fw fa-plus"></i><span class="hidden-xs"> Add</span></a>
+  <a class="btn btn-default <?php if ($number_of_customers == 0): ?>hide<?php endif ?>" data-toggle="collapse" href="#collapse-search" aria-expanded="false" aria-controls="collapse-search"><i class="fa fa-fw fa-search"></i><span class="hidden-xs"> Search</span></a>
+  <button type="button" class="btn btn-info <?php if ($number_of_customers == 0): ?>hide<?php endif ?>" id="btn-view-all"><i class="fa fa-fw fa-list"></i><span class="hidden-xs"> View All</span></button>
+  <button type="button" class="btn btn-danger pull-right <?php if ($number_of_customers == 0): ?>hide<?php endif ?>" id="btn-delete-all"><i class="fa fa-fw fa-trash"></i><span class="hidden-xs"> Delete All</span></button>
   <hr>
   <div class="collapse" id="collapse-search">
     <div class="panel panel-default">
@@ -114,9 +114,9 @@
 
     $heading = array(
       'Name',
-      'Phone Number',
-      'Primary Address',
-      'Secondary Address',
+      'Phone',
+      'Address',
+      // 'Address',
       'District',
       'City',
       'Province',
@@ -132,15 +132,19 @@
           $customer->name,
           $customer->phone,
           $customer->address_1,
-          $customer->address_2,
+          // $customer->address_2,
           $customer->district,
           $customer->city,
           $customer->province,
           $customer->zipcode,
-          '<div class="btn-group pull-right">'.
-          anchor(base_url('customers/edit').'/'.$customer->id,'<i class="fa fa-fw fa-edit"></i><span class="hidden-xs">Edit</span>',array('class'=>'btn btn-xs btn-success')).
-          anchor('#modal-delete','<i class="fa fa-fw fa-trash"></i><span class="hidden-xs">Delete</span>',array('class'=>'btn btn-xs btn-danger btn-modal-delete','data-toggle'=>'modal','data-cid'=>$customer->id,'data-name'=>$customer->name)).
-          '</div>',
+          // '<div class="btn-group pull-right">'.
+          array(
+            'data'=>
+            anchor(base_url('customers/edit').'/'.$customer->id,'<i class="fa fa-fw fa-edit"></i><span class="hidden-xs">Edit</span>',array('class'=>'btn btn-xs btn-success'))." ".
+            anchor('#modal-delete','<i class="fa fa-fw fa-trash"></i><span class="hidden-xs">Delete</span>',array('class'=>'btn btn-xs btn-danger btn-modal-delete','data-toggle'=>'modal','data-cid'=>$customer->id,'data-name'=>$customer->name)),
+            'width'=>'20%',
+          ),
+          // '</div>',
         );
 
         $this->table->add_row($row);

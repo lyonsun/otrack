@@ -184,6 +184,10 @@ class Auth extends CI_Controller {
 	//forgot password
 	function forgot_password()
 	{
+		if ($this->ion_auth->logged_in()) {
+			redirect(base_url(), 'refresh');
+		}
+		
 		//setting validation rules by checking wheather identity is username or email
 		if($this->config->item('identity', 'ion_auth') == 'username' )
 		{
