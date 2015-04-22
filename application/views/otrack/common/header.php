@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="Lyon Sun <sunly917@gmail.com>">
-    <title><?php echo $title?$title." - ":""; ?>O, Track</title>
+    <title><?php echo $title?$title." - ":""; ?><?php echo $this->config->item('site_title', 'ion_auth'); ?></title>
 
     <!-- Bootstrap CSS -->
     <link href="<?php echo base_url(); ?>static/bs3/css/bootstrap.min.css" rel="stylesheet">
@@ -18,6 +18,8 @@
     <!-- Select2 CSS -->
     <link href="<?php echo base_url(); ?>static/select2-3.5.2/select2.css" rel="stylesheet" />
     <link href="<?php echo base_url(); ?>static/select2-3.5.2/select2-bootstrap.css" rel="stylesheet" />
+    <!-- Bootstrap Datetime Picker CSS -->
+    <link href="<?php echo base_url(); ?>static/bs-dp3/css/bootstrap-datepicker3.min.css" rel="stylesheet">
     <!-- Otrack CSS -->
     <link href="<?php echo base_url(); ?>static/otrack/css/styles.css" rel="stylesheet">
   </head>
