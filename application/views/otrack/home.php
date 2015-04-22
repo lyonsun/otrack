@@ -15,4 +15,6 @@
   </div>
 </div>
 
+<?php $this->load->view('otrack/common/js'); ?>
+
 <?php $this->load->view('otrack/common/footer'); ?>

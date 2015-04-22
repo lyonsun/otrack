@@ -159,6 +159,8 @@
    ?>
 </div>
 
+<?php $this->load->view('otrack/common/js'); ?>
+
 <script>
   $(function() {
     $('#names, #phones, #provinces, #cities, #districts').select2({
