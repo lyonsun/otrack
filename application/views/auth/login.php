@@ -32,7 +32,7 @@
           </div>
           <div class="form-group">
             <?php echo form_label(lang('login_password_label', 'password'),'password',array('class'=>'control-label')); ?>
-            <p class="pull-right"><a href="<?php echo base_url('forgot_password'); ?>"><?php echo lang('login_forgot_password');?></a></p>
+            <span class="pull-right"><a href="<?php echo base_url('forgot_password'); ?>"><?php echo lang('login_forgot_password');?></a></span>
             <?php echo form_input($password); ?>
           </div>
           <div class="form-group">
