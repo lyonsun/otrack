@@ -16,7 +16,7 @@ class Home extends CI_Controller {
 		}
 
 		$this->load->library('ion_auth');
-		$this->load->model(array('customer'));
+		$this->load->model(array('customer','order'));
 	}
 
 	function index()
@@ -26,6 +26,8 @@ class Home extends CI_Controller {
 		$this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
 
     $this->data['number_of_customers'] = $this->customer->count();
+
+    $this->data['number_of_orders'] = $this->order->count();
 		
 		$this->load->view('otrack/home', $this->data);
 	}
