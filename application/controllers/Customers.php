@@ -33,8 +33,9 @@ class Customers extends CI_Controller {
     $this->data['number_of_customers'] = $this->customer->count();
 
     $postData = $this->input->post();
+    $names = $phones = $provinces = $cities = $districts = array();
 
-    if ($postData) {      
+    if ($postData) {
       $names = isset($postData['names']) ? $postData['names'] : array();
       $phones = isset($postData['phones']) ? $postData['phones'] : array();
       $provinces = isset($postData['provinces']) ? $postData['provinces'] : array();
@@ -49,21 +50,68 @@ class Customers extends CI_Controller {
         'district' => $districts
       );
 
-      $this->data['customers'] = $this->customer->search($criteria);
-
-      $this->data['selected_names'] = $names;
-      $this->data['selected_phones'] = $phones;
-      $this->data['selected_provinces'] = $provinces;
-      $this->data['selected_cities'] = $cities;
-      $this->data['selected_districts'] = $districts;
+      $customers = $this->customer->search($criteria);
     } else {
       $page = intval($this->input->get('page'));
       $page = empty($page) ? 1 : $page;
       $offset = ($page - 1) * PAGE_SIZE;
       $pagelink = $this->pagination($this->data['number_of_customers'], 'customers');
 
-      $this->data['customers'] = $this->customer->get_all($offset, PAGE_SIZE);
+      $customers = $this->customer->get_all($offset, PAGE_SIZE);
     }
+
+    $tmpl = array (
+      'table_open'  => '<div class="table-responsive"><table class="table table-striped">',
+      'heading_cell_start'  => '<th class="bg-primary">',
+      'table_close'         => '</table></div>',
+    );
+
+    $this->table->set_template($tmpl);
+
+    $heading = array(
+      'Name',
+      'Phone',
+      'Address',
+      'District',
+      'City',
+      'Province',
+      'Last Modified',
+      'Action',
+    );
+
+    $this->table->set_heading($heading);
+
+    if ($customers) {
+      foreach ($customers as $customer) {
+        $row = array(
+          $customer->name,
+          $customer->phone,
+          $customer->address_1,
+          $customer->district,
+          $customer->city,
+          $customer->province,
+          date('Y-m-d H:i:s', $customer->updated_on),
+          array(
+            'data'=>
+            anchor(base_url('customers/edit').'/'.$customer->id,'<i class="fa fa-fw fa-edit"></i><span class="hidden-xs">Edit</span>',array('class'=>'btn btn-xs btn-success'))." ".
+            anchor('#modal-delete','<i class="fa fa-fw fa-trash"></i><span class="hidden-xs">Delete</span>',array('class'=>'btn btn-xs btn-danger btn-modal-delete','data-toggle'=>'modal','data-cid'=>$customer->id,'data-name'=>$customer->name)),
+            'width'=>'20%',
+          ),
+        );
+
+        $this->table->add_row($row);
+      }
+    } else {
+      $this->table->add_row(array('data'=>'No customers found.','colspan'=>'11','class'=>'text-center'));
+    }
+
+    $this->data['customer_table'] = $this->table->generate();
+
+    $this->data['selected_names'] = $names;
+    $this->data['selected_phones'] = $phones;
+    $this->data['selected_provinces'] = $provinces;
+    $this->data['selected_cities'] = $cities;
+    $this->data['selected_districts'] = $districts;
 
     $this->data['names'] = (array)$this->customer->get_distinct('name');
     $this->data['phones'] = (array)$this->customer->get_distinct('phone');

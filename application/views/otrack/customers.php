@@ -104,57 +104,7 @@
     </div>
   </div>
   <?php
-    $tmpl = array (
-      'table_open'  => '<div class="table-responsive"><table class="table table-hover">',
-      'heading_cell_start'  => '<th class="bg-primary">',
-      'table_close'         => '</table></div>',
-    );
-
-    $this->table->set_template($tmpl);
-
-    $heading = array(
-      'Name',
-      'Phone',
-      'Address',
-      // 'Address',
-      'District',
-      'City',
-      'Province',
-      'Zip Code',
-      'Action',
-    );
-
-    $this->table->set_heading($heading);
-
-    if ($customers) {
-      foreach ($customers as $customer) {
-        $row = array(
-          $customer->name,
-          $customer->phone,
-          $customer->address_1,
-          // $customer->address_2,
-          $customer->district,
-          $customer->city,
-          $customer->province,
-          $customer->zipcode,
-          // '<div class="btn-group pull-right">'.
-          array(
-            'data'=>
-            anchor(base_url('customers/edit').'/'.$customer->id,'<i class="fa fa-fw fa-edit"></i><span class="hidden-xs">Edit</span>',array('class'=>'btn btn-xs btn-success'))." ".
-            anchor('#modal-delete','<i class="fa fa-fw fa-trash"></i><span class="hidden-xs">Delete</span>',array('class'=>'btn btn-xs btn-danger btn-modal-delete','data-toggle'=>'modal','data-cid'=>$customer->id,'data-name'=>$customer->name)),
-            'width'=>'20%',
-          ),
-          // '</div>',
-        );
-
-        $this->table->add_row($row);
-      }
-    } else {
-      // echo '<p class="text-center lead">No customers found.</p>';
-      $this->table->add_row(array('data'=>'No customers found.','colspan'=>'11','class'=>'text-center'));
-    }
-
-    echo $table = $this->table->generate();
+    echo $customer_table;
     echo $this->pagination->create_links();
    ?>
 </div>
@@ -175,7 +125,6 @@
         message: 'Caution! Are you sure to delete this customer?',
         type: 'type-danger',
         closable: true,
-        closeByBackdrop: false,
         buttons: [{
             id: 'btn-delete',
             icon: 'glyphicon glyphicon-trash',
