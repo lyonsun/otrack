@@ -11,6 +11,8 @@
     <div class="panel-body">
       <h4><?php echo $order->buyer_name; ?></h4>
       <p><?php echo $buyer_info; ?></p>
+      <p><b>Comments: </b></p>
+      <p><?php echo $order->comments; ?></p>
     </div>
     <div class="panel-body bg-primary">
       <b>Products</b>

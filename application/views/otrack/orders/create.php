@@ -13,7 +13,14 @@
   $buyer_options = array(''=>'');
   if ($customers) {
     foreach ($customers as $customer) {
-      $buyer_options[$customer->id] = $customer->name;
+      $address = array($customer->province,$customer->city,$customer->district,$customer->address_1);
+      if (!empty($customer->address_2)) {
+        $address[] = $customer->address_2;
+      }
+      if (!empty($customer->zipcode)) {
+        $address[] = $customer->zipcode;
+      }
+      $buyer_options[$customer->id] = $customer->name.' - ['.implode(', ', $address).']';
     }
   }
 
@@ -75,6 +82,14 @@
     'name' => 'delivery_time',
     'class' => 'form-control',
     'value' => $this->form_validation->set_value('delivery_time'),
+  );
+
+  $comments = array(
+    'id' => 'comments',
+    'name' => 'comments',
+    'class' => 'form-control',
+    'placeholder' => 'E.g. Address is wrong, using the following address...',
+    'value' => $this->form_validation->set_value('comments'),
   );
 
   $submit = array(
@@ -139,6 +154,12 @@
         <?php echo form_label('Express Name', 'express_name', array('class'=>'col-xs-2 control-label')); ?>
         <div class="col-xs-9">
         <?php echo form_dropdown($express_name); ?>
+        </div>
+      </div>
+      <div class="form-group">
+        <?php echo form_label('Comments', 'comments', array('class'=>'col-xs-2 control-label')); ?>
+        <div class="col-xs-9">
+        <?php echo form_input($comments); ?>
         </div>
       </div>
       <div class="form-group">

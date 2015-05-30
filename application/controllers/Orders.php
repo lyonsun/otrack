@@ -144,6 +144,7 @@ class Orders extends CI_Controller {
       $order_data = array(
         'buyer_id' => $this->form_validation->set_value('buyer'),
         'buyer_name' => $buyer->name,
+        'comments' => $this->input->post('comments'),
         'status' => $this->form_validation->set_value('status'),
         'est_delivery_time' => date('Y-m-d H:i:s', strtotime($this->input->post('delivery_time'))),
         'express_name' => $this->form_validation->set_value('express_name'),

@@ -11,6 +11,8 @@
     <div class="panel-body">
       <h4><?php echo $order->buyer_name; ?></h4>
       <p><?php echo $buyer_info; ?></p>
+      <p><b>Comments: </b></p>
+      <p><?php echo $order->comments; ?></p>
     </div>
     <div class="panel-body bg-primary">
       <b>Products</b>
@@ -27,7 +29,7 @@
     </ul>
   </div>
 
-  <h4>Tracking Information <small><?php echo $order->express_name; ?>: <?php echo $order->tracking_number; ?></small></h4>
+  <h4>Tracking Information <small><?php echo $order->express_name; ?>: <?php echo $order->tracking_number; ?> <?php echo anchor(base_url('orders/edit').'/'.$order->id,'Change Tracking #'); ?></small></h4>
 
   <?php if ($tracking_info['status'] != '200'): ?>
   <div class="alert alert-danger"><?php echo $tracking_info['status'].': '.$tracking_info['message']; ?></div>
