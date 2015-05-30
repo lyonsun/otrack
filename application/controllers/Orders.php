@@ -46,9 +46,10 @@ class Orders extends CI_Controller {
       'ID',
       'Buyer',
       'Products',
-      'Express Name',
+      'Express',
       'Tracking #',
-      'Delivery Time',
+      'Est. Delivery Date',
+      'Final Delivery Time',
       'Created On',
       'Action',
     );
@@ -77,40 +78,49 @@ class Orders extends CI_Controller {
       }
     }
 
-    foreach ($orders as $order) {
-      $order_products = $this->order->get_order_products($order->id);
-
-      $products = array();
-
-      foreach ($order_products as $product) {
-        $products[] = $product->product_amount.' '.$product->product_title;
-      }
-
-      switch ($order->status) {
-        case '1':
-          $action = anchor(base_url('orders/edit').'/'.$order->id,'<i class="fa fa-fw fa-arrow-right"></i><span class="hidden-xs">Deliver</span>',array('class'=>'btn btn-xs btn-danger btn-modal-deliver'));
-          break;
-        case '2':
-          $action = anchor(base_url('orders/view').'/'.$order->id, '<i class="fa fa-fw fa-search"></i> Delivered', array('class'=>'btn btn-xs btn-success'));
-          break;
-        
-        default:
-          $action = 'Invalid order.';
-          break;
-      }
-
+    if (!$orders) {
       $row = array(
-        $order->id,
-        $order->buyer_name,
-        implode(', ', $products),
-        $order->express_name,
-        $order->tracking_number,
-        $order->delivery_time,
-        $order->created_on,
-        $action, 
+        'data' => '<div class="text-center">No records</div>',
+        'colspan' => 9,
       );
-
       $this->table->add_row($row);
+    } else {
+      foreach ($orders as $order) {
+        $order_products = $this->order->get_order_products($order->id);
+
+        $products = array();
+
+        foreach ($order_products as $product) {
+          $products[] = $product->product_amount.' '.$product->product_title;
+        }
+
+        switch ($order->status) {
+          case '1':
+            $action = anchor(base_url('orders/edit').'/'.$order->id,'<i class="fa fa-fw fa-arrow-right"></i><span class="hidden-xs">Deliver</span>',array('class'=>'btn btn-xs btn-danger btn-modal-deliver'));
+            break;
+          case '2':
+            $action = anchor(base_url('orders/view').'/'.$order->id, '<i class="fa fa-fw fa-search"></i> Delivered', array('class'=>'btn btn-xs btn-success'));
+            break;
+          
+          default:
+            $action = 'Invalid order.';
+            break;
+        }
+
+        $row = array(
+          $order->id,
+          $order->buyer_name,
+          implode(', ', $products),
+          $order->express_name,
+          $order->tracking_number,
+          date('Y-m-d', strtotime($order->est_delivery_time)),
+          $order->final_delivery_time,
+          $order->created_on,
+          $action, 
+        );
+
+        $this->table->add_row($row);
+      }
     }
 
     $this->data['order_table'] = $this->table->generate();
@@ -135,7 +145,7 @@ class Orders extends CI_Controller {
         'buyer_id' => $this->form_validation->set_value('buyer'),
         'buyer_name' => $buyer->name,
         'status' => $this->form_validation->set_value('status'),
-        'delivery_time' => date('Y-m-d H:i:s', strtotime($this->input->post('delivery_time'))),
+        'est_delivery_time' => date('Y-m-d H:i:s', strtotime($this->input->post('delivery_time'))),
         'express_name' => $this->form_validation->set_value('express_name'),
         'created_on'  => date('Y-m-d H:i:s'),
       );
@@ -182,7 +192,7 @@ class Orders extends CI_Controller {
       $order_data = array(
         'express_name' => $this->form_validation->set_value('express_name'),
         'tracking_number' => $this->form_validation->set_value('tracking_number'),
-        'delivery_time' => date('Y-m-d H:i:s'),
+        'final_delivery_time' => date('Y-m-d H:i:s'),
         'status' => '2',
       );
     }

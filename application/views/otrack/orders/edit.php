@@ -37,10 +37,19 @@
     'id' => 'express_name',
     'name' => 'express_name',
     'class' => 'form-control',
-    'placeholder' => 'Express Name',
-    'value' => set_value('express_name') ? set_value('express_name') : $order->express_name,
-    'size' => 30,
-    'maxlength' => 30,
+    'options' => array(
+      '' => '',
+      '顺丰速运' => '顺丰速运',
+      '圆通速递' => '圆通速递',
+      '百世汇通' => '百世汇通',
+      '申通快递' => '申通快递',
+      '中通快递' => '中通快递',
+      '韵达快递' => '韵达快递',
+      '天天快递' => '天天快递',
+      '国际包裹' => '国际包裹',
+      'EMS' => 'EMS',
+    ),
+    'selected' => set_value('express_name') ? set_value('express_name') : $order->express_name,
   );
 
   $tracking_number = array(
@@ -64,7 +73,7 @@
   <?php echo form_open(base_url($this->uri->uri_string()), $form_attributes); ?>
   <div class="form-group">
     <?php echo form_label('Express Name', 'express_name', array('class'=>'control-label')); ?>
-    <?php echo form_input($express_name); ?>
+    <?php echo form_dropdown($express_name); ?>
   </div>
   <div class="form-group">
     <?php echo form_label('Tracking Number', 'tracking_number', array('class'=>'control-label')); ?>
@@ -82,6 +91,10 @@
 
 <script>
   $(function() {
+    $('#express_name').select2({
+      placeholder: 'Select a express',
+    });
+    
     $('#form-edit-order')
     .formValidation({
       framework: 'bootstrap',
