@@ -14,7 +14,7 @@ class Orders extends CI_Controller {
       //redirect them to the home page because they must be an administrator to view this
       return show_error('You must be an administrator to view this page.');
     }
-    $this->load->library(array('ion_auth','pagination','table'));
+    $this->load->library(array('ion_auth','pagination','table','express'));
     $this->load->model(array('customer','order'));
   }
 
@@ -46,6 +46,8 @@ class Orders extends CI_Controller {
       'ID',
       'Buyer',
       'Products',
+      'Express Name',
+      'Tracking #',
       'Delivery Time',
       'Created On',
       'Action',
@@ -101,6 +103,8 @@ class Orders extends CI_Controller {
         $order->id,
         $order->buyer_name,
         implode(', ', $products),
+        $order->express_name,
+        $order->tracking_number,
         $order->delivery_time,
         $order->created_on,
         $action, 
@@ -119,6 +123,7 @@ class Orders extends CI_Controller {
     //validate form input
     $this->form_validation->set_rules('buyer', 'Buyer', 'required');
     $this->form_validation->set_rules('status', 'Status', 'required');
+    $this->form_validation->set_rules('express_name', 'Express name', 'required');
     $this->form_validation->set_rules('delivery_time', 'Delivery Time', 'required');
 
     if ($this->form_validation->run() == true)
@@ -131,6 +136,7 @@ class Orders extends CI_Controller {
         'buyer_name' => $buyer->name,
         'status' => $this->form_validation->set_value('status'),
         'delivery_time' => date('Y-m-d H:i:s', strtotime($this->input->post('delivery_time'))),
+        'express_name' => $this->form_validation->set_value('express_name'),
         'created_on'  => date('Y-m-d H:i:s'),
       );
 
@@ -153,6 +159,108 @@ class Orders extends CI_Controller {
 
       $this->load->view('otrack/orders/create', $this->data);
     }
+  }
+
+  function edit($oid='')
+  {
+    if (!$oid) {
+      $this->session->set_flashdata('message', 'Page not found.');
+      redirect(base_url('orders'), 'refresh');
+    }
+
+    $order = $this->order->get($oid);
+
+    if (!$order) {
+      $this->session->set_flashdata('message', 'Order not found.');
+      redirect(base_url('orders'), 'refresh');
+    }
+
+    $this->form_validation->set_rules('express_name', 'Express Name', 'required');
+    $this->form_validation->set_rules('tracking_number', 'Tracking #', 'required');
+
+    if ($this->form_validation->run() == TRUE) {
+      $order_data = array(
+        'express_name' => $this->form_validation->set_value('express_name'),
+        'tracking_number' => $this->form_validation->set_value('tracking_number'),
+        'delivery_time' => date('Y-m-d H:i:s'),
+        'status' => '2',
+      );
+    }
+
+    if ($this->form_validation->run() == TRUE && $this->order->update($order->id, $order_data)) {
+      $this->session->set_flashdata('message', 'Tracking # added.');
+      redirect(base_url('orders'), 'refresh');
+    } else {
+      $buyer = $this->customer->get($order->buyer_id);
+
+      $buyer_info = implode(', ', array(
+        $buyer->province, 
+        $buyer->city, 
+        $buyer->district, 
+        $buyer->address_1, 
+        $buyer->phone)
+      );
+
+      $order_products = $this->order->get_order_products($order->id);
+      
+      $this->data['title'] = 'Edit Order';
+      $this->data['status'] = $this->session->flashdata('status');
+      $this->data['message'] = (validation_errors() ? validation_errors() : ($this->ion_auth->errors() ? $this->ion_auth->errors() : $this->session->flashdata('message')));
+
+      $this->data['order'] = $order;
+      $this->data['buyer_info'] = $buyer_info;
+      $this->data['order_products'] = $order_products;
+
+      $this->load->view('otrack/orders/edit', $this->data);
+    }
+  }
+
+  function view($oid='')
+  {
+    if (!$oid) {
+      $this->session->set_flashdata('message', 'Page not found.');
+      redirect(base_url('orders'), 'refresh');
+    }
+
+    $order = $this->order->get($oid);
+
+    if (!$order) {
+      $this->session->set_flashdata('message', 'Order not found.');
+      redirect(base_url('orders'), 'refresh');
+    }
+
+    $buyer = $this->customer->get($order->buyer_id);
+
+    $buyer_info = implode(', ', array(
+      $buyer->province, 
+      $buyer->city, 
+      $buyer->district, 
+      $buyer->address_1, 
+      $buyer->phone)
+    );
+
+    $order_products = $this->order->get_order_products($order->id);
+
+    if (!$order->tracking_number) {
+      $this->session->set_flashdata('message', 'Tracking number not found.');
+      redirect(base_url('orders'), 'refresh');
+    }
+
+    $tracking_info  = $this->express->getorder($order->tracking_number);
+
+    $tracking_info = $tracking_info ? $tracking_info : array('status'=>'404','message'=>'Something went wrong. Can\'t get tracking information.');
+    
+    $this->data['title'] = 'View Order';
+    $this->data['status'] = $this->session->flashdata('status');
+    $this->data['message'] = (validation_errors() ? validation_errors() : ($this->ion_auth->errors() ? $this->ion_auth->errors() : $this->session->flashdata('message')));
+
+    $this->data['order'] = $order;
+    $this->data['buyer_info'] = $buyer_info;
+    $this->data['order_products'] = $order_products;
+    $this->data['tracking_info'] = $tracking_info;
+
+    $this->load->view('otrack/orders/view', $this->data);
+  }
 
   function pagination($total_rows = 100000, $base_url) {
     $config['base_url'] = base_url($base_url) . "?";

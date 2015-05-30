@@ -52,6 +52,13 @@
     'value' => '2',
   );
 
+  $express_name = array(
+    'id' => 'express_name',
+    'name' => 'express_name',
+    'class' => 'form-control',
+    'value' => $this->form_validation->set_value('express_name'),
+  );
+
   $delivery_time = array(
     'id' => 'delivery_time',
     'name' => 'delivery_time',
@@ -115,6 +122,12 @@
         <?php echo form_label('Delivery Date', 'delivery_time', array('class'=>'col-xs-2 control-label')); ?>
         <div class="col-xs-9">
         <?php echo form_input($delivery_time); ?>
+        </div>
+      </div>
+      <div class="form-group">
+        <?php echo form_label('Express Name', 'express_name', array('class'=>'col-xs-2 control-label')); ?>
+        <div class="col-xs-9">
+        <?php echo form_input($express_name); ?>
         </div>
       </div>
       <div class="form-group">

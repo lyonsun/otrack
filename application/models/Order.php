@@ -48,12 +48,21 @@ class Order extends CI_Model
     return FALSE;
   }
 
-  function _add_order_products($oid, $products)
+  function update($id, $order_data)
+  {
+    $this->db->where('id', $id);
+    $this->db->update($this->table_name, $order_data);
+
+    if ($this->db->affected_rows() > 0) return TRUE;
+    return FALSE;
+  }
+
+  function _add_order_products($order_id, $products)
   {
     foreach ($products as $product) {
       $this->db->insert($this->order_products_table_name, 
         array(
-          'order_id' => $oid,
+          'order_id' => $order_id,
           'product_title' => $product['title'],
           'product_amount' => $product['amount'],
         )
