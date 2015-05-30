@@ -72,9 +72,6 @@ class Customers extends CI_Controller {
       'Name',
       'Phone',
       'Address',
-      'District',
-      'City',
-      'Province',
       'Last Modified',
       'Action',
     );
@@ -83,13 +80,17 @@ class Customers extends CI_Controller {
 
     if ($customers) {
       foreach ($customers as $customer) {
+        $address = array($customer->province,$customer->city,$customer->district,$customer->address_1);
+        if (!empty($customer->address_2)) {
+          $address[] = $customer->address_2;
+        }
+        if (!empty($customer->zipcode)) {
+          $address[] = $customer->zipcode;
+        }
         $row = array(
           $customer->name,
           $customer->phone,
-          $customer->address_1,
-          $customer->district,
-          $customer->city,
-          $customer->province,
+          implode(', ', $address),
           date('Y-m-d H:i:s', $customer->updated_on),
           array(
             'data'=>
