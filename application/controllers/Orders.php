@@ -44,13 +44,11 @@ class Orders extends CI_Controller {
 
     $heading = array(
       'ID',
-      'Buyer',
+      'Receiver',
       'Products',
       'Express',
       'Tracking #',
-      'Est. Delivery Date',
-      'Final Delivery Time',
-      'Created On',
+      'Delivery Date',
       'Action',
     );
 
@@ -96,7 +94,10 @@ class Orders extends CI_Controller {
 
         switch ($order->status) {
           case '1':
-            $action = anchor(base_url('orders/edit').'/'.$order->id,'<i class="fa fa-fw fa-arrow-right"></i><span class="hidden-xs">Deliver</span>',array('class'=>'btn btn-xs btn-danger btn-modal-deliver'));
+            $action = 
+              anchor(base_url('orders/send').'/'.$order->id,'<i class="fa fa-fw fa-arrow-right"></i><span class="hidden-xs">Deliver</span>',array('class'=>'btn btn-xs btn-info'))." ".
+              anchor(base_url('orders/edit').'/'.$order->id,'<i class="fa fa-fw fa-edit"></i><span class="hidden-xs">Edit</span>',array('class'=>'btn btn-xs btn-primary'))." ".
+              anchor('#modal-delete','<i class="fa fa-fw fa-trash"></i><span class="hidden-xs">Delete</span>',array('class'=>'btn btn-xs btn-danger btn-modal-delete','data-toggle'=>'modal','data-oid'=>$order->id));
             break;
           case '2':
             $action = anchor(base_url('orders/view').'/'.$order->id, '<i class="fa fa-fw fa-search"></i> Delivered', array('class'=>'btn btn-xs btn-success'));
@@ -113,9 +114,7 @@ class Orders extends CI_Controller {
           implode(', ', $products),
           $order->express_name,
           $order->tracking_number,
-          date('Y-m-d', strtotime($order->est_delivery_time)),
-          $order->final_delivery_time,
-          $order->created_on,
+          $order->status == '1' ? $order->est_delivery_time : $order->final_delivery_time,
           $action, 
         );
 
@@ -128,10 +127,11 @@ class Orders extends CI_Controller {
 		$this->load->view('otrack/orders', $this->data);
 	}
 
-	function create()
-	{
+  function create()
+  {
     //validate form input
-    $this->form_validation->set_rules('buyer', 'Buyer', 'required');
+    $this->form_validation->set_rules('buyer', 'Receiver', 'required');
+    $this->form_validation->set_rules('type', 'Type', 'required');
     $this->form_validation->set_rules('status', 'Status', 'required');
     $this->form_validation->set_rules('express_name', 'Express name', 'required');
     $this->form_validation->set_rules('delivery_time', 'Delivery Time', 'required');
@@ -146,6 +146,7 @@ class Orders extends CI_Controller {
         'buyer_name' => $buyer->name,
         'comments' => $this->input->post('comments'),
         'status' => $this->form_validation->set_value('status'),
+        'type' => $this->form_validation->set_value('type'),
         'est_delivery_time' => date('Y-m-d H:i:s', strtotime($this->input->post('delivery_time'))),
         'express_name' => $this->form_validation->set_value('express_name'),
         'created_on'  => date('Y-m-d H:i:s'),
@@ -172,7 +173,7 @@ class Orders extends CI_Controller {
     }
   }
 
-  function edit($oid='')
+  function send($oid='')
   {
     if (!$oid) {
       $this->session->set_flashdata('message', 'Page not found.');
@@ -214,7 +215,7 @@ class Orders extends CI_Controller {
 
       $order_products = $this->order->get_order_products($order->id);
       
-      $this->data['title'] = 'Edit Order';
+      $this->data['title'] = 'Send Order';
       $this->data['status'] = $this->session->flashdata('status');
       $this->data['message'] = (validation_errors() ? validation_errors() : ($this->ion_auth->errors() ? $this->ion_auth->errors() : $this->session->flashdata('message')));
 
@@ -222,7 +223,85 @@ class Orders extends CI_Controller {
       $this->data['buyer_info'] = $buyer_info;
       $this->data['order_products'] = $order_products;
 
+      $this->load->view('otrack/orders/send', $this->data);
+    }
+  }
+
+	function edit($oid='')
+	{
+    //validate form input
+    $this->form_validation->set_rules('buyer', 'Receiver', 'required');
+    $this->form_validation->set_rules('type', 'Type', 'required');
+    $this->form_validation->set_rules('status', 'Status', 'required');
+    $this->form_validation->set_rules('express_name', 'Express name', 'required');
+    $this->form_validation->set_rules('delivery_time', 'Delivery Time', 'required');
+
+    if ($this->form_validation->run() == true)
+    {
+      $buyer_id = $this->form_validation->set_value('buyer');
+      $buyer = $this->customer->get($buyer_id);
+
+      $order_data = array(
+        'buyer_id' => $this->form_validation->set_value('buyer'),
+        'buyer_name' => $buyer->name,
+        'comments' => $this->input->post('comments'),
+        'status' => $this->form_validation->set_value('status'),
+        'type' => $this->form_validation->set_value('type'),
+        'est_delivery_time' => date('Y-m-d H:i:s', strtotime($this->input->post('delivery_time'))),
+        'express_name' => $this->form_validation->set_value('express_name'),
+        'created_on'  => date('Y-m-d H:i:s'),
+      );
+
+      $products = $this->input->post('product');
+    }
+
+    if ($this->form_validation->run() == true && $this->order->update_order_products($oid, $order_data, $products))
+    {
+      $this->session->set_flashdata('status', 'success');
+      $this->session->set_flashdata('message', 'Order updated successfully.');
+      redirect(base_url('orders'), 'refresh');
+    }
+    else
+    {
+      $this->data['title'] = 'Edit Order';
+
+      if (!$oid) {
+        $this->session->set_flashdata('message', 'Page not found.');
+        redirect(base_url('orders'), 'refresh');
+      }
+
+      $order = $this->order->get($oid);
+      $this->data['order'] = $order;
+
+      $this->data['customers'] = $this->customer->get_all();
+
+      $order_products = $this->order->get_order_products($order->id);
+      $this->data['order_products'] = $order_products;
+
+      $this->data['status'] = $this->session->flashdata('status');
+      $this->data['message'] = (validation_errors() ? validation_errors() : ($this->ion_auth->errors() ? $this->ion_auth->errors() : $this->session->flashdata('message')));
+
       $this->load->view('otrack/orders/edit', $this->data);
+    }
+  }
+
+  function delete()
+  {
+    $this->data['title'] = "Delete Order";
+
+    //validate form input
+    $this->form_validation->set_rules('oid', 'Order ID', 'required');
+
+    if ($this->form_validation->run() == true)
+    {
+      header('Content-Type: application/json');
+
+      $oid = $this->input->post('oid');
+      $result = $this->order->delete($oid);
+      echo json_encode($result);
+    } else {
+      $this->session->set_flashdata('message', 'Page not found.');
+      redirect(base_url(), 'refresh');
     }
   }
 
@@ -251,15 +330,6 @@ class Orders extends CI_Controller {
     );
 
     $order_products = $this->order->get_order_products($order->id);
-
-    if (!$order->tracking_number) {
-      $this->session->set_flashdata('message', 'Tracking number not found.');
-      redirect(base_url('orders'), 'refresh');
-    }
-
-    $tracking_info  = $this->express->getorder($order->tracking_number);
-
-    $tracking_info = $tracking_info ? $tracking_info : array('status'=>'404','message'=>'Something went wrong. Can\'t get tracking information.');
     
     $this->data['title'] = 'View Order';
     $this->data['status'] = $this->session->flashdata('status');
@@ -268,9 +338,32 @@ class Orders extends CI_Controller {
     $this->data['order'] = $order;
     $this->data['buyer_info'] = $buyer_info;
     $this->data['order_products'] = $order_products;
-    $this->data['tracking_info'] = $tracking_info;
+    // $this->data['tracking_info'] = $tracking_info;
 
     $this->load->view('otrack/orders/view', $this->data);
+  }
+
+  function get_tracking_info()
+  {
+    $getData = $this->input->get();
+
+    if (!$getData || !isset($getData['tracking_number'])) {
+      $ajaxData['success'] = FALSE;
+      $ajaxData['message'] = 'Illegal request.';
+      echo json_encode($ajaxData);
+      return;
+    }
+
+    $tracking_number = $getData['tracking_number'];
+
+    $tracking_info  = $this->express->getorder($tracking_number);
+
+    $tracking_info = $tracking_info ? $tracking_info : array('status'=>'404','message'=>'Something went wrong. Can\'t get tracking information.');
+
+    $ajaxData['success'] = TRUE;
+    $ajaxData['message'] = $tracking_info;
+
+    echo json_encode($ajaxData);
   }
 
   function pagination($total_rows = 100000, $base_url) {

@@ -46,16 +46,16 @@
     'multiple' => 'multiple',
   );
 
-  $pending = array(
-    'id' => 'pending',
-    'name' => 'status',
+  $international = array(
+    'id' => 'international',
+    'name' => 'type',
     'value' => '1',
     'checked' => 'checked',
   );
 
-  $finished = array(
-    'id' => 'finished',
-    'name' => 'status',
+  $domestic = array(
+    'id' => 'domestic',
+    'name' => 'type',
     'value' => '2',
   );
 
@@ -108,7 +108,7 @@
     </div>
     <div class="panel-body">
       <div class="form-group">
-        <?php echo form_label('Buyer', 'buyer', array('class'=>'col-xs-2 control-label')); ?>
+        <?php echo form_label('Receiver', 'buyer', array('class'=>'col-xs-2 control-label')); ?>
         <div class="col-xs-9">
         <?php echo form_dropdown($buyer); ?>
         </div>
@@ -139,9 +139,10 @@
         </div>
       </div>
       <div class="form-group">
-        <div class="col-xs-offset-2 col-xs-9">
-        <?php echo form_label(form_radio($pending).'Pending', '', array('class'=>'radio-inline')); ?>
-        <?php echo form_label(form_radio($finished).'Finished', '', array('class'=>'radio-inline')); ?>
+        <div class="col-xs-2 text-right"><b>Type</b></div>
+        <div class="col-xs-9">
+        <?php echo form_label(form_radio($international).'International', '', array('class'=>'radio-inline')); ?>
+        <?php echo form_label(form_radio($domestic).'Domestic', '', array('class'=>'radio-inline')); ?>
         </div>
       </div>
       <div class="form-group">
@@ -164,6 +165,7 @@
       </div>
       <div class="form-group">
         <div class="col-xs-offset-2 col-xs-9">
+        <?php echo form_hidden('status', '1'); ?>
         <?php echo form_button($submit); ?>
         </div>
       </div>
@@ -179,7 +181,7 @@
 <script>
   $(function() {
     $('#buyer').select2({
-      placeholder: 'Select a buyer',
+      placeholder: 'Select a receiver',
     });
     $('#express_name').select2({
       placeholder: 'Select a express',
@@ -194,16 +196,16 @@
     });
     $("#delivery_time").datepicker("update", new Date());
 
-    $('input[name="status"]').on('change', function(e) {
-      console.log($(this).attr('id'))
-      if ($(this).attr('id') == 'pending') {
+    // $('input[name="status"]').on('change', function(e) {
+    //   console.log($(this).attr('id'))
+    //   if ($(this).attr('id') == 'pending') {
         $("#delivery_time").datepicker("setStartDate", new Date());
         $("#delivery_time").datepicker("setEndDate", false);
-      } else if ($(this).attr('id') == 'finished') {
-        $("#delivery_time").datepicker("setStartDate", false);    
-        $("#delivery_time").datepicker("setEndDate", new Date());    
-      };
-    });
+    //   } else if ($(this).attr('id') == 'finished') {
+    //     $("#delivery_time").datepicker("setStartDate", false);    
+    //     $("#delivery_time").datepicker("setEndDate", new Date());    
+    //   };
+    // });
 
     var buyerValidators = {
       validators: {
@@ -212,10 +214,10 @@
         }
       }
     }, 
-    statusValidators = {
+    typeValidators = {
       validators: {
         notEmpty: {
-          message: 'The status is required'
+          message: 'The type is required'
         }
       }
     },
@@ -271,7 +273,7 @@
       },
       fields: {
         'buyer': buyerValidators,
-        'status': statusValidators,
+        'type': typeValidators,
         'delivery_time': deliveryTimeValidators,
         'product[0][title]': titleValidators,
         'product[0][amount]': amountValidators,

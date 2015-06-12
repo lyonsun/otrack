@@ -57,6 +57,20 @@ class Order extends CI_Model
     return FALSE;
   }
 
+  function update_order_products($id, $order_data, $products)
+  {
+    $this->db->where('id', $id);
+    $this->db->update($this->table_name, $order_data);
+
+    $this->db->where('order_id', $id);
+    $this->db->delete($this->order_products_table_name);
+
+    $this->_add_order_products($id, $products);
+
+    if ($this->db->affected_rows() > 0) return TRUE;
+    return FALSE;
+  }
+
   function _add_order_products($order_id, $products)
   {
     foreach ($products as $product) {
@@ -76,5 +90,16 @@ class Order extends CI_Model
       $this->db->where('order_id', $order_id);
     }
     return $this->db->get($this->order_products_table_name)->result();
+  }
+
+  function delete($id)
+  {
+    $this->db->where('order_id', $id);
+    $this->db->delete($this->order_products_table_name);
+
+    $this->db->where('id', $id);
+    $this->db->delete($this->table_name);
+
+    return $this->db->affected_rows() > 0 ? TRUE : FALSE;
   }
 }

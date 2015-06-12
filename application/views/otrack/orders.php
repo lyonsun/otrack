@@ -27,6 +27,50 @@
 
 <script>
   $(function() {
+
+    $('.btn-modal-delete').on('click', function(e) {
+      oid = $(this).data('oid');
+      BootstrapDialog.show({
+        title: 'Delete this order?',
+        message: 'Caution! Are you sure to delete this order?',
+        type: 'type-danger',
+        closable: true,
+        buttons: [{
+            id: 'btn-delete',
+            icon: 'glyphicon glyphicon-trash',
+            label: 'Delete',
+            action: function(dialog) {
+              ajax_delete(oid, dialog, this)
+            }
+        }],
+      });
+    });
+
+    function ajax_delete (oid, dialog, button) {
+      $.ajax({
+        url: '<?php echo base_url("orders/delete") ?>',
+        type: 'POST',
+        dataType: 'json',
+        data: {oid: oid},
+        beforeSend: function () {
+          button.disable();
+          button.spin();
+          dialog.setClosable(false);
+        },
+        success: function (data) {
+          if (data) {
+            dialog.close();
+            BootstrapDialog.alert('Order Deleted.', function () {
+              location.reload();
+            });
+          } else {
+            button.enable();
+            button.stopSpin();
+            dialog.setClosable(true);
+          }
+        }
+      });
+    }
     
 
   });
