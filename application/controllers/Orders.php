@@ -89,7 +89,7 @@ class Orders extends CI_Controller {
         $products = array();
 
         foreach ($order_products as $product) {
-          $products[] = $product->product_amount.' '.$product->product_title;
+          $products[] = $product->product_title.' <b class="text-danger">'.$product->product_amount.'</b>';
         }
 
         switch ($order->status) {
@@ -111,11 +111,14 @@ class Orders extends CI_Controller {
         $row = array(
           $order->id,
           $order->buyer_name,
-          implode(', ', $products),
+          implode('<br>', $products),
           $order->express_name,
           $order->tracking_number,
           $order->status == '1' ? $order->est_delivery_time : $order->final_delivery_time,
-          $action, 
+          array(
+            'data'=>$action,
+            'width'=>'20%',
+          ),
         );
 
         $this->table->add_row($row);

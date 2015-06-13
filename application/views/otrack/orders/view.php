@@ -29,7 +29,7 @@
     </ul>
   </div>
 
-  <h4 class="page-header">Tracking Information <small><?php echo $order->express_name; ?>: <?php echo $order->tracking_number; ?> <?php echo anchor(base_url('orders/edit').'/'.$order->id,'Change Tracking #'); ?></small></h4>
+  <h4 class="page-header">Tracking Information <small><?php echo $order->express_name; ?>: <?php echo $order->tracking_number; ?> <?php echo anchor(base_url('orders/send').'/'.$order->id,'Change Tracking #'); ?></small></h4>
 
   <div id="tracking_info"></div>
 <!-- 
