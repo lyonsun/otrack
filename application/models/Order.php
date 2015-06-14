@@ -12,10 +12,14 @@ class Order extends CI_Model
     $this->order_products_table_name = 'order_products';
   }
 
-  function count($status='')
+  function count($status='', $type='')
   {
     if ($status) {
       $this->db->where('status', $status);      
+    }
+
+    if ($type) {
+      $this->db->where('type', $type);      
     }
 
     return $this->db->count_all_results($this->table_name);

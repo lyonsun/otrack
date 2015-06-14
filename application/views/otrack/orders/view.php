@@ -57,6 +57,10 @@
         url = '<?php echo base_url("orders"); ?>/get_tracking_info';
         tracking_info = $('#tracking_info');
 
+    ajax_get_tracking_info(tracking_number, url);
+  });
+
+  function ajax_get_tracking_info (tracking_number, url) {
     $.ajax({
       url: url,
       type: 'GET',
@@ -68,13 +72,17 @@
         tracking_info.html('<div class="alert alert-info"><i class="fa fa-fw fa-spinner fa-spin"></i> Retriving tracking information...</div>');
       },
       success: function (data) {
-        if (!data.success) {
-          tracking_info.html('<div class="alert alert-danger">'+data.message+'</div>');
+        if (data.status != '200') {
+          tracking_info.html('<div class="alert alert-danger">'+data.message+' <button type="button" data-tracking_number="'+tracking_number+'" data-url="'+url+'" class="btn btn-default btn-link" id="btn-retry">Retry</button></div>');
+
+          $('#btn-retry').on('click', function(e) {
+            ajax_get_tracking_info($(this).data('tracking_number'), $(this).data('url'));      
+          });
         } else {
           var tracking_context = '';
-          company_code = data.message.companytype || data.message.com;
+          company_code = data.companytype || data.com;
           tracking_company_code = '<p class="lead">Express Company Code: '+company_code+'</p>';
-          $.each(data.message.data, function(index, val) {
+          $.each(data.data, function(index, val) {
             tracking_context += '<div class="alert alert-success">'+val.time+'<span style="margin-left:20px;">'+val.context+'</span></div>';
             
           });
@@ -82,8 +90,7 @@
         }
       }
     });
-    
-  });
+  }
 </script>
 
 <?php $this->load->view('otrack/common/footer'); ?>

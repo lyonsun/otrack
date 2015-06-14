@@ -16,3 +16,5 @@
 <script src="<?php echo base_url(); ?>static/fv/js/language/zh_CN.js"></script>
 <!-- Select2 JavaScript -->
 <script src="<?php echo base_url(); ?>static/select2-3.5.2/select2.min.js"></script>
+<!-- Highcharts JavaScript -->
+<script src="<?php echo base_url(); ?>static/highcharts/highcharts.js"></script>

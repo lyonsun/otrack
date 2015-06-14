@@ -363,10 +363,7 @@ class Orders extends CI_Controller {
 
     $tracking_info = $tracking_info ? $tracking_info : array('status'=>'404','message'=>'Something went wrong. Can\'t get tracking information.');
 
-    $ajaxData['success'] = TRUE;
-    $ajaxData['message'] = $tracking_info;
-
-    echo json_encode($ajaxData);
+    echo json_encode($tracking_info);
   }
 
   function pagination($total_rows = 100000, $base_url) {

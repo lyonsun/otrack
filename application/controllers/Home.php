@@ -28,6 +28,12 @@ class Home extends CI_Controller {
     $this->data['number_of_customers'] = $this->customer->count();
 
     $this->data['number_of_orders'] = $this->order->count();
+
+    $this->data['number_of_international_orders'] = $this->order->count('', 1);
+    $this->data['number_of_domestic_orders'] = $this->order->count('', 2);
+
+    $this->data['number_of_pending_orders'] = $this->order->count(1, '');
+    $this->data['number_of_finished_orders'] = $this->order->count(2, '');
 		
 		$this->load->view('otrack/home', $this->data);
 	}
