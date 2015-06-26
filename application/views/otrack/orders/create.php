@@ -175,7 +175,6 @@
   <?php echo form_close(); ?>
 </div>
 
-<?php $this->load->view('otrack/common/js'); ?>
 
 <script src="<?php echo base_url(); ?>static/bs-dp3/js/bootstrap-datepicker.min.js"></script>
 <script>

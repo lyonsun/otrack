@@ -121,7 +121,6 @@
   </div>
 </div>
 
-<?php $this->load->view('otrack/common/js'); ?>
 <script>
 $(function() {
   jQuery.extend({

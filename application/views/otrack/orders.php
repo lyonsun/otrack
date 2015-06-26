@@ -23,7 +23,6 @@
    ?>
 </div>
 
-<?php $this->load->view('otrack/common/js'); ?>
 
 <script>
   $(function() {

@@ -22,5 +22,7 @@
     <link href="<?php echo base_url(); ?>static/bs-dp3/css/bootstrap-datepicker3.min.css" rel="stylesheet">
     <!-- Otrack CSS -->
     <link href="<?php echo base_url(); ?>static/otrack/css/styles.css" rel="stylesheet">
+
+    <?php $this->load->view('otrack/common/js'); ?>
   </head>
   <body>
