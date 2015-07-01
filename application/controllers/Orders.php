@@ -20,7 +20,7 @@ class Orders extends CI_Controller {
 
 	function index($status='')
 	{
-    $this->data['title'] = 'Orders';
+    $this->data['title'] = $this->lang->line('order_heading');
 
     $this->data['status'] = $this->session->flashdata('status');
     $this->data['message'] = (validation_errors() ? validation_errors() : $this->session->flashdata('message'));
@@ -43,13 +43,13 @@ class Orders extends CI_Controller {
     $this->table->set_template($tmpl);
 
     $heading = array(
-      'ID',
-      'Receiver',
-      'Products',
-      'Express',
-      'Tracking #',
-      'Delivery Date',
-      'Action',
+      $this->lang->line('field_id'),
+      $this->lang->line('field_receiver'),
+      $this->lang->line('field_products'),
+      $this->lang->line('field_express'),
+      $this->lang->line('field_tracking_number'),
+      $this->lang->line('field_delivery_time'),
+      $this->lang->line('field_action'),
     );
 
     $this->table->set_heading($heading);
@@ -70,7 +70,7 @@ class Orders extends CI_Controller {
           break;
         
         default:
-          $this->session->set_flashdata('message', 'Page not found');
+          $this->session->set_flashdata('message', $this->lang->line('page_not_found'));
           redirect(base_url('orders'), 'refresh');
           break;
       }
@@ -78,7 +78,7 @@ class Orders extends CI_Controller {
 
     if (!$orders) {
       $row = array(
-        'data' => '<div class="text-center">No records</div>',
+        'data' => '<div class="text-center">'.$this->lang->line('message_no_records').'</div>',
         'colspan' => 9,
       );
       $this->table->add_row($row);
@@ -95,16 +95,16 @@ class Orders extends CI_Controller {
         switch ($order->status) {
           case '1':
             $action = 
-              anchor(base_url('orders/send').'/'.$order->id,'<i class="fa fa-fw fa-arrow-right"></i><span class="hidden-xs">Deliver</span>',array('class'=>'btn btn-xs btn-info'))." ".
-              anchor(base_url('orders/edit').'/'.$order->id,'<i class="fa fa-fw fa-edit"></i><span class="hidden-xs">Edit</span>',array('class'=>'btn btn-xs btn-primary'))." ".
-              anchor('#modal-delete','<i class="fa fa-fw fa-trash"></i><span class="hidden-xs">Delete</span>',array('class'=>'btn btn-xs btn-danger btn-modal-delete','data-toggle'=>'modal','data-oid'=>$order->id));
+              anchor(base_url('orders/send').'/'.$order->id,'<i class="fa fa-fw fa-arrow-right"></i><span class="hidden-xs">'.$this->lang->line('action_deliver').'</span>',array('class'=>'btn btn-xs btn-info'))." ".
+              anchor(base_url('orders/edit').'/'.$order->id,'<i class="fa fa-fw fa-edit"></i><span class="hidden-xs">'.$this->lang->line('action_edit').'</span>',array('class'=>'btn btn-xs btn-primary'))." ".
+              anchor('#modal-delete','<i class="fa fa-fw fa-trash"></i><span class="hidden-xs">'.$this->lang->line('action_delete').'</span>',array('class'=>'btn btn-xs btn-danger btn-modal-delete','data-toggle'=>'modal','data-oid'=>$order->id));
             break;
           case '2':
-            $action = anchor(base_url('orders/view').'/'.$order->id, '<i class="fa fa-fw fa-search"></i> Delivered', array('class'=>'btn btn-xs btn-success'));
+            $action = anchor(base_url('orders/view').'/'.$order->id, '<i class="fa fa-fw fa-search"></i> '.$this->lang->line('action_check_delivered'), array('class'=>'btn btn-xs btn-success'));
             break;
           
           default:
-            $action = 'Invalid order.';
+            $action = $this->lang->line('message_invalid_order');
             break;
         }
 
@@ -133,11 +133,11 @@ class Orders extends CI_Controller {
   function create()
   {
     //validate form input
-    $this->form_validation->set_rules('buyer', 'Receiver', 'required');
-    $this->form_validation->set_rules('type', 'Type', 'required');
-    $this->form_validation->set_rules('status', 'Status', 'required');
-    $this->form_validation->set_rules('express_name', 'Express name', 'required');
-    $this->form_validation->set_rules('delivery_time', 'Delivery Time', 'required');
+    $this->form_validation->set_rules('buyer', $this->lang->line('field_receiver'), 'required');
+    $this->form_validation->set_rules('type', $this->lang->line('field_type'), 'required');
+    $this->form_validation->set_rules('status', $this->lang->line('field_status'), 'required');
+    $this->form_validation->set_rules('express_name', $this->lang->line('field_express'), 'required');
+    $this->form_validation->set_rules('delivery_time', $this->lang->line('field_delivery_time'), 'required');
 
     if ($this->form_validation->run() == true)
     {
@@ -161,12 +161,12 @@ class Orders extends CI_Controller {
     if ($this->form_validation->run() == true && $this->order->create($order_data, $products))
     {
       $this->session->set_flashdata('status', 'success');
-      $this->session->set_flashdata('message', 'Order created successfully.');
+      $this->session->set_flashdata('message', $this->lang->line('message_order_created'));
       redirect(base_url('orders'), 'refresh');
     }
     else
     {
-      $this->data['title'] = 'Add Order';
+      $this->data['title'] = $this->lang->line('heading_add_order');
       $this->data['customers'] = $this->customer->get_all();
 
       $this->data['status'] = $this->session->flashdata('status');
@@ -179,19 +179,19 @@ class Orders extends CI_Controller {
   function send($oid='')
   {
     if (!$oid) {
-      $this->session->set_flashdata('message', 'Page not found.');
+      $this->session->set_flashdata('message', $this->lang->line('page_not_found'));
       redirect(base_url('orders'), 'refresh');
     }
 
     $order = $this->order->get($oid);
 
     if (!$order) {
-      $this->session->set_flashdata('message', 'Order not found.');
+      $this->session->set_flashdata('message', $this->lang->line('order_not_found'));
       redirect(base_url('orders'), 'refresh');
     }
 
-    $this->form_validation->set_rules('express_name', 'Express Name', 'required');
-    $this->form_validation->set_rules('tracking_number', 'Tracking #', 'required');
+    $this->form_validation->set_rules('express_name', $this->lang->line('field_express'), 'required');
+    $this->form_validation->set_rules('tracking_number', $this->lang->line('field_tracking_number'), 'required');
 
     if ($this->form_validation->run() == TRUE) {
       $order_data = array(
@@ -203,7 +203,7 @@ class Orders extends CI_Controller {
     }
 
     if ($this->form_validation->run() == TRUE && $this->order->update($order->id, $order_data)) {
-      $this->session->set_flashdata('message', 'Tracking # added.');
+      $this->session->set_flashdata('message', $this->lang->line('message_tracking_number_added'));
       redirect(base_url('orders'), 'refresh');
     } else {
       $buyer = $this->customer->get($order->buyer_id);
@@ -218,7 +218,7 @@ class Orders extends CI_Controller {
 
       $order_products = $this->order->get_order_products($order->id);
       
-      $this->data['title'] = 'Send Order';
+      $this->data['title'] = $this->lang->line('heading_send_order');
       $this->data['status'] = $this->session->flashdata('status');
       $this->data['message'] = (validation_errors() ? validation_errors() : ($this->ion_auth->errors() ? $this->ion_auth->errors() : $this->session->flashdata('message')));
 
@@ -233,11 +233,11 @@ class Orders extends CI_Controller {
 	function edit($oid='')
 	{
     //validate form input
-    $this->form_validation->set_rules('buyer', 'Receiver', 'required');
-    $this->form_validation->set_rules('type', 'Type', 'required');
-    $this->form_validation->set_rules('status', 'Status', 'required');
-    $this->form_validation->set_rules('express_name', 'Express name', 'required');
-    $this->form_validation->set_rules('delivery_time', 'Delivery Time', 'required');
+    $this->form_validation->set_rules('buyer', $this->lang->line('field_receiver'), 'required');
+    $this->form_validation->set_rules('type', $this->lang->line('field_type'), 'required');
+    $this->form_validation->set_rules('status', $this->lang->line('field_status'), 'required');
+    $this->form_validation->set_rules('express_name', $this->lang->line('field_express'), 'required');
+    $this->form_validation->set_rules('delivery_time', $this->lang->line('field_delivery_time'), 'required');
 
     if ($this->form_validation->run() == true)
     {
@@ -261,15 +261,15 @@ class Orders extends CI_Controller {
     if ($this->form_validation->run() == true && $this->order->update_order_products($oid, $order_data, $products))
     {
       $this->session->set_flashdata('status', 'success');
-      $this->session->set_flashdata('message', 'Order updated successfully.');
+      $this->session->set_flashdata('message', $this->lang->line('message_order_updated'));
       redirect(base_url('orders'), 'refresh');
     }
     else
     {
-      $this->data['title'] = 'Edit Order';
+      $this->data['title'] = $this->lang->line('heading_edit_order');
 
       if (!$oid) {
-        $this->session->set_flashdata('message', 'Page not found.');
+        $this->session->set_flashdata('message', $this->lang->line('page_not_found'));
         redirect(base_url('orders'), 'refresh');
       }
 
@@ -290,10 +290,10 @@ class Orders extends CI_Controller {
 
   function delete()
   {
-    $this->data['title'] = "Delete Order";
+    $this->data['title'] = $this->lang->line('heading_delete_order');
 
     //validate form input
-    $this->form_validation->set_rules('oid', 'Order ID', 'required');
+    $this->form_validation->set_rules('oid', $this->lang->line('field_order_id'), 'required');
 
     if ($this->form_validation->run() == true)
     {
@@ -303,7 +303,7 @@ class Orders extends CI_Controller {
       $result = $this->order->delete($oid);
       echo json_encode($result);
     } else {
-      $this->session->set_flashdata('message', 'Page not found.');
+      $this->session->set_flashdata('message', $this->lang->line('page_not_found'));
       redirect(base_url(), 'refresh');
     }
   }
@@ -311,14 +311,14 @@ class Orders extends CI_Controller {
   function view($oid='')
   {
     if (!$oid) {
-      $this->session->set_flashdata('message', 'Page not found.');
+      $this->session->set_flashdata('message', $this->lang->line('page_not_found'));
       redirect(base_url('orders'), 'refresh');
     }
 
     $order = $this->order->get($oid);
 
     if (!$order) {
-      $this->session->set_flashdata('message', 'Order not found.');
+      $this->session->set_flashdata('message', $this->lang->line('order_not_found'));
       redirect(base_url('orders'), 'refresh');
     }
 
@@ -334,7 +334,7 @@ class Orders extends CI_Controller {
 
     $order_products = $this->order->get_order_products($order->id);
     
-    $this->data['title'] = 'View Order';
+    $this->data['title'] = $this->lang->line('heading_view_order');
     $this->data['status'] = $this->session->flashdata('status');
     $this->data['message'] = (validation_errors() ? validation_errors() : ($this->ion_auth->errors() ? $this->ion_auth->errors() : $this->session->flashdata('message')));
 
@@ -352,7 +352,7 @@ class Orders extends CI_Controller {
 
     if (!$getData || !isset($getData['tracking_number'])) {
       $ajaxData['success'] = FALSE;
-      $ajaxData['message'] = 'Illegal request.';
+      $ajaxData['message'] = $this->lang->line('illegal_request');
       echo json_encode($ajaxData);
       return;
     }
@@ -361,7 +361,7 @@ class Orders extends CI_Controller {
 
     $tracking_info  = $this->express->getorder($tracking_number);
 
-    $tracking_info = $tracking_info ? $tracking_info : array('status'=>'404','message'=>'Something went wrong. Can\'t get tracking information.');
+    $tracking_info = $tracking_info ? $tracking_info : array('status'=>'404','message'=>$this->lang->line('message_can_not_get_tracking_info'));
 
     echo json_encode($tracking_info);
   }

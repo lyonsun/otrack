@@ -6,10 +6,10 @@
   <div class="alert alert-<?php if ($status): ?><?php echo $status; ?><?php else: ?>danger<?php endif ?>"><?php echo $message;?></div>
   <?php endif ?>
   <h3 class="page-header"><?php echo $title; ?></h3>
-  <a class="btn btn-primary" href="<?php echo base_url('customers/create'); ?>"><i class="fa fa-fw fa-plus"></i><span class="hidden-xs"> Add</span></a>
-  <a class="btn btn-default <?php if ($number_of_customers == 0): ?>hide<?php endif ?>" data-toggle="collapse" href="#collapse-search" aria-expanded="false" aria-controls="collapse-search"><i class="fa fa-fw fa-search"></i><span class="hidden-xs"> Search</span></a>
-  <button type="button" class="btn btn-info <?php if ($number_of_customers == 0): ?>hide<?php endif ?>" id="btn-view-all"><i class="fa fa-fw fa-list"></i><span class="hidden-xs"> View All</span></button>
-  <button type="button" class="btn btn-danger pull-right <?php if ($number_of_customers == 0): ?>hide<?php endif ?>" id="btn-delete-all"><i class="fa fa-fw fa-trash"></i><span class="hidden-xs"> Delete All</span></button>
+  <a class="btn btn-primary" href="<?php echo base_url('customers/create'); ?>"><i class="fa fa-fw fa-plus"></i><span class="hidden-xs"> <?php echo lang('action_add'); ?></span></a>
+  <a class="btn btn-default <?php if ($number_of_customers == 0): ?>hide<?php endif ?>" data-toggle="collapse" href="#collapse-search" aria-expanded="false" aria-controls="collapse-search"><i class="fa fa-fw fa-search"></i><span class="hidden-xs"> <?php echo lang('action_search'); ?></span></a>
+  <button type="button" class="btn btn-info <?php if ($number_of_customers == 0): ?>hide<?php endif ?>" id="btn-view-all"><i class="fa fa-fw fa-list"></i><span class="hidden-xs"> <?php echo lang('action_view_all'); ?></span></button>
+  <button type="button" class="btn btn-danger pull-right <?php if ($number_of_customers == 0): ?>hide<?php endif ?>" id="btn-delete-all"><i class="fa fa-fw fa-trash"></i><span class="hidden-xs"> <?php echo lang('action_delete_all'); ?></span></button>
   <hr>
   <div class="collapse" id="collapse-search">
     <div class="panel panel-default">
@@ -60,36 +60,36 @@
           'id' => 'btn-search-customer',
           'class' => 'btn btn-primary btn-block',
           'type' => 'submit',
-          'content' => '<i class="fa fa-fw fa-filter"></i> Filter',
+          'content' => '<i class="fa fa-fw fa-filter"></i> '.lang('action_filter'),
           );
         ?>
         <?php echo form_open(base_url($this->uri->uri_string()), $form_attributes); ?>
         <div class="form-group">
-          <?php echo form_label('Customer Name', 'name', array('class'=>'control-label col-md-2')); ?>
+          <?php echo form_label(lang('field_customer_name'), 'name', array('class'=>'control-label col-md-2')); ?>
           <div class="col-md-10">
           <?php echo form_dropdown($name); ?>
           </div>
         </div>
         <div class="form-group">
-          <?php echo form_label('Phone Number', 'phone', array('class'=>'control-label col-md-2')); ?>
+          <?php echo form_label(lang('field_phone'), 'phone', array('class'=>'control-label col-md-2')); ?>
           <div class="col-md-10">
           <?php echo form_dropdown($phone); ?>
           </div>
         </div>
         <div class="form-group">
-          <?php echo form_label('Province', 'province', array('class'=>'control-label col-md-2')); ?>
+          <?php echo form_label(lang('field_province'), 'province', array('class'=>'control-label col-md-2')); ?>
           <div class="col-md-10">
           <?php echo form_dropdown($province); ?>
           </div>
         </div>
         <div class="form-group">
-          <?php echo form_label('City', 'city', array('class'=>'control-label col-md-2')); ?>
+          <?php echo form_label(lang('field_city'), 'city', array('class'=>'control-label col-md-2')); ?>
           <div class="col-md-10">
           <?php echo form_dropdown($city); ?>
           </div>
         </div>
         <div class="form-group">
-          <?php echo form_label('County/District', 'district', array('class'=>'control-label col-md-2')); ?>
+          <?php echo form_label(lang('field_district'), 'district', array('class'=>'control-label col-md-2')); ?>
           <div class="col-md-10">
           <?php echo form_dropdown($district); ?>
           </div>
@@ -113,15 +113,15 @@
 <script>
   $(function() {
     $('#names, #phones, #provinces, #cities, #districts').select2({
-      placeholder: 'Please type or click to select',
+      placeholder: '<?php echo lang("placeholder_select"); ?>',
     });
 
     $('.btn-modal-delete').on('click', function(e) {
       cid = $(this).data('cid');
       name = $(this).data('name');
       BootstrapDialog.show({
-        title: 'Delete Customer: '+name,
-        message: 'Caution! Are you sure to delete this customer?',
+        title: '<?php echo lang("title_delete_customer"); ?>'+name,
+        message: '<?php echo lang("message_delete_customer"); ?>',
         type: 'type-danger',
         closable: true,
         buttons: [{
@@ -149,7 +149,7 @@
         success: function (data) {
           if (data) {
             dialog.close();
-            BootstrapDialog.alert('Customer '+name+' Deleted.', function () {
+            BootstrapDialog.alert('<?php echo lang("message_customer_deleted"); ?>', function () {
               location.reload();
             });
           } else {
@@ -167,11 +167,11 @@
 
     $('#btn-delete-all').on('click', function(e) {
       <?php if ($number_of_customers == 0): ?>
-      BootstrapDialog.alert('No customers found.');
+      BootstrapDialog.alert('<?php echo lang("no_customers_found"); ?>');
       <?php else: ?>
       BootstrapDialog.show({
-        title: 'Delete All Customer',
-        message: 'Caution! Delete all customer records? Really? Reaaaaaly? Not taking a second thought anymore? Down this road is the end of all your customer information saved, close this box if you have no intension to commit this action.',
+        title: '<?php echo lang("title_delete_all_customer"); ?>',
+        message: '<?php echo lang("message_delete_all_customer"); ?>',
         type: 'type-danger',
         buttons: [{
             id: 'btn-delete',
@@ -200,7 +200,7 @@
         success: function (data) {
           if (data) {
             dialog.close();
-            BootstrapDialog.alert('All Customers Deleted.', function () {
+            BootstrapDialog.alert('<?php echo lang("message_all_customer_deleted"); ?>', function () {
               location.reload();
             });
           } else {

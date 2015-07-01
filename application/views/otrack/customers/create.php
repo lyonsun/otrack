@@ -13,13 +13,13 @@
         'id' => 'name',
         'name' => 'name',
         'class' => 'form-control',
-        'placeholder' => 'Customer Name',
+        'placeholder' => lang('field_customer_name'),
         );
         $phone = array(
         'id' => 'phone',
         'name' => 'phone',
         'class' => 'form-control',
-        'placeholder' => 'Phone Number',
+        'placeholder' => lang('field_phone'),
         );
         $province = array(
         'id' => 'province',
@@ -43,63 +43,63 @@
         'id' => 'address_1',
         'name' => 'address_1',
         'class' => 'form-control',
-        'placeholder' => 'Primary Addresss',
+        'placeholder' => lang('field_address_1'),
         );
         $address_2 = array(
         'id' => 'address_2',
         'name' => 'address_2',
         'class' => 'form-control',
-        'placeholder' => 'Secondary Addresss',
+        'placeholder' => lang('field_address_2'),
         );
         $zipcode = array(
         'id' => 'zipcode',
         'name' => 'zipcode',
         'class' => 'form-control',
-        'placeholder' => 'Zip Code',
+        'placeholder' => lang('field_zipcode'),
         );
         $submit = array(
         'id' => 'btn-create-customer',
         'class' => 'btn btn-primary btn-block',
         'type' => 'submit',
-        'content' => 'Add',
+        'content' => lang('action_add'),
         );
       ?>
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h3 class="panel-title">Customer Information</h3>
+          <h3 class="panel-title"><?php echo lang('heading_customer_info'); ?></h3>
         </div>
         <div class="panel-body">
           <?php echo form_open(base_url($this->uri->uri_string()), $form_attributes); ?>
           <div class="form-group">
-            <?php echo form_label('Customer Name', 'name', array('class'=>'control-label')); ?>
+            <?php echo form_label(lang('field_customer_name'), 'name', array('class'=>'control-label')); ?>
             <?php echo form_input($name); ?>
           </div>
           <div class="form-group">
-            <?php echo form_label('Phone Number', 'phone', array('class'=>'control-label')); ?>
+            <?php echo form_label(lang('field_phone'), 'phone', array('class'=>'control-label')); ?>
             <?php echo form_input($phone); ?>
           </div>
           <div class="form-group">
-            <?php echo form_label('Province', 'province', array('class'=>'control-label')); ?>
+            <?php echo form_label(lang('field_province'), 'province', array('class'=>'control-label')); ?>
             <?php echo form_dropdown($province); ?>
           </div>
           <div class="form-group">
-            <?php echo form_label('City', 'city', array('class'=>'control-label')); ?>
+            <?php echo form_label(lang('field_city'), 'city', array('class'=>'control-label')); ?>
             <?php echo form_dropdown($city); ?>
           </div>
           <div class="form-group">
-            <?php echo form_label('County/District', 'district', array('class'=>'control-label')); ?>
+            <?php echo form_label(lang('field_district'), 'district', array('class'=>'control-label')); ?>
             <?php echo form_dropdown($district); ?>
           </div>
           <div class="form-group">
-            <?php echo form_label('Primary Address', 'address_1', array('class'=>'control-label')); ?>
+            <?php echo form_label(lang('field_address_1'), 'address_1', array('class'=>'control-label')); ?>
             <?php echo form_input($address_1); ?>
           </div>
           <div class="form-group">
-            <?php echo form_label('Secondary Address', 'address_2', array('class'=>'control-label')); ?>
+            <?php echo form_label(lang('field_address_2'), 'address_2', array('class'=>'control-label')); ?>
             <?php echo form_input($address_2); ?>
           </div>
           <div class="form-group">
-            <?php echo form_label('Zip Code', 'zipcode', array('class'=>'control-label')); ?>
+            <?php echo form_label(lang('field_zipcode'), 'zipcode', array('class'=>'control-label')); ?>
             <?php echo form_input($zipcode); ?>
           </div>
           <div class="form-group">
@@ -117,15 +117,15 @@
 $(function() {
 
   $('#province').select2({
-    placeholder: "Select a province",
+    placeholder: "<?php echo lang('placeholder_select_province'); ?>",
   });
 
   $('#city').select2({
-    placeholder: "Select a city",
+    placeholder: "<?php echo lang('placeholder_select_city'); ?>",
   });
 
   $('#district').select2({
-    placeholder: "Select a district",
+    placeholder: "<?php echo lang('placeholder_select_district'); ?>",
   });
 
   jQuery.extend({

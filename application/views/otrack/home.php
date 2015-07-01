@@ -10,7 +10,7 @@
   <div class="list-group">
     <a class="list-group-item" href="<?php echo base_url('customers'); ?>">
       <span class="progress-bar-success badge"><?php echo $number_of_customers; ?></span>
-      <b>Customers</b>
+      <b><?php echo lang('customer_heading'); ?></b>
     </a>
   </div>
 
@@ -18,14 +18,14 @@
     <div class="list-group">
       <a class="list-group-item" href="<?php echo base_url('orders'); ?>">
         <span class="progress-bar-success badge"><?php echo $number_of_orders; ?></span>
-        <b>Orders</b>
+        <b><?php echo lang('order_heading'); ?></b>
       </a>
     </div>
     <table class="table table-bordered text-center">
       <thead class="bg-warning">
         <tr>
-          <th class="text-center">International</th>
-          <th class="text-center">Domestic</th>
+          <th class="text-center"><?php echo lang('field_international'); ?></th>
+          <th class="text-center"><?php echo lang('field_domestic'); ?></th>
         </tr>
       </thead>
       <tbody>
@@ -36,8 +36,8 @@
       </tbody>
       <thead class="bg-warning">
         <tr>
-          <th class="text-center">Pending</th>
-          <th class="text-center">Finished</th>
+          <th class="text-center"><?php echo lang('field_pending'); ?></th>
+          <th class="text-center"><?php echo lang('field_finished'); ?></th>
         </tr>
       </thead>
       <tbody>

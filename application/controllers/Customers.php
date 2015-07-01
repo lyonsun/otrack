@@ -26,7 +26,7 @@ class Customers extends CI_Controller {
 	{
     $this->load->library('table');
 
-    $this->data['title'] = 'Customers';
+    $this->data['title'] = $this->lang->line('customer_heading');
     $this->data['status'] = $this->session->flashdata('status');
     $this->data['message'] = (validation_errors() ? validation_errors() : $this->session->flashdata('message'));
 
@@ -69,11 +69,11 @@ class Customers extends CI_Controller {
     $this->table->set_template($tmpl);
 
     $heading = array(
-      'Name',
-      'Phone',
-      'Address',
-      'Last Modified',
-      'Action',
+      $this->lang->line('field_name'),
+      $this->lang->line('field_phone'),
+      $this->lang->line('field_address'),
+      $this->lang->line('field_last_modified'),
+      $this->lang->line('field_action'),
     );
 
     $this->table->set_heading($heading);
@@ -94,8 +94,8 @@ class Customers extends CI_Controller {
           date('Y-m-d H:i:s', $customer->updated_on),
           array(
             'data'=>
-            anchor(base_url('customers/edit').'/'.$customer->id,'<i class="fa fa-fw fa-edit"></i><span class="hidden-xs">Edit</span>',array('class'=>'btn btn-xs btn-success'))." ".
-            anchor('#modal-delete','<i class="fa fa-fw fa-trash"></i><span class="hidden-xs">Delete</span>',array('class'=>'btn btn-xs btn-danger btn-modal-delete','data-toggle'=>'modal','data-cid'=>$customer->id,'data-name'=>$customer->name)),
+            anchor(base_url('customers/edit').'/'.$customer->id,'<i class="fa fa-fw fa-edit"></i><span class="hidden-xs">'.$this->lang->line('action_edit').'</span>',array('class'=>'btn btn-xs btn-success'))." ".
+            anchor('#modal-delete','<i class="fa fa-fw fa-trash"></i><span class="hidden-xs">'.$this->lang->line('action_delete').'</span>',array('class'=>'btn btn-xs btn-danger btn-modal-delete','data-toggle'=>'modal','data-cid'=>$customer->id,'data-name'=>$customer->name)),
             'width'=>'20%',
           ),
         );
@@ -103,7 +103,7 @@ class Customers extends CI_Controller {
         $this->table->add_row($row);
       }
     } else {
-      $this->table->add_row(array('data'=>'No customers found.','colspan'=>'11','class'=>'text-center'));
+      $this->table->add_row(array('data'=>$this->lang->line('no_customers_found'),'colspan'=>'11','class'=>'text-center'));
     }
 
     $this->data['customer_table'] = $this->table->generate();
@@ -125,15 +125,15 @@ class Customers extends CI_Controller {
 
 	function create()
 	{
-    $this->data['title'] = "Add Customer";
+    $this->data['title'] = $this->lang->line('heading_add_customer');
 
     //validate form input
-    $this->form_validation->set_rules('name', 'Customer Name', 'required');
-    $this->form_validation->set_rules('phone', 'Phone Number', 'required');
-    $this->form_validation->set_rules('address_1', 'Address 1', 'required');
-    $this->form_validation->set_rules('district', 'District', 'required');
-    $this->form_validation->set_rules('city', 'City', 'required');
-    $this->form_validation->set_rules('province', 'Province', 'required');
+    $this->form_validation->set_rules('name', $this->lang->line('field_customer_name'), 'required');
+    $this->form_validation->set_rules('phone', $this->lang->line('field_phone'), 'required');
+    $this->form_validation->set_rules('address_1', $this->lang->line('field_address_1'), 'required');
+    $this->form_validation->set_rules('district', $this->lang->line('field_district'), 'required');
+    $this->form_validation->set_rules('city', $this->lang->line('field_city'), 'required');
+    $this->form_validation->set_rules('province', $this->lang->line('field_province'), 'required');
 
     if ($this->form_validation->run() == true)
     {
@@ -153,7 +153,7 @@ class Customers extends CI_Controller {
     if ($this->form_validation->run() == true && $this->customer->create($customer_data))
     {
       $this->session->set_flashdata('status', 'success');
-      $this->session->set_flashdata('message', 'Customer created successfully.');
+      $this->session->set_flashdata('message', $this->lang->line('message_customer_created'));
       redirect(base_url('customers'), 'refresh');
     }
     else
@@ -167,20 +167,20 @@ class Customers extends CI_Controller {
 
   function edit($id='')
   {
-    $this->data['title'] = "Edit Customer";
+    $this->data['title'] = $this->lang->line('heading_edit_customer');
 
     if (empty($id)) {
-      $this->session->set_flashdata('message', 'Page not found.');
+      $this->session->set_flashdata('message', $this->lang->line('page_not_found'));
       redirect(base_url('customers'),'refresh');
     }
 
     //validate form input
-    $this->form_validation->set_rules('name', 'Customer Name', 'required');
-    $this->form_validation->set_rules('phone', 'Phone Number', 'required');
-    $this->form_validation->set_rules('address_1', 'Address 1', 'required');
-    $this->form_validation->set_rules('district', 'District', 'required');
-    $this->form_validation->set_rules('city', 'City', 'required');
-    $this->form_validation->set_rules('province', 'Province', 'required');
+    $this->form_validation->set_rules('name', $this->lang->line('field_customer_name'), 'required');
+    $this->form_validation->set_rules('phone', $this->lang->line('field_phone'), 'required');
+    $this->form_validation->set_rules('address_1', $this->lang->line('field_address_1'), 'required');
+    $this->form_validation->set_rules('district', $this->lang->line('field_district'), 'required');
+    $this->form_validation->set_rules('city', $this->lang->line('field_city'), 'required');
+    $this->form_validation->set_rules('province', $this->lang->line('field_province'), 'required');
 
     if ($this->form_validation->run() == true)
     {
@@ -198,10 +198,10 @@ class Customers extends CI_Controller {
 
       if ($this->customer->update($id, $customer_data)) {
         $this->session->set_flashdata('status', 'success');
-        $this->session->set_flashdata('message', 'Customer updated successfully.');
+        $this->session->set_flashdata('message', $this->lang->line('message_customer_updated'));
         redirect(base_url('customers'), 'refresh');
       } else {
-        $this->session->set_flashdata('message', 'Failed to update customer, try again.');
+        $this->session->set_flashdata('message', $this->lang->line('message_failed_updating_customer'));
         redirect(base_url('customers'), 'refresh');
       }      
     } else {
@@ -239,10 +239,10 @@ class Customers extends CI_Controller {
 
   function delete()
   {
-    $this->data['title'] = "Delete Customer";
+    $this->data['title'] = $this->lang->line('heading_delete_customer');
 
     //validate form input
-    $this->form_validation->set_rules('cid', 'Customer ID', 'required');
+    $this->form_validation->set_rules('cid', $this->lang->line('field_customer_id'), 'required');
 
     if ($this->form_validation->run() == true)
     {
@@ -252,17 +252,17 @@ class Customers extends CI_Controller {
       $result = $this->customer->delete($cid);
       echo json_encode($result);
     } else {
-      $this->session->set_flashdata('message', 'Page not found.');
+      $this->session->set_flashdata('message', $this->lang->line('page_not_found'));
       redirect(base_url(), 'refresh');
     }
   }
 
   function delete_all()
   {
-    $this->data['title'] = "Delete Customer";
+    $this->data['title'] = $this->lang->line('heading_delete_customer');
 
     //validate form input
-    $this->form_validation->set_rules('uid', 'User ID', 'required');
+    $this->form_validation->set_rules('uid', $this->lang->line('field_user_id'), 'required');
 
     if ($this->form_validation->run() == true && $this->input->post('uid') == $this->session->userdata('user_id'))
     {
@@ -271,7 +271,7 @@ class Customers extends CI_Controller {
       $result = $this->customer->truncate();
       echo json_encode($result);
     } else {
-      $this->session->set_flashdata('message', 'Page not found.');
+      $this->session->set_flashdata('message', $this->lang->line('page_not_found'));
       redirect(base_url(), 'refresh');
     }
   }

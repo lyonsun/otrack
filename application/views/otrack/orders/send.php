@@ -11,11 +11,11 @@
     <div class="panel-body">
       <h4><?php echo $order->buyer_name; ?></h4>
       <p><?php echo $buyer_info; ?></p>
-      <p><b>Comments: </b></p>
+      <p><b><?php echo lang('field_comments'); ?>: </b></p>
       <p><?php echo $order->comments; ?></p>
     </div>
     <div class="panel-body bg-primary">
-      <b>Products</b>
+      <b><?php echo lang('field_products'); ?></b>
     </div>
     <ul class="list-group">
     <?php if ($order_products): ?>
@@ -58,7 +58,7 @@
     'id' => 'tracking_number',
     'name' => 'tracking_number',
     'class' => 'form-control',
-    'placeholder' => 'Tracking Number',
+    'placeholder' => lang('field_tracking_number'),
     'value' => set_value('tracking_number') ? set_value('tracking_number') : $order->tracking_number,
     'size' => 30,
     'maxlength' => 30,
@@ -67,18 +67,18 @@
   $submit = array(
     'id' => 'btn-edit-order',
     'class' => 'btn btn-primary btn-block',
-    'value' => 'Submit',
+    'value' => lang('action_submit'),
   );
 
    ?>
 
   <?php echo form_open(base_url($this->uri->uri_string()), $form_attributes); ?>
   <div class="form-group">
-    <?php echo form_label('Express Name', 'express_name', array('class'=>'control-label')); ?>
+    <?php echo form_label(lang('field_express'), 'express_name', array('class'=>'control-label')); ?>
     <?php echo form_dropdown($express_name); ?>
   </div>
   <div class="form-group">
-    <?php echo form_label('Tracking Number', 'tracking_number', array('class'=>'control-label')); ?>
+    <?php echo form_label(lang('field_tracking_number'), 'tracking_number', array('class'=>'control-label')); ?>
     <?php echo form_input($tracking_number); ?>
   </div>
   <div class="form-group">
@@ -93,7 +93,7 @@
 <script>
   $(function() {
     $('#express_name').select2({
-      placeholder: 'Select a express',
+      placeholder: '<?php echo lang("placeholder_select_express"); ?>',
     });
     
     $('#form-edit-order')

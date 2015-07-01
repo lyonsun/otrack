@@ -51,7 +51,7 @@ class Auth extends CI_Controller {
 			redirect(base_url(), 'refresh');
 		}
 
-		$this->data['title'] = "Login";
+		$this->data['title'] = $this->lang->line('login_heading');
 
 		//validate form input
 		$this->form_validation->set_rules('identity', 'Identity', 'required');
@@ -103,7 +103,7 @@ class Auth extends CI_Controller {
 	//log the user out
 	function logout()
 	{
-		$this->data['title'] = "Logout";
+		$this->data['title'] = $this->lang->line('logout_heading');
 
 		//log the user out
 		$logout = $this->ion_auth->logout();

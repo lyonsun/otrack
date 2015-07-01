@@ -11,11 +11,11 @@
     <div class="panel-body">
       <h4><?php echo $order->buyer_name; ?></h4>
       <p><?php echo $buyer_info; ?></p>
-      <p><b>Comments: </b></p>
+      <p><b><?php echo lang('field_comments'); ?>: </b></p>
       <p><?php echo $order->comments; ?></p>
     </div>
     <div class="panel-body bg-primary">
-      <b>Products</b>
+      <b><?php echo lang('field_products'); ?></b>
     </div>
     <ul class="list-group">
     <?php if ($order_products): ?>
@@ -29,24 +29,9 @@
     </ul>
   </div>
 
-  <h4 class="page-header">Tracking Information <small><?php echo $order->express_name; ?>: <?php echo $order->tracking_number; ?> <?php echo anchor(base_url('orders/send').'/'.$order->id,'Change Tracking #'); ?></small></h4>
+  <h4 class="page-header"><?php echo lang('heading_tracking_info'); ?> <small><?php echo $order->express_name; ?>: <?php echo $order->tracking_number; ?> <?php echo anchor(base_url('orders/send').'/'.$order->id,lang('action_change_tracking_number')); ?></small></h4>
 
   <div id="tracking_info"></div>
-<!-- 
-  <?php if ($tracking_info['status'] != '200'): ?>
-  <div class="alert alert-danger"><?php echo $tracking_info['status'].': '.$tracking_info['message']; ?></div>
-  <?php else: ?>
-  <div class="well">
-    <p class="lead">Express Company Code: <?php echo isset($tracking_info['companytype']) ? $tracking_info['companytype'] : $tracking_info['com']; ?></p>
-  <?php foreach ($tracking_info['data'] as $key => $value): ?>
-    <div class="alert alert-info">
-    <?php echo $value['time']; ?>
-    <span style="margin-left:20px;"><?php echo $value['context']; ?></span>
-    </div>
-  <?php endforeach ?>
-  </div>
-  <?php endif ?>
- -->
 </div>
 
 
@@ -80,7 +65,7 @@
         } else {
           var tracking_context = '';
           company_code = data.companytype || data.com;
-          tracking_company_code = '<p class="lead">Express Company Code: '+company_code+'</p>';
+          tracking_company_code = '<p class="lead"><?php echo lang("field_express_company_code"); ?>: '+company_code+'</p>';
           $.each(data.data, function(index, val) {
             tracking_context += '<div class="alert alert-success">'+val.time+'<span style="margin-left:20px;">'+val.context+'</span></div>';
             

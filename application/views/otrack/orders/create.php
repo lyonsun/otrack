@@ -88,14 +88,14 @@
     'id' => 'comments',
     'name' => 'comments',
     'class' => 'form-control',
-    'placeholder' => 'E.g. Address is wrong, using the following address...',
+    'placeholder' => lang('placeholder_comments'),
     'value' => $this->form_validation->set_value('comments'),
   );
 
   $submit = array(
     'id' => 'btn-create-order',
     'class' => 'btn btn-primary btn-block',
-    'content' => 'Add',
+    'content' => lang('action_add'),
     'type' => 'submit',
   );
    ?>
@@ -104,22 +104,22 @@
 
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="panel-title">Order Information</h3>
+      <h3 class="panel-title"><?php echo lang('heading_order_info'); ?></h3>
     </div>
     <div class="panel-body">
       <div class="form-group">
-        <?php echo form_label('Receiver', 'buyer', array('class'=>'col-xs-2 control-label')); ?>
+        <?php echo form_label(lang('field_receiver'), 'buyer', array('class'=>'col-xs-2 control-label')); ?>
         <div class="col-xs-9">
         <?php echo form_dropdown($buyer); ?>
         </div>
       </div>
       <div class="form-group">
-        <label class="col-xs-2 control-label">Products</label>
+        <label class="col-xs-2 control-label"><?php echo lang('field_products'); ?></label>
         <div class="col-xs-6">
-          <input type="text" class="form-control" name="product[0][title]" placeholder="Title" />
+          <input type="text" class="form-control" name="product[0][title]" placeholder="<?php echo lang('placeholder_title'); ?>" />
         </div>
         <div class="col-xs-3">
-          <input type="text" class="form-control" name="product[0][amount]" placeholder="Amount" />
+          <input type="text" class="form-control" name="product[0][amount]" placeholder="<?php echo lang('placeholder_amount'); ?>" />
         </div>
         <div class="col-xs-1">
           <button type="button" class="btn btn-default addButton"><i class="fa fa-plus"></i></button>
@@ -129,36 +129,36 @@
       <!-- The template for adding new field -->
       <div class="form-group hide" id="productTemplate">
         <div class="col-xs-6 col-xs-offset-2">
-          <input type="text" class="form-control title" placeholder="Title" />
+          <input type="text" class="form-control title" placeholder="<?php echo lang('placeholder_title'); ?>" />
         </div>
         <div class="col-xs-3">
-          <input type="text" class="form-control amount" placeholder="Amount" />
+          <input type="text" class="form-control amount" placeholder="<?php echo lang('placeholder_amount'); ?>" />
         </div>
         <div class="col-xs-1">
           <button type="button" class="btn btn-default removeButton"><i class="fa fa-minus"></i></button>
         </div>
       </div>
       <div class="form-group">
-        <div class="col-xs-2 text-right"><b>Type</b></div>
+        <div class="col-xs-2 text-right"><b><?php echo lang('field_type'); ?></b></div>
         <div class="col-xs-9">
-        <?php echo form_label(form_radio($international).'International', '', array('class'=>'radio-inline')); ?>
-        <?php echo form_label(form_radio($domestic).'Domestic', '', array('class'=>'radio-inline')); ?>
+        <?php echo form_label(form_radio($international).lang('field_international'), '', array('class'=>'radio-inline')); ?>
+        <?php echo form_label(form_radio($domestic).lang('field_domestic'), '', array('class'=>'radio-inline')); ?>
         </div>
       </div>
       <div class="form-group">
-        <?php echo form_label('Est. Delivery Date', 'delivery_time', array('class'=>'col-xs-2 control-label')); ?>
+        <?php echo form_label(lang('field_delivery_time'), 'delivery_time', array('class'=>'col-xs-2 control-label')); ?>
         <div class="col-xs-9">
         <?php echo form_input($delivery_time); ?>
         </div>
       </div>
       <div class="form-group">
-        <?php echo form_label('Express Name', 'express_name', array('class'=>'col-xs-2 control-label')); ?>
+        <?php echo form_label(lang('field_express'), 'express_name', array('class'=>'col-xs-2 control-label')); ?>
         <div class="col-xs-9">
         <?php echo form_dropdown($express_name); ?>
         </div>
       </div>
       <div class="form-group">
-        <?php echo form_label('Comments', 'comments', array('class'=>'col-xs-2 control-label')); ?>
+        <?php echo form_label(lang('field_comments'), 'comments', array('class'=>'col-xs-2 control-label')); ?>
         <div class="col-xs-9">
         <?php echo form_input($comments); ?>
         </div>
@@ -180,13 +180,13 @@
 <script>
   $(function() {
     $('#buyer').select2({
-      placeholder: 'Select a receiver',
+      placeholder: '<?php echo lang("placeholder_select_buyer"); ?>',
     });
     $('#express_name').select2({
-      placeholder: 'Select a express',
+      placeholder: '<?php echo lang("placeholder_select_express"); ?>',
     });
     $('#products').select2({
-      placeholder: 'Select one or more products',
+      placeholder: '<?php echo lang("placeholder_select_products"); ?>',
     });
     $('#delivery_time').datepicker({
       autoclose: true,
@@ -209,26 +209,26 @@
     var buyerValidators = {
       validators: {
         notEmpty: {
-          message: 'The buyer is required'
+          message: '<?php echo lang("buyer_required"); ?>'
         }
       }
     }, 
     typeValidators = {
       validators: {
         notEmpty: {
-          message: 'The type is required'
+          message: '<?php echo lang("type_required"); ?>'
         }
       }
     },
     deliveryTimeValidators = {
       validators: {
         notEmpty: {
-          message: 'The delivery date is required'
+          message: '<?php echo lang("delivery_time_required"); ?>'
         }
       },
       date: {
         format: 'yyyy-mm-dd',
-        message: 'The date is not a valid'
+        message: '<?php echo lang("date_should_in_format"); ?>'
       }
     }
 
@@ -236,7 +236,7 @@
       row: '.col-xs-6',   // The title is placed inside a <div class="col-xs-3"> element
       validators: {
         notEmpty: {
-          message: 'The title is required'
+          message: '<?php echo lang("title_required"); ?>'
         }
       }
     },
@@ -244,14 +244,14 @@
       row: '.col-xs-3',
       validators: {
         notEmpty: {
-          message: 'The amount is required'
+          message: '<?php echo lang("amount_required"); ?>'
         },
         integer: {
-          message: 'The amount must be a numeric number'
+          message: '<?php echo lang("amount_be_integer"); ?>'
         },
         greaterThan: {
           value: 0,
-          message: 'The amount must be larger than 0'
+          message: '<?php echo lang("amount_greater_than"); ?>'
         }
       }
     },
