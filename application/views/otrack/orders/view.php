@@ -57,7 +57,7 @@
       },
       success: function (data) {
         if (data.status != '200') {
-          tracking_info.html('<div class="alert alert-danger">'+data.message+' <button type="button" data-tracking_number="'+tracking_number+'" data-url="'+url+'" class="btn btn-default btn-link" id="btn-retry">Retry</button></div>');
+          tracking_info.html('<div class="alert alert-danger">'+data.message+' <button type="button" data-tracking_number="'+tracking_number+'" data-url="'+url+'" class="btn btn-default btn-link" id="btn-retry"><?php echo lang("action_retry"); ?></button></div>');
 
           $('#btn-retry').on('click', function(e) {
             ajax_get_tracking_info($(this).data('tracking_number'), $(this).data('url'));      

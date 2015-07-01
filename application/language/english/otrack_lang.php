@@ -87,6 +87,7 @@ $lang['action_filter'] = 'Filter';
 $lang['action_deliver'] = 'Deliver';
 $lang['action_check_delivered'] = 'Delivered';
 $lang['action_change_tracking_number'] = 'Change Tracking #';
+$lang['action_retry'] = 'Retry';
 
 $lang['buyer_required'] = 'The buyer is required';
 $lang['type_required'] = 'The type is required';

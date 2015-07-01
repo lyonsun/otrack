@@ -87,6 +87,7 @@ $lang['action_filter'] = '过滤';
 $lang['action_deliver'] = '发货';
 $lang['action_check_delivered'] = '已发货';
 $lang['action_change_tracking_number'] = '修改快递单号';
+$lang['action_retry'] = '重试';
 
 $lang['buyer_required'] = '订单接收人为必填项';
 $lang['type_required'] = '类型为必填项';
