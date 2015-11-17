@@ -147,6 +147,7 @@ class Customers extends CI_Controller {
         'province'    => $this->input->post('province'),
         'zipcode'     => $this->input->post('zipcode'),
         'created_on'  => time(),
+        'updated_on'  => time(),
       );
     }
 
