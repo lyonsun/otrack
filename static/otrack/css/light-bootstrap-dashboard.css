@@ -1041,7 +1041,7 @@ body > .navbar-collapse[data-color="purple"]:after {
 .table .checkbox .icons {
   left: 5px;
 }
-.table > thead > tr > th,
+/*.table > thead > tr > th,
 .table > tbody > tr > th,
 .table > tfoot > tr > th,
 .table > thead > tr > td,
@@ -1057,7 +1057,7 @@ body > .navbar-collapse[data-color="purple"]:after {
   color: #9A9A9A;
   font-weight: 400;
   padding-bottom: 5px;
-}
+}*/
 .table .td-actions .btn {
   opacity: 0.36;
   filter: alpha(opacity=36);
