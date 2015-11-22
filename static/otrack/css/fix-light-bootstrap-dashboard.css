@@ -1,5 +1,43 @@
 
 
+
+
+body > .navbar-collapse {
+  width: 200px;
+  left: -200px;
+  -webkit-transform: translate3d(-200px, 0, 0);
+  -moz-transform: translate3d(-200px, 0, 0);
+  -o-transform: translate3d(-200px, 0, 0);
+  -ms-transform: translate3d(-200px, 0, 0);
+  transform: translate3d(-200px, 0, 0);
+}
+
+body > .navbar-collapse .nav > li > a {
+  padding: 30px 25px;
+}
+
+.nav-open .navbar-collapse {
+  -webkit-transform: translate3d(200px, 0, 0);
+  -moz-transform: translate3d(200px, 0, 0);
+  -o-transform: translate3d(200px, 0, 0);
+  -ms-transform: translate3d(200px, 0, 0);
+  transform: translate3d(200px, 0, 0);
+}
+
+.nav-open .wrapper {
+  -webkit-transform: translate3d(0px, 0, 0);
+  -moz-transform: translate3d(0px, 0, 0);
+  -o-transform: translate3d(0px, 0, 0);
+  -ms-transform: translate3d(0px, 0, 0);
+  transform: translate3d(0px, 0, 0);
+}
+
+#bodyClick {
+  left: 200px;
+  right: auto;
+}
+
+
 .main-panel {
   width: calc(100% - 200px);
 }
