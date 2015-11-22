@@ -1,6 +1,5 @@
 <?php $this->load->view('otrack/common/header'); ?>
-<?php $this->load->view('otrack/common/navbar'); ?>
-<div class="container">
+<div class="container-fluid">
   <?php if ($message): ?>
   <div class="alert alert-<?php if ($status): ?><?php echo $status; ?><?php else: ?>danger<?php endif ?>"><?php echo $message;?></div>
   <?php endif ?>

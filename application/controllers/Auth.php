@@ -215,7 +215,7 @@ class Auth extends CI_Controller {
 			}
 
 			//set any errors and display the form
-			$this->data['title'] = 'Forgot Password';
+			$this->data['title'] = $this->lang->line('forgot_password_heading');
 			$this->data['status'] = $this->session->flashdata('status');
 			$this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
 			$this->_render_page('auth/forgot_password', $this->data);
@@ -429,7 +429,7 @@ class Auth extends CI_Controller {
 	//create a new user
 	function create_user()
 	{
-		$this->data['title'] = "Create User";
+		$this->data['title'] = $this->lang->line('create_user_heading');
 
 		if (!$this->ion_auth->logged_in() || !$this->ion_auth->is_admin())
 		{
@@ -523,7 +523,7 @@ class Auth extends CI_Controller {
 	//edit a user
 	function edit_user($id)
 	{
-		$this->data['title'] = "Edit User";
+		$this->data['title'] =$this->lang->line('edit_user_heading');
 
 		if (!$this->ion_auth->logged_in() || (!$this->ion_auth->is_admin() && !($this->ion_auth->user()->row()->id == $id)))
 		{

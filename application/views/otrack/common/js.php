@@ -20,4 +20,5 @@
     <script src="<?php echo base_url(); ?>static/highcharts/highcharts.js"></script>
     <script src="<?php echo base_url(); ?>static/touchspin/jquery.bootstrap-touchspin.min.js"></script>
     <script src="<?php echo base_url(); ?>static/dropzone/dropzone.js"></script>
+    <script src="<?php echo base_url(); ?>static/otrack/js/light-bootstrap-dashboard.js"></script>
     <!-- <script src="<?php echo base_url(); ?>static/otrack/js/ga.js"></script> -->

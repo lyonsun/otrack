@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="Lyon Sun <sunly917@gmail.com>">
     <title><?php echo $title?$title." - ":""; ?><?php echo $this->lang->line('site_title'); ?></title>
-
     <!-- Bootstrap CSS -->
     <link href="<?php echo base_url(); ?>static/bs3/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome CSS -->
@@ -25,8 +24,19 @@
     <!-- Touch Spin -->
     <link href="<?php echo base_url(); ?>static/touchspin/jquery.bootstrap-touchspin.min.css" rel="stylesheet">
     <!-- Otrack CSS -->
-    <link href="<?php echo base_url(); ?>static/otrack/css/styles.css" rel="stylesheet">
-
+    <!-- <link href="<?php echo base_url(); ?>static/otrack/css/styles.css" rel="stylesheet"> -->
+    <!-- Custom CSS -->
+    <link href="<?php echo base_url(); ?>static/otrack/css/light-bootstrap-dashboard.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>static/otrack/css/fix-light-bootstrap-dashboard.css" rel="stylesheet">
     <?php $this->load->view('otrack/common/js'); ?>
   </head>
   <body>
+    <div class="wrapper">
+
+      <?php $this->load->view('otrack/common/sidebar'); ?>
+
+      <div class="main-panel">
+
+        <?php $this->load->view('otrack/common/navbar'); ?>
+
+        <div class="content">

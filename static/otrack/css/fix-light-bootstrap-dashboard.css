@@ -1,0 +1,53 @@
+
+
+@media (min-width: 768px) {
+  .topbar {
+    display: none;
+  }
+}
+
+.main-panel {
+  width: calc(100% - 200px);
+}
+
+@media (max-width: 991px) {
+  .main-panel {
+    width: 100%;
+  }
+}
+
+.main-panel > .content {
+    min-height: calc(100% - 63px);
+}
+
+.sidebar {
+  width: 200px;
+  text-align: center;
+}
+
+.sidebar .sidebar-wrapper {
+  width: 200px;
+}
+
+
+.sidebar .nav i {
+    font-size: 22px;
+    line-height: 22px;
+}
+
+.collapse .nav i {
+    font-size: 22px;
+    float: left;
+    margin-right: 15px;
+    line-height: 22px;
+    width: 30px;
+    text-align: center;
+}
+
+/* FOOTER */
+
+/* Sticky footer styles
+-------------------------------------------------- */
+.footer .fa-heart {
+  color: #d00;
+}
