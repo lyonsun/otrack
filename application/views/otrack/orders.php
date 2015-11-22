@@ -4,7 +4,6 @@
   <?php if ($message): ?>
   <div class="alert alert-<?php if ($status): ?><?php echo $status; ?><?php else: ?>danger<?php endif ?>"><?php echo $message;?></div>
   <?php endif ?>
-  <h3 class="page-header"><?php echo $title; ?></h3>
   <a class="btn btn-primary" href="<?php echo base_url('orders/create'); ?>"><i class="fa fa-fw fa-plus"></i><span class="hidden-xs"> <?php echo lang('action_add'); ?></span></a>
   <hr>
   

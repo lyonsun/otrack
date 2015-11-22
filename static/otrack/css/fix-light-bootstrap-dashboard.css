@@ -1,11 +1,5 @@
 
 
-@media (min-width: 768px) {
-  .topbar {
-    display: none;
-  }
-}
-
 .main-panel {
   width: calc(100% - 200px);
 }
@@ -14,10 +8,6 @@
   .main-panel {
     width: 100%;
   }
-}
-
-.main-panel > .content {
-    min-height: calc(100% - 63px);
 }
 
 .sidebar {
