@@ -1,0 +1,233 @@
+Sun Nov 22 12:44:30 2015
+minor language and ui fix.
+
+Sun Nov 22 12:35:15 2015
+update language files.
+
+Sun Nov 22 12:26:45 2015
+add image uploads directory, and git ignore files in this folder.
+
+Sun Nov 22 12:26:00 2015
+add drop zone js plugin.
+
+Sun Nov 22 12:25:35 2015
+add touch spin js plugin.
+
+Sun Nov 22 12:24:21 2015
+refine order controller, model and views to fit new product MVC.
+
+Sun Nov 22 12:12:35 2015
+add product controller, model and views.
+
+Sun Nov 22 11:47:04 2015
+add image controller and model.
+
+Tue Nov 17 22:25:50 2015
+set updated time to current time when create customer.
+
+Wed Jul 1 06:42:16 2015
+formating.
+
+Wed Jul 1 06:04:57 2015
+missing language item 'action_retry'.
+
+Wed Jul 1 05:53:02 2015
+add chinese language support. change language to chinese.
+
+Fri Jun 26 09:26:50 2015
+minor fix.
+
+Fri Jun 26 05:37:30 2015
+support google analytics.
+
+Sun Jun 14 19:04:13 2015
+home page fix.
+
+Sun Jun 14 17:30:17 2015
+order fix, add charts onto home page.
+
+Sun Jun 14 17:27:51 2015
+add highcharts.
+
+Sat Jun 13 18:02:35 2015
+minor fix on orders page:
+put product amount after product title on orders list and highlight it, one product per line.
+change changing tracking number link.
+
+Fri Jun 12 22:27:51 2015
+order fix: add order type - international vs domestic; support edit and delete order.
+
+Sat May 30 07:54:04 2015
+order page fix: add comments.
+
+Sat May 30 07:25:15 2015
+customer page fix: display address in one column.
+
+Sat May 30 07:24:45 2015
+order page fix: select express from dropdown list.
+
+Sat May 30 06:53:23 2015
+edit order, view order. get order tracking information on view order page.
+
+Sat May 30 06:52:40 2015
+add express library for express tracking.
+
+Fri May 29 10:19:38 2015
+order list, order create form, model for order data handling.
+
+Fri May 29 10:17:20 2015
+add orders count in home page.
+
+Fri May 29 06:53:05 2015
+customers page fix.
+
+Fri May 29 06:51:47 2015
+typo error.
+
+Thu May 28 06:18:40 2015
+login page ui fix.
+
+Wed Apr 22 16:45:16 2015
+add bs date picker 3. other ui fix.
+
+Wed Apr 22 08:36:40 2015
+separate js out from head, load it from sole file.
+
+Tue Apr 21 18:35:22 2015
+minor fix.
+
+Tue Apr 21 15:54:34 2015
+fix.
+
+Mon Apr 20 19:46:33 2015
+Rename ion_auth_model.php to Ion_auth_model.php
+Mon Apr 20 19:45:40 2015
+Rename customer.php to Customer.php
+Mon Apr 20 19:44:28 2015
+Rename orders.php to Orders.php
+Mon Apr 20 19:44:01 2015
+Rename home.php to Home.php
+Mon Apr 20 19:43:40 2015
+Rename customers.php to Customers.php
+Mon Apr 20 19:43:20 2015
+Rename auth.php to Auth.php
+Mon Apr 20 17:26:13 2015
+forgot/reset password, other ui fix.
+
+Mon Apr 20 17:09:30 2015
+update config.
+
+Sun Apr 19 19:48:35 2015
+ui fix.
+
+Sun Apr 19 19:42:05 2015
+ui fix.
+
+Sun Apr 19 19:32:29 2015
+ui fix.
+
+Sun Apr 19 19:32:17 2015
+customers page, support: search, view all, delete all.
+
+Sun Apr 19 19:30:28 2015
+set page size const, update cn city, select2 bootstrap css.
+
+Sun Apr 19 13:20:42 2015
+pagination support.
+
+Sun Apr 19 12:59:23 2015
+customer creation form validation fix.
+
+Sun Apr 19 12:56:19 2015
+selectable province/city/district in customer editing form.
+
+Sun Apr 19 12:04:15 2015
+selectable province/city/district in customer creation form.
+
+Sun Apr 19 12:03:32 2015
+update cn city json.
+
+Sun Apr 19 11:58:42 2015
+add china-province-city-district json file.
+
+Sun Apr 19 11:58:04 2015
+add select2.
+
+Sun Apr 19 10:43:34 2015
+support customer editing.
+
+Sun Apr 19 09:49:39 2015
+form validation on customer creation.
+
+Sun Apr 19 09:48:21 2015
+add form validation.
+
+Sun Apr 19 09:09:10 2015
+customer creation/deletion fix.
+
+Sun Apr 19 09:08:46 2015
+login, forgot password ui fix.
+
+Sun Apr 19 08:56:46 2015
+support deleting customer.
+
+Sun Apr 19 08:56:04 2015
+number of customers in home page.
+
+Sun Apr 19 08:55:33 2015
+auth redirect fix.
+
+Sun Apr 19 08:54:59 2015
+route fix, go production.
+
+Sun Apr 19 08:54:18 2015
+templete ui fix.
+
+Sun Apr 19 08:53:46 2015
+add bootstrap3 dialog.
+
+Sat Apr 18 20:59:43 2015
+support customer creation, other ui fix.
+
+Sat Apr 18 20:58:03 2015
+footer css fix.
+
+Sat Apr 18 20:57:14 2015
+auto load form validation library
+
+Sat Apr 18 19:39:35 2015
+login, forgot password, customers, orders, etc.
+
+Sat Apr 18 19:35:44 2015
+ui fix.
+
+Sat Apr 18 19:35:04 2015
+auth lang fix.
+
+Sat Apr 18 19:34:00 2015
+logout routes.
+
+Sat Apr 18 19:33:34 2015
+auto load ion auth.
+
+Sat Apr 18 19:33:06 2015
+add font awesome fonts.
+
+Wed Apr 15 03:34:26 2015
+login, logout
+
+Mon Apr 13 19:14:01 2015
+ui fix.
+
+Mon Apr 13 18:57:38 2015
+add customer page.
+
+Mon Apr 13 18:54:59 2015
+split ui.
+
+Mon Apr 13 18:53:58 2015
+auto load url, form helper.
+
+Mon Apr 13 17:53:53 2015
+first commit
+
