@@ -57,6 +57,11 @@ body > .navbar-collapse .nav > li > a {
   width: 200px;
 }
 
+.sidebar .logo .simple-text, body > .navbar-collapse .logo .simple-text {
+    font-size: 20px;
+    font-weight: bold;
+}
+
 
 .sidebar .nav i {
     font-size: 22px;
