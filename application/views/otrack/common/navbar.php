@@ -18,6 +18,7 @@
         <li <?php echo $this->uri->segment(1)==''?'class="active"':""; ?>><a href="<?php echo base_url(); ?>"><i class="fa fa-fw fa-home"></i> <?php echo lang('home_heading'); ?></a></li>
         <li <?php echo $this->uri->segment(1)== 'customers'?'class="active"':""; ?>><a href="<?php echo base_url('customers'); ?>"><i class="fa fa-fw fa-users"></i> <?php echo lang('customer_heading'); ?></a></li>
         <li <?php echo $this->uri->segment(1)== 'orders'?'class="active"':""; ?>><a href="<?php echo base_url('orders'); ?>"><i class="fa fa-fw fa-file"></i> <?php echo lang('order_heading'); ?></a></li>
+        <li <?php echo $this->uri->segment(1)== 'products'?'class="active"':""; ?>><a href="<?php echo base_url('products'); ?>"><i class="fa fa-fw fa-list"></i> <?php echo lang('product_heading'); ?></a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="<?php echo base_url('logout'); ?>"><i class="fa fa-fw fa-sign-out"></i> <?php echo lang('logout_heading'); ?></a></li>
