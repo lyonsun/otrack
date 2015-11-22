@@ -15,7 +15,7 @@ class Orders extends CI_Controller {
       return show_error('You must be an administrator to view this page.');
     }
     $this->load->library(array('ion_auth','pagination','table','express'));
-    $this->load->model(array('customer','order'));
+    $this->load->model(array('customer','order','products_model'));
   }
 
 	function index($status='')
@@ -89,7 +89,12 @@ class Orders extends CI_Controller {
         $products = array();
 
         foreach ($order_products as $product) {
-          $products[] = $product->product_title.' <b class="text-danger">'.$product->product_amount.'</b>';
+          $product_title = $product->product_title 
+          ? $product->product_title 
+          : ($this->products_model->get_via_id($product->product_id) 
+            ? $this->products_model->get_via_id($product->product_id)->name 
+            : '');
+          $products[] = $product_title.' <b class="text-danger">'.$product->product_amount.'</b>';
         }
 
         switch ($order->status) {
@@ -156,6 +161,12 @@ class Orders extends CI_Controller {
       );
 
       $products = $this->input->post('product');
+
+      foreach ($products as &$product) {
+        $product['product_title'] = $this->products_model->get_via_id($product['title']) 
+          ? $this->products_model->get_via_id($product['title'])->name 
+          : '';
+      }
     }
 
     if ($this->form_validation->run() == true && $this->order->create($order_data, $products))
@@ -168,6 +179,8 @@ class Orders extends CI_Controller {
     {
       $this->data['title'] = $this->lang->line('heading_add_order');
       $this->data['customers'] = $this->customer->get_all();
+
+      $this->data['products'] = $this->products_model->get();
 
       $this->data['status'] = $this->session->flashdata('status');
       $this->data['message'] = (validation_errors() ? validation_errors() : ($this->ion_auth->errors() ? $this->ion_auth->errors() : $this->session->flashdata('message')));
@@ -256,6 +269,16 @@ class Orders extends CI_Controller {
       );
 
       $products = $this->input->post('product');
+
+      foreach ($products as &$product) {
+        if ($product['title'] == '') {
+          $this->session->set_flashdata('message', 'Please choose valid product');
+          redirect(current_url(), 'refresh');
+        }
+        $product['product_title'] = $this->products_model->get_via_id($product['title']) 
+          ? $this->products_model->get_via_id($product['title'])->name 
+          : '';
+      }
     }
 
     if ($this->form_validation->run() == true && $this->order->update_order_products($oid, $order_data, $products))
@@ -280,6 +303,8 @@ class Orders extends CI_Controller {
 
       $order_products = $this->order->get_order_products($order->id);
       $this->data['order_products'] = $order_products;
+
+      $this->data['products'] = $this->products_model->get();
 
       $this->data['status'] = $this->session->flashdata('status');
       $this->data['message'] = (validation_errors() ? validation_errors() : ($this->ion_auth->errors() ? $this->ion_auth->errors() : $this->session->flashdata('message')));

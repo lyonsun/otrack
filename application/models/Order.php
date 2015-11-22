@@ -67,6 +67,15 @@ class Order extends CI_Model
     $this->db->update($this->table_name, $order_data);
 
     $this->db->where('order_id', $id);
+    $old_products = $this->db->get($this->order_products_table_name)->result();
+
+    foreach ($old_products as $old_product) {
+      $this->db->where('id', $old_product->product_id);
+      $this->db->set('stock', 'stock + ' . (int)$old_product->product_amount, FALSE);
+      $this->db->update('products');
+    }
+
+    $this->db->where('order_id', $id);
     $this->db->delete($this->order_products_table_name);
 
     $this->_add_order_products($id, $products);
@@ -81,10 +90,15 @@ class Order extends CI_Model
       $this->db->insert($this->order_products_table_name, 
         array(
           'order_id' => $order_id,
-          'product_title' => $product['title'],
+          'product_id' => $product['title'],
+          'product_title' => $product['product_title'],
           'product_amount' => $product['amount'],
         )
       );
+
+      $this->db->where('id', $product['title']);
+      $this->db->set('stock', 'stock - ' . (int)$product['amount'], FALSE);
+      $this->db->update('products');
     }
   }
 

@@ -24,6 +24,13 @@
     }
   }
 
+  $product_options = array(''=>'');
+  if ($products) {
+    foreach ($products as $product) {
+      $product_options[$product->id] = $product->name.' - ['.$product->stock.' Left]';
+    }
+  }
+
   $buyer = array(
     'id' => 'buyer',
     'name' => 'buyer',
@@ -32,19 +39,11 @@
     'selected' => $order->buyer_id,
   );
 
-  $product_options = array(
-    'Orange' => 'Orange',
-    'Apple' => 'Apple',
-    'Peach' => 'Peach',
-    'Cherry' => 'Cherry',
-  );
-
-  $products = array(
+  $product = array(
     'id' => 'products',
-    'name' => 'products[]',
-    'class' => 'form-control',
+    'name' => 'product[0][title]',
+    'class' => 'form-control title',
     'options' => $product_options,
-    'multiple' => 'multiple',
   );
 
   $international = array(
@@ -125,7 +124,18 @@
         <?php else: ?>
         <div class="col-xs-6 col-xs-offset-2">
         <?php endif ?>
-          <input type="text" class="form-control" name="product[<?php echo $key; ?>][title]" value="<?php echo $order_product->product_title; ?>" />
+          <!-- <input type="text" class="form-control" name="product[0][title]" placeholder="<?php echo lang('placeholder_title'); ?>" /> -->
+          <?php 
+            echo form_dropdown(
+              array(
+                'id' => 'products',
+                'name' => 'product['.$key.'][title]',
+                'class' => 'form-control title',
+                'options' => $product_options,
+                'selected' => $order_product->product_id,
+              )
+            );
+           ?>
         </div>
         <div class="col-xs-3">
           <input type="text" class="form-control" name="product[<?php echo $key; ?>][amount]" value="<?php echo $order_product->product_amount; ?>" />
@@ -140,20 +150,8 @@
       </div>
         
       <?php endforeach ?>
-
-      <!-- The template for adding new field -->
-      <div class="form-group hide" id="productTemplate">
-        <div class="col-xs-6 col-xs-offset-2">
-          <input type="text" class="form-control title" placeholder="<?php echo lang('placeholder_title'); ?>" />
-        </div>
-        <div class="col-xs-3">
-          <input type="text" class="form-control amount" placeholder="<?php echo lang('placeholder_amount'); ?>" />
-        </div>
-        <div class="col-xs-1">
-          <button type="button" class="btn btn-default removeButton"><i class="fa fa-minus"></i></button>
-        </div>
-      </div>
-      <div class="form-group">
+      
+      <div class="form-group" id="templateBefore">      
         <div class="col-xs-2 text-right"><b><?php echo lang('field_type'); ?></b></div>
         <div class="col-xs-9">
         <?php echo form_label(form_radio($international).lang('field_international'), '', array('class'=>'radio-inline')); ?>
@@ -191,6 +189,21 @@
 </div>
 
 
+<!-- The template for adding new field -->
+<div class="form-group hide" id="productTemplate">
+  <div class="col-xs-6 col-xs-offset-2">
+    <!-- <input type="text" class="form-control title" placeholder="<?php echo lang('placeholder_title'); ?>" /> -->
+    <?php echo form_dropdown($product); ?>
+  </div>
+  <div class="col-xs-3">
+    <input type="text" class="form-control amount" placeholder="<?php echo lang('placeholder_amount'); ?>" />
+  </div>
+  <div class="col-xs-1">
+    <button type="button" class="btn btn-default removeButton"><i class="fa fa-minus"></i></button>
+  </div>
+</div>
+
+
 <script src="<?php echo base_url(); ?>static/bs-dp3/js/bootstrap-datepicker.min.js"></script>
 <script>
   $(function() {
@@ -212,6 +225,8 @@
 
     // $("#delivery_time").datepicker("setStartDate", new Date());
     // $("#delivery_time").datepicker("setEndDate", false);
+
+    var productIndex = parseInt('<?php echo count($order_products)-1; ?>');
 
     var buyerValidators = {
       validators: {
@@ -237,6 +252,13 @@
         format: 'yyyy-mm-dd',
         message: '<?php echo lang("date_should_in_format"); ?>'
       }
+    },
+    expressNameValidators = {
+      validators: {
+        notEmpty: {
+          message: '<?php echo lang("express_name_required"); ?>'
+        }
+      },
     }
 
     var titleValidators = {
@@ -261,8 +283,7 @@
           message: '<?php echo lang("amount_greater_than"); ?>'
         }
       }
-    },
-    productIndex = 0;
+    }
 
     $('#form-edit-order')
     .formValidation({
@@ -281,6 +302,7 @@
         'buyer': buyerValidators,
         'type': typeValidators,
         'delivery_time': deliveryTimeValidators,
+        'express_name': expressNameValidators,
         'product[0][title]': titleValidators,
         'product[0][amount]': amountValidators,
       }
@@ -295,7 +317,7 @@
                       .removeClass('hide')
                       .removeAttr('id')
                       .attr('data-product-index', productIndex)
-                      .insertBefore($template);
+                      .insertBefore($('#templateBefore'));
 
       // Update the name attributes
       $clone
@@ -322,6 +344,18 @@
       // Remove element containing the fields
       $row.remove();
     });
+
+    // for (var i = 0; i <= productIndex; i++) {
+    //   $('#form-edit-order')
+    //     .formValidation('addField', 'product[' + i + '][title]', titleValidators)
+    //     .formValidation('addField', 'product[' + i + '][amount]', amountValidators);
+
+    //   var index = 'product['+i+'][title]';
+    //   console.log(index)
+    //   $('select[name="'+index+'"]').select2({
+    //     placeholder: '<?php echo lang("placeholder_select_products"); ?>',
+    //   });
+    // };
   });
 </script>
 
