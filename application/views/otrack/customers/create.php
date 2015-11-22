@@ -49,13 +49,13 @@
         'id' => 'address_2',
         'name' => 'address_2',
         'class' => 'form-control',
-        'placeholder' => lang('field_address_2'),
+        'placeholder' => lang('field_optional'),
         );
         $zipcode = array(
         'id' => 'zipcode',
         'name' => 'zipcode',
         'class' => 'form-control',
-        'placeholder' => lang('field_zipcode'),
+        'placeholder' => lang('field_optional'),
         );
         $submit = array(
         'id' => 'btn-create-customer',
@@ -95,11 +95,11 @@
             <?php echo form_input($address_1); ?>
           </div>
           <div class="form-group">
-            <?php echo form_label(lang('field_address_2'), 'address_2', array('class'=>'control-label')); ?>
+            <?php echo form_label(lang('field_address_2').' ('.lang('field_optional').')', 'address_2', array('class'=>'control-label')); ?>
             <?php echo form_input($address_2); ?>
           </div>
           <div class="form-group">
-            <?php echo form_label(lang('field_zipcode'), 'zipcode', array('class'=>'control-label')); ?>
+            <?php echo form_label(lang('field_zipcode').' ('.lang('field_optional').')', 'zipcode', array('class'=>'control-label')); ?>
             <?php echo form_input($zipcode); ?>
           </div>
           <div class="form-group">

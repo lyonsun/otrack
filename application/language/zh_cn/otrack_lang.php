@@ -93,6 +93,7 @@ $lang['field_finished']                       = '已发货';
 $lang['field_express_company_code']           = '快递公司编号';
 
 $lang['field_all']                            = '所有';
+$lang['field_optional']                       = '选填';
 
 // Actions
 $lang['action_edit']                          = '编辑';

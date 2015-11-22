@@ -93,6 +93,7 @@ $lang['field_finished']                       = 'Finished';
 $lang['field_express_company_code']           = 'Express Company Code';
 
 $lang['field_all']                            = 'All';
+$lang['field_optional']                       = 'Optional';
 
 // Actions
 $lang['action_edit']                          = 'Edit';
