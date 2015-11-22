@@ -4,6 +4,7 @@
 $lang['site_title']                           = 'O, Track';
 
 $lang['page_not_found']                       = 'Page not found';
+$lang['access_denied']                        = 'Please login to view this page.';
 $lang['illegal_request']                      = 'Illegal request.';
 
 // Home
@@ -31,6 +32,21 @@ $lang['heading_tracking_info']                = 'Tracking Information';
 
 $lang['order_not_found']                      = 'Order not found.';
 
+// Products 
+$lang['product_heading']                      = 'Products';
+$lang['heading_add_product']                  = 'Add Product';
+$lang['heading_edit_product']                 = 'Edit Product';
+$lang['heading_delete_product']               = 'Delete Product';
+$lang['heading_product_info']                 = 'Product Information';
+
+$lang['no_products_found']                    = 'No products found.';
+
+// Images
+$lang['images_file_exists']                   = 'Image already exists.';
+$lang['image_file_uploaded']                  = 'File uploaded.';
+$lang['heading_upload_new_image']             = 'Upload new image';
+$lang['action_drop_or_select']                = 'Drop File Here or Click to Select';
+
 // General
 $lang['customer']                             = 'Customer';
 $lang['deleted']                              = 'Deleted.';
@@ -50,6 +66,10 @@ $lang['field_district']                       = 'County/District';
 $lang['field_address_1']                      = 'Primary Addresss';
 $lang['field_address_2']                      = 'Secondary Addresss';
 $lang['field_zipcode']                        = 'Zip Code';
+
+$lang['field_description']                    = 'Description';
+$lang['field_stock']                          = 'Stock';
+$lang['field_images']                         = 'Images';
 
 $lang['field_id']                             = 'ID';
 $lang['field_receiver']                       = 'Receiver';
@@ -88,6 +108,7 @@ $lang['action_deliver']                       = 'Deliver';
 $lang['action_check_delivered']               = 'Delivered';
 $lang['action_change_tracking_number']        = 'Change Tracking #';
 $lang['action_retry']                         = 'Retry';
+$lang['action_cancel']                        = 'Cancel';
 
 $lang['buyer_required']                       = 'The buyer is required';
 $lang['type_required']                        = 'The type is required';
@@ -136,6 +157,13 @@ $lang['message_tracking_number_added']        = 'Tracking # added.';
 $lang['message_no_records']                   = 'No records';
 $lang['message_invalid_order']                = 'Invalid order.';
 $lang['message_can_not_get_tracking_info']    = 'Something went wrong. Can\'t get tracking information.';
+
+$lang['message_product_created']                = 'Product created successfully.';
+$lang['message_product_updated']                = 'Product updated successfully.';
+
+$lang['title_delete_product']                   = 'Delete this product?';
+$lang['message_delete_product']                 = 'Caution! Are you sure to delete this product?';
+$lang['message_product_deleted']                = 'Product Deleted.';
 
 
 

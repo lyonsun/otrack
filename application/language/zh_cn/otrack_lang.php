@@ -4,6 +4,7 @@
 $lang['site_title']                           = '微管家';
 
 $lang['page_not_found']                       = '找不到此页面';
+$lang['access_denied']                        = '请登录查看该页面.';
 $lang['illegal_request']                      = '非法请求.';
 
 // Home
@@ -31,6 +32,21 @@ $lang['heading_tracking_info']                = '订单追踪信息';
 
 $lang['order_not_found']                      = '找不到任何订单.';
 
+// Products 
+$lang['product_heading']                      = '商品';
+$lang['heading_add_product']                  = '添加商品';
+$lang['heading_edit_product']                 = '编辑商品';
+$lang['heading_delete_product']               = '删除商品';
+$lang['heading_product_info']                 = '商品信息';
+
+$lang['no_products_found']                    = '找不到任何商品.';
+
+// Images
+$lang['images_file_exists']                   = '图片已经存在.';
+$lang['image_file_uploaded']                  = '图片已上传成功.';
+$lang['heading_upload_new_image']             = '上传新图片';
+$lang['action_drop_or_select']                = '将图片文件拖到此处或者点击选取文件上传';
+
 // General
 $lang['customer']                             = '客户';
 $lang['deleted']                              = '已删除.';
@@ -50,6 +66,10 @@ $lang['field_district']                       = '区/县';
 $lang['field_address_1']                      = '首选地址';
 $lang['field_address_2']                      = '第二地址';
 $lang['field_zipcode']                        = '邮编号码';
+
+$lang['field_description']                    = '描述';
+$lang['field_stock']                          = '库存';
+$lang['field_images']                         = '图片';
 
 $lang['field_id']                             = '编号';
 $lang['field_receiver']                       = '订单接收人';
@@ -88,7 +108,7 @@ $lang['action_deliver']                       = '发货';
 $lang['action_check_delivered']               = '已发货';
 $lang['action_change_tracking_number']        = '修改快递单号';
 $lang['action_retry']                         = '重试';
-
+$lang['action_cancel']                        = 'Cancel';
 $lang['buyer_required']                       = '订单接收人为必填项';
 $lang['type_required']                        = '类型为必填项';
 $lang['delivery_time_required']               = '发货时间为必填项';
@@ -135,7 +155,11 @@ $lang['message_tracking_number_added']        = '快递单号已添加.';
 
 $lang['message_no_records']                   = '无相关数据';
 $lang['message_invalid_order']                = '无效订单.';
-$lang['message_can_not_get_tracking_info']    = '出错了, 无法获取订单追踪信息.';
 
+$lang['message_product_created']              = '成功添加商品.';
+$lang['message_product_updated']              = '更新商品成功.';
+$lang['title_delete_product']                 = '删除此商品?';
+$lang['message_delete_product']               = '注意! 你确定要删除此商品吗?';
+$lang['message_product_deleted']              = '商品已删除.';
 
 
