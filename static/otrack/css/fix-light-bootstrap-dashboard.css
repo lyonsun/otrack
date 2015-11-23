@@ -13,7 +13,11 @@ body > .navbar-collapse {
 }
 
 body > .navbar-collapse .nav > li > a {
-  padding: 30px 25px;
+  padding: 15px 20px;
+}
+
+[class*="navbar-"] .navbar-nav > li > a, [class*="navbar-"] .navbar-nav > li > a:hover, [class*="navbar-"] .navbar-nav > li > a:focus, [class*="navbar-"] .navbar-nav .open .dropdown-menu > li > a, [class*="navbar-"] .navbar-nav .open .dropdown-menu > li > a:hover, [class*="navbar-"] .navbar-nav .open .dropdown-menu > li > a:focus {
+    opacity: 1;
 }
 
 .nav-open .navbar-collapse {
@@ -62,6 +66,10 @@ body > .navbar-collapse .nav > li > a {
     font-weight: bold;
 }
 
+.sidebar .nav li > a {
+  opacity: 1;
+  font-weight: bold;
+}
 
 .sidebar .nav i {
     font-size: 22px;
