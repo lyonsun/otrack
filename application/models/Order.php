@@ -42,6 +42,14 @@ class Order extends CI_Model
     return $this->db->get($this->table_name)->row();
   }
 
+  function count_in_a_period($time_start, $time_end)
+  {
+    $this->db->where('final_delivery_time >', $time_start);
+    $this->db->where('final_delivery_time <=', $time_end);
+
+    return $this->db->count_all_results($this->table_name);
+  }
+
   function create($order_data, $products)
   {
     $this->db->insert($this->table_name, $order_data);

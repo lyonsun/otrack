@@ -17,7 +17,9 @@
     <!-- Select2 JavaScript -->
     <script src="<?php echo base_url(); ?>static/select2-3.5.2/select2.min.js"></script>
     <!-- Highcharts JavaScript -->
-    <script src="<?php echo base_url(); ?>static/highcharts/highcharts.js"></script>
+    <script src="<?php echo base_url(); ?>static/morris/raphael.min.js"></script>
+    <script src="<?php echo base_url(); ?>static/morris/morris.min.js"></script>
+    <!-- <script src="<?php echo base_url(); ?>static/highcharts/highcharts.js"></script> -->
     <script src="<?php echo base_url(); ?>static/touchspin/jquery.bootstrap-touchspin.min.js"></script>
     <script src="<?php echo base_url(); ?>static/dropzone/dropzone.js"></script>
     <script src="<?php echo base_url(); ?>static/otrack/js/light-bootstrap-dashboard.js"></script>

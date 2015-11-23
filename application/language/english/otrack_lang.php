@@ -27,6 +27,7 @@ $lang['heading_edit_order']                   = 'Edit Order';
 $lang['heading_delete_order']                 = 'Delete Order';
 $lang['heading_view_order']                   = 'View Order';
 $lang['heading_order_info']                   = 'Order Information';
+$lang['heading_order_count']                  = 'Order Count';
 
 $lang['heading_tracking_info']                = 'Tracking Information';
 
@@ -42,10 +43,15 @@ $lang['heading_product_info']                 = 'Product Information';
 $lang['no_products_found']                    = 'No products found.';
 
 // Images
+$lang['image_heading']                        = 'Images';
 $lang['images_file_exists']                   = 'Image already exists.';
 $lang['image_file_uploaded']                  = 'File uploaded.';
 $lang['heading_upload_new_image']             = 'Upload new image';
 $lang['action_drop_or_select']                = 'Drop File Here or Click to Select';
+
+$lang['heading_out_of_stock']                 = 'Out of Stock List';
+
+$lang['heading_order_trends']                 = 'Orders Trends';
 
 // General
 $lang['customer']                             = 'Customer';
@@ -110,6 +116,7 @@ $lang['action_check_delivered']               = 'Delivered';
 $lang['action_change_tracking_number']        = 'Change Tracking #';
 $lang['action_retry']                         = 'Retry';
 $lang['action_cancel']                        = 'Cancel';
+$lang['action_view_details']                  = 'View Details';
 
 $lang['buyer_required']                       = 'The buyer is required';
 $lang['type_required']                        = 'The type is required';

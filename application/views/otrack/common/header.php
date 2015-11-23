@@ -23,6 +23,8 @@
     <link href="<?php echo base_url(); ?>static/bs-dp3/css/bootstrap-datepicker3.min.css" rel="stylesheet">
     <!-- Touch Spin -->
     <link href="<?php echo base_url(); ?>static/touchspin/jquery.bootstrap-touchspin.min.css" rel="stylesheet">
+    <!-- Morris Charts CSS -->
+    <link href="<?php echo base_url(); ?>static/morris/css/morris.css" rel="stylesheet">
     <!-- Otrack CSS -->
     <!-- <link href="<?php echo base_url(); ?>static/otrack/css/styles.css" rel="stylesheet"> -->
     <!-- Custom CSS -->

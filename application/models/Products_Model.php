@@ -27,6 +27,14 @@ class Products_Model extends CI_Model
     return $query->result();
   }
 
+  function get_out_of_stock()
+  {
+    $this->db->where('stock <=','0');
+    $query = $this->db->get($this->table_name);
+
+    return $query->result();
+  }
+
   function get_via_id($id)
   {
     $this->db->where('id',$id);

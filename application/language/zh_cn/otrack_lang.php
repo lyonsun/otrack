@@ -27,6 +27,7 @@ $lang['heading_edit_order']                   = '编辑订单';
 $lang['heading_delete_order']                 = '删除订单';
 $lang['heading_view_order']                   = '查看订单';
 $lang['heading_order_info']                   = '订单信息';
+$lang['heading_order_count']                  = '订单数';
 
 $lang['heading_tracking_info']                = '订单追踪信息';
 
@@ -42,10 +43,15 @@ $lang['heading_product_info']                 = '商品信息';
 $lang['no_products_found']                    = '找不到任何商品.';
 
 // Images
+$lang['image_heading']                        = '图片';
 $lang['images_file_exists']                   = '图片已经存在.';
 $lang['image_file_uploaded']                  = '图片已上传成功.';
 $lang['heading_upload_new_image']             = '上传新图片';
 $lang['action_drop_or_select']                = '将图片文件拖到此处或者点击选取文件上传';
+
+$lang['heading_out_of_stock']                 = '缺货商品列表';
+
+$lang['heading_order_trends']                 = '订单走势图';
 
 // General
 $lang['customer']                             = '客户';
@@ -110,6 +116,8 @@ $lang['action_check_delivered']               = '已发货';
 $lang['action_change_tracking_number']        = '修改快递单号';
 $lang['action_retry']                         = '重试';
 $lang['action_cancel']                        = '取消';
+$lang['action_view_details']                  = '查看详情';
+
 $lang['buyer_required']                       = '订单接收人为必填项';
 $lang['type_required']                        = '类型为必填项';
 $lang['delivery_time_required']               = '发货时间为必填项';
