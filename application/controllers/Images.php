@@ -29,7 +29,7 @@ class Images extends CI_Controller {
   function create()
   {
     $config['upload_path']          = FCPATH.'uploads/';
-    $config['allowed_types']        = 'gif|jpg|png';
+    $config['allowed_types']        = 'gif|jpg|jpeg|png';
     $config['max_size']             = 1024*4;
     $config['max_width']            = 0;
     $config['max_height']           = 0;
