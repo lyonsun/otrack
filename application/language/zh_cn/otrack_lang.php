@@ -40,6 +40,7 @@ $lang['heading_add_product']                  = '添加商品';
 $lang['heading_edit_product']                 = '编辑商品';
 $lang['heading_delete_product']               = '删除商品';
 $lang['heading_product_info']                 = '商品信息';
+$lang['heading_product_list']                 = '商品列表';
 
 $lang['no_products_found']                    = '找不到任何商品.';
 

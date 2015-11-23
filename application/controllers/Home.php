@@ -36,7 +36,8 @@ class Home extends CI_Controller {
     $this->data['number_of_pending_orders'] = $this->order->count(1, '');
     $this->data['number_of_finished_orders'] = $this->order->count(2, '');
 
-    $this->data['out_of_stock'] = $this->products_model->get_out_of_stock();
+    // show first 10 products
+    $this->data['products'] = $this->products_model->get(0, 10);
 		
 		$this->load->view('otrack/home', $this->data);
 	}

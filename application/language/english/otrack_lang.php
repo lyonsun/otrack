@@ -40,6 +40,7 @@ $lang['heading_add_product']                  = 'Add Product';
 $lang['heading_edit_product']                 = 'Edit Product';
 $lang['heading_delete_product']               = 'Delete Product';
 $lang['heading_product_info']                 = 'Product Information';
+$lang['heading_product_list']                 = 'Product List';
 
 $lang['no_products_found']                    = 'No products found.';
 

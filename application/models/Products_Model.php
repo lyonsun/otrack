@@ -22,6 +22,7 @@ class Products_Model extends CI_Model
 
   function get($offset=0, $limit=0)
   {
+    $this->db->order_by('stock', 'asc');
     $query = $this->db->get($this->table_name, $limit, $offset);
 
     return $query->result();

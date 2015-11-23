@@ -59,16 +59,26 @@
     </div>
 
     <div class="col-md-4">
-      <div class="panel panel-warning">
+      <div class="panel panel-info">
         <div class="panel-heading">
-          <h3 class="panel-title"><?php echo lang('heading_out_of_stock'); ?></h3>
+          <h3 class="panel-title"><?php echo lang('heading_product_list'); ?></h3>
         </div>
-        <?php if ($out_of_stock): ?>
+        <?php if ($products): ?>
         <ul class="list-group">
-          <?php foreach ($out_of_stock as $key => $value): ?>
+          <?php foreach ($products as $key => $value): ?>
+
+            <?php 
+            if ($value->stock <= 1) {
+              $status = 'progress-bar-danger';
+            } else if ($value->stock <= 5) {
+              $status = 'progress-bar-warning';
+            } else {
+              $status = 'progress-bar-success';
+            }
+             ?>
           
           <li class="list-group-item">
-            <span class="badge progress-bar-danger"><?php echo $value->stock; ?></span>
+            <span class="badge <?php echo $status; ?>"><?php echo $value->stock; ?></span>
             <?php echo $value->name; ?>
           </li>
           <?php endforeach ?>
