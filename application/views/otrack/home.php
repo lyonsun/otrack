@@ -63,6 +63,7 @@
         <div class="panel-heading">
           <h3 class="panel-title"><?php echo lang('heading_out_of_stock'); ?></h3>
         </div>
+        <?php if ($out_of_stock): ?>
         <ul class="list-group">
           <?php foreach ($out_of_stock as $key => $value): ?>
           
@@ -72,6 +73,11 @@
           </li>
           <?php endforeach ?>
         </ul>
+        <?php else: ?>
+        <div class="panel-body">
+          <?php echo lang('field_no_matches'); ?>
+        </div>
+        <?php endif ?>
       </div>
     </div>
   </div>

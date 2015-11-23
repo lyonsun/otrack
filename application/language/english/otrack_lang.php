@@ -6,6 +6,7 @@ $lang['site_title']                           = 'O, Track';
 $lang['page_not_found']                       = 'Page not found';
 $lang['access_denied']                        = 'Please login to view this page.';
 $lang['illegal_request']                      = 'Illegal request.';
+$lang['field_no_matches']                     = 'No matches.';
 
 // Home
 $lang['home_heading']                         = 'Home';

@@ -6,6 +6,7 @@ $lang['site_title']                           = '微管家';
 $lang['page_not_found']                       = '找不到此页面';
 $lang['access_denied']                        = '请登录查看该页面.';
 $lang['illegal_request']                      = '非法请求.';
+$lang['field_no_matches']                     = '找不到相关记录.';
 
 // Home
 $lang['home_heading']                         = '首页';
