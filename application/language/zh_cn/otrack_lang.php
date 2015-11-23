@@ -53,7 +53,7 @@ $lang['action_drop_or_select']                = '将图片文件拖到此处或�
 
 $lang['heading_out_of_stock']                 = '缺货商品列表';
 
-$lang['heading_order_trends']                 = '订单走势图';
+$lang['heading_order_trends']                 = '月订单数量走势图';
 
 // General
 $lang['customer']                             = '客户';
