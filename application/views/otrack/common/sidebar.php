@@ -29,6 +29,8 @@
       <li <?php echo $this->uri->segment(1)== 'orders'?'class="active"':""; ?>><a href="<?php echo base_url('orders'); ?>"><i class="fa fa-fw fa-file"></i> <?php echo lang('order_heading'); ?></a></li>
       <li <?php echo $this->uri->segment(1)== 'products'?'class="active"':""; ?>><a href="<?php echo base_url('products'); ?>"><i class="fa fa-fw fa-list"></i> <?php echo lang('product_heading'); ?></a></li>
 
+      <div style="border-bottom: 1px solid rgba(255, 255, 255, 0.2);height:20px;"></div>
+
       <li><a href="<?php echo base_url('logout'); ?>"><i class="fa fa-fw fa-sign-out"></i> <?php echo lang('logout_heading'); ?></a></li>
     </ul>
     <?php endif ?>
