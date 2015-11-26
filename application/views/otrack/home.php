@@ -64,7 +64,7 @@
           <h3 class="panel-title"><?php echo lang('heading_product_list'); ?></h3>
         </div>
         <?php if ($products): ?>
-        <ul class="list-group">
+        <div class="list-group">
           <?php foreach ($products as $key => $value): ?>
 
             <?php 
@@ -77,12 +77,12 @@
             }
              ?>
           
-          <li class="list-group-item">
+          <a href="<?php echo base_url('products'); ?>/view/<?php echo $value->id; ?>" class="list-group-item">
             <span class="badge <?php echo $status; ?>"><?php echo $value->stock; ?></span>
-            <?php echo $value->name; ?>
-          </li>
+            <b><?php echo $value->name; ?></b>
+          </a>
           <?php endforeach ?>
-        </ul>
+        </div>
         <?php else: ?>
         <div class="panel-body">
           <?php echo lang('field_no_matches'); ?>

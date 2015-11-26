@@ -62,7 +62,7 @@
             <div class="input-group select2-bootstrap-append">
               <?php echo form_dropdown($images); ?>
               <span class="input-group-btn">
-                <a class="btn btn-primary" data-toggle="modal" href='#modal-id'><i class="fa fa-plus"></i></a>
+                <a class="btn btn-default" data-toggle="modal" href='#modal-id'><i class="fa fa-plus"></i></a>
               </span>
             </div>
           </div>
@@ -95,7 +95,7 @@
 
 <script>
 $(function() {
-  $('select').select2();
+  // $('select').select2();
 
   $("input[name='stock']").TouchSpin({
     verticalbuttons: true,

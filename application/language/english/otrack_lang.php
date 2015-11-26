@@ -37,6 +37,7 @@ $lang['order_not_found']                      = 'Order not found.';
 // Products 
 $lang['product_heading']                      = 'Products';
 $lang['heading_add_product']                  = 'Add Product';
+$lang['heading_view_product']                 = 'View Product';
 $lang['heading_edit_product']                 = 'Edit Product';
 $lang['heading_delete_product']               = 'Delete Product';
 $lang['heading_product_info']                 = 'Product Information';
@@ -110,6 +111,7 @@ $lang['action_add']                           = 'Add';
 $lang['action_submit']                        = 'Submit';
 $lang['action_update']                        = 'Update';
 $lang['action_search']                        = 'Search';
+$lang['action_view']                          = 'View';
 $lang['action_view_all']                      = 'View All';
 $lang['action_delete_all']                    = 'Delete All';
 $lang['action_filter']                        = 'Filter';
@@ -118,6 +120,7 @@ $lang['action_check_delivered']               = 'Delivered';
 $lang['action_change_tracking_number']        = 'Change Tracking #';
 $lang['action_retry']                         = 'Retry';
 $lang['action_cancel']                        = 'Cancel';
+$lang['action_back']                          = 'Back';
 $lang['action_view_details']                  = 'View Details';
 
 $lang['buyer_required']                       = 'The buyer is required';

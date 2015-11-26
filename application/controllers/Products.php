@@ -70,6 +70,7 @@ class Products extends CI_Controller {
           $product->date_updated,
           array(
             'data'=>
+            anchor(base_url('products/view').'/'.$product->id,'<i class="fa fa-fw fa-search"></i><span class="hidden-xs">'.$this->lang->line('action_view').'</span>',array('class'=>'btn btn-xs btn-primary'))." ".
             anchor(base_url('products/edit').'/'.$product->id,'<i class="fa fa-fw fa-edit"></i><span class="hidden-xs">'.$this->lang->line('action_edit').'</span>',array('class'=>'btn btn-xs btn-success'))." ".
             anchor('#modal-delete','<i class="fa fa-fw fa-trash"></i><span class="hidden-xs">'.$this->lang->line('action_delete').'</span>',array('class'=>'btn btn-xs btn-danger btn-modal-delete','data-toggle'=>'modal','data-pid'=>$product->id,'data-name'=>$product->name)),
             'width'=>'20%',
@@ -133,6 +134,31 @@ class Products extends CI_Controller {
 
       $this->load->view('otrack/products/create', $this->data);
     }
+  }
+
+  function view($id='')
+  {
+    $this->data['title'] = $this->lang->line('heading_view_product');
+
+    if (empty($id)) {
+      $this->session->set_flashdata('message', $this->lang->line('page_not_found'));
+      redirect(base_url('products'),'refresh');
+    }
+
+    $product = $this->products_model->get_via_id($id);
+
+    if (!$product) {
+      $this->session->set_flashdata('message', $this->lang->line('page_not_found'));
+      redirect(base_url('products'),'refresh');
+    }
+
+    $this->data['product'] = $product;
+
+    $image = $this->images_model->get_via_id($product->image_id);
+
+    $this->data['product_image'] = $image ? base_url('uploads').'/'.$image->title : '';
+
+    $this->load->view('otrack/products/view', $this->data);
   }
 
   function edit($id='')

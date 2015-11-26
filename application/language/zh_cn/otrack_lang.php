@@ -37,6 +37,7 @@ $lang['order_not_found']                      = '找不到任何订单.';
 // Products 
 $lang['product_heading']                      = '商品';
 $lang['heading_add_product']                  = '添加商品';
+$lang['heading_view_product']                 = '查看商品';
 $lang['heading_edit_product']                 = '编辑商品';
 $lang['heading_delete_product']               = '删除商品';
 $lang['heading_product_info']                 = '商品信息';
@@ -110,6 +111,7 @@ $lang['action_add']                           = '添加';
 $lang['action_submit']                        = '提交';
 $lang['action_update']                        = '更新';
 $lang['action_search']                        = '搜索';
+$lang['action_view']                          = '查看';
 $lang['action_view_all']                      = '查看所有';
 $lang['action_delete_all']                    = '删除所有';
 $lang['action_filter']                        = '过滤';
@@ -118,6 +120,7 @@ $lang['action_check_delivered']               = '已发货';
 $lang['action_change_tracking_number']        = '修改快递单号';
 $lang['action_retry']                         = '重试';
 $lang['action_cancel']                        = '取消';
+$lang['action_back']                          = '返回';
 $lang['action_view_details']                  = '查看详情';
 
 $lang['buyer_required']                       = '订单接收人为必填项';

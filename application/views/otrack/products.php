@@ -5,9 +5,6 @@
   <div class="alert alert-<?php if ($status): ?><?php echo $status; ?><?php else: ?>danger<?php endif ?>"><?php echo $message;?></div>
   <?php endif ?>
   <a class="btn btn-primary" href="<?php echo base_url('products/create'); ?>"><i class="fa fa-fw fa-plus"></i><span class="hidden-xs"> <?php echo lang('action_add'); ?></span></a>
-  <!-- <a class="btn btn-default <?php if ($number_of_products == 0): ?>hide<?php endif ?>" data-toggle="collapse" href="#collapse-search" aria-expanded="false" aria-controls="collapse-search"><i class="fa fa-fw fa-search"></i><span class="hidden-xs"> <?php echo lang('action_search'); ?></span></a> -->
-  <!-- <button type="button" class="btn btn-info <?php if ($number_of_products == 0): ?>hide<?php endif ?>" id="btn-view-all"><i class="fa fa-fw fa-list"></i><span class="hidden-xs"> <?php echo lang('action_view_all'); ?></span></button> -->
-  <!-- <button type="button" class="btn btn-danger pull-right <?php if ($number_of_products == 0): ?>hide<?php endif ?>" id="btn-delete-all"><i class="fa fa-fw fa-trash"></i><span class="hidden-xs"> <?php echo lang('action_delete_all'); ?></span></button> -->
   <hr>
   <div class="collapse" id="collapse-search">
     <div class="panel panel-default">
@@ -158,57 +155,6 @@
         }
       });
     }
-
-    // $('#btn-view-all').on('click', function(e) {
-    //   window.location.replace('<?php echo base_url("products"); ?>');
-    // });
-
-    // $('#btn-delete-all').on('click', function(e) {
-    //   <?php if ($number_of_products == 0): ?>
-    //   BootstrapDialog.alert('<?php echo lang("no_products_found"); ?>');
-    //   <?php else: ?>
-    //   BootstrapDialog.show({
-    //     title: '<?php echo lang("title_delete_all_product"); ?>',
-    //     message: '<?php echo lang("message_delete_all_product"); ?>',
-    //     type: 'type-danger',
-    //     buttons: [{
-    //         id: 'btn-delete',
-    //         icon: 'glyphicon glyphicon-trash',
-    //         cssClass: 'btn-warning',
-    //         label: 'Delete All',
-    //         action: function(dialog) {
-    //           ajax_delete_all(dialog, this)
-    //         }
-    //     }],
-    //   });
-    //   <?php endif ?>
-    // });
-
-    // function ajax_delete_all (dialog, button) {
-    //   $.ajax({
-    //     url: '<?php echo base_url("products/delete_all") ?>',
-    //     type: 'POST',
-    //     dataType: 'json',
-    //     data: {uid: '<?php echo $this->session->userdata("user_id"); ?>'},
-    //     beforeSend: function () {
-    //       button.disable();
-    //       button.spin();
-    //       dialog.setClosable(false);
-    //     },
-    //     success: function (data) {
-    //       if (data) {
-    //         dialog.close();
-    //         BootstrapDialog.alert('<?php echo lang("message_all_product_deleted"); ?>', function () {
-    //           location.reload();
-    //         });
-    //       } else {
-    //         button.enable();
-    //         button.stopSpin();
-    //         dialog.setClosable(true);
-    //       }
-    //     }
-    //   });
-    // }
   });
 </script>
 
