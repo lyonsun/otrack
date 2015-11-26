@@ -60,7 +60,10 @@ class Home extends CI_Controller {
       $count--;
       $t_start = strtotime($count.'months');
 
-      $data['order'] = $this->order->count_in_a_period(date('Y-m-d H:i:s', $t_start), date('Y-m-d H:i:s', $t_end));
+      $start_time = date('Y-m-d H:i:s', mktime(0, 0, 0, $month_end, 1, date('y', $t_end)));
+      $end_time = date('Y-m-d H:i:s', mktime(0, 0, 0, $month_end+1, 1, date('y', $t_start)));
+
+      $data['order'] = $this->order->count_in_a_period($start_time, $end_time);
       $data['period'] = $month_end>0 ? date("M", mktime(0, 0, 0, $month_end, 10)).' '.date('Y', $t_end) : date("M", mktime(0, 0, 0, ($month_end+12), 10)).' '.date('Y', $t_start);
       
       $t_end = $t_start;

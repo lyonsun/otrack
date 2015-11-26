@@ -47,7 +47,9 @@ class Order extends CI_Model
     $this->db->where('final_delivery_time >', $time_start);
     $this->db->where('final_delivery_time <=', $time_end);
 
-    return $this->db->count_all_results($this->table_name);
+    $result =  $this->db->count_all_results($this->table_name);
+
+    return $result;
   }
 
   function create($order_data, $products)
