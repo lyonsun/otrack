@@ -1,3 +1,5 @@
+user_guide/
+
 uploads/*
 
 !uploads/index.html
