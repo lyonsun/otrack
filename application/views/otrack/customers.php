@@ -4,115 +4,80 @@
   <?php if ($message): ?>
   <div class="alert alert-<?php if ($status): ?><?php echo $status; ?><?php else: ?>danger<?php endif ?>"><?php echo $message;?></div>
   <?php endif ?>
-  <a class="btn btn-primary" href="<?php echo base_url('customers/create'); ?>"><i class="fa fa-fw fa-plus"></i><span class="hidden-xs"> <?php echo lang('action_add'); ?></span></a>
-  <a class="btn btn-default <?php if ($number_of_customers == 0): ?>hide<?php endif ?>" data-toggle="collapse" href="#collapse-search" aria-expanded="false" aria-controls="collapse-search"><i class="fa fa-fw fa-search"></i><span class="hidden-xs"> <?php echo lang('action_search'); ?></span></a>
-  <button type="button" class="btn btn-info <?php if ($number_of_customers == 0): ?>hide<?php endif ?>" id="btn-view-all"><i class="fa fa-fw fa-list"></i><span class="hidden-xs"> <?php echo lang('action_view_all'); ?></span></button>
-  <button type="button" class="btn btn-danger pull-right <?php if ($number_of_customers == 0): ?>hide<?php endif ?>" id="btn-delete-all"><i class="fa fa-fw fa-trash"></i><span class="hidden-xs"> <?php echo lang('action_delete_all'); ?></span></button>
+  
+  <?php
+  $form_attributes = array('id'=>'form-search-customer', 'class'=>'form-search-customer form-inline', 'method'=>'GET');
+  $search_criteria = array(
+  'id' => 'criteria',
+  'name' => 'q',
+  'class' => 'form-control',
+  'placeholder' => lang('action_search').'...',
+  'value' => $criteria,
+  );
+  $submit = array(
+  'id' => 'btn-search-customer',
+  'class' => 'btn btn-default btn-block',
+  'type' => 'submit',
+  'content' => '<i class="fa fa-fw fa-filter"></i> '.lang('action_filter'),
+  );
+  ?>
+  <?php echo form_open(base_url($this->uri->uri_string()), $form_attributes); ?>
+  <div class="form-group">
+    <?php echo form_input($search_criteria); ?>
+  </div>
+  <div class="form-group">
+    <?php echo form_button($submit); ?>
+  </div>
+  <div class="form-group">
+    <a class="btn btn-primary btn-block" href="<?php echo base_url('customers/create'); ?>"><i class="fa fa-fw fa-plus"></i><span> <?php echo lang('action_add'); ?></span></a>
+  </div>
+  <?php echo form_close(); ?>
   <hr>
-  <div class="collapse" id="collapse-search">
-    <div class="panel panel-default">
-      <div class="panel-body">
-        <?php
-          $form_attributes = array('id'=>'form-search-customer', 'class'=>'form-search-customer form-horizontal');
-          $name = array(
-          'id' => 'names',
-          'name' => 'names[]',
-          'class' => 'form-control',
-          'multiple' => 'multiple',
-          'selected' => $selected_names,
-          'options' => $names,
-          );
-          $phone = array(
-          'id' => 'phones',
-          'name' => 'phones[]',
-          'class' => 'form-control',
-          'multiple' => 'multiple',
-          'selected' => $selected_phones,
-          'options' => $phones,
-          );
-          $province = array(
-          'id' => 'provinces',
-          'name' => 'provinces[]',
-          'class' => 'form-control',
-          'multiple' => 'multiple',
-          'selected' => $selected_provinces,
-          'options' => $provinces,
-          );
-          $city = array(
-          'id' => 'cities',
-          'name' => 'cities[]',
-          'class' => 'form-control',
-          'multiple' => 'multiple',
-          'selected' => $selected_cities,
-          'options' => $cities,
-          );
-          $district = array(
-          'id' => 'districts',
-          'name' => 'districts[]',
-          'class' => 'form-control',
-          'multiple' => 'multiple',
-          'selected' => $selected_districts,
-          'options' => $districts,
-          );
-          $submit = array(
-          'id' => 'btn-search-customer',
-          'class' => 'btn btn-primary btn-block',
-          'type' => 'submit',
-          'content' => '<i class="fa fa-fw fa-filter"></i> '.lang('action_filter'),
-          );
-        ?>
-        <?php echo form_open(base_url($this->uri->uri_string()), $form_attributes); ?>
-        <div class="form-group">
-          <?php echo form_label(lang('field_customer_name'), 'name', array('class'=>'control-label col-md-2')); ?>
-          <div class="col-md-10">
-          <?php echo form_dropdown($name); ?>
+  <?php if ($number_of_customers <= 0): ?>
+  <p class="lead text-center"><?php echo lang('field_no_matches'); ?></p>
+  <?php else: ?>
+  <div class="row">
+    <?php foreach ($customers as $customer): ?>
+    <?php
+    $address = array($customer->province,$customer->city,$customer->district,$customer->address_1);
+    if (!empty($customer->address_2)) {
+    $address[] = $customer->address_2;
+    }
+    if (!empty($customer->zipcode)) {
+    $address[] = $customer->zipcode;
+    }
+    ?>
+    <div class="col-md-4">
+      <div class="thumbnail">
+        <div class="caption">
+          <h5>
+          <b><?php echo $customer->name; ?></b>
+          </h5>
+          <div class="text-danger"><?php echo $customer->phone; ?></div>
+          <div style="min-height:80px;">
+            <?php echo implode(', ', $address); ?>
+          </div>
+          <div class="row">
+            <div class="col-xs-6">
+              <?php echo anchor(base_url('customers/edit').'/'.$customer->id,'<i class="fa fa-fw fa-edit"></i><span>'.$this->lang->line('action_edit').'</span>',array('class'=>'btn btn-xs btn-block btn-success')); ?>
+            </div>
+            <div class="col-xs-6">
+              <?php echo anchor('#modal-delete','<i class="fa fa-fw fa-trash"></i><span>'.$this->lang->line('action_delete').'</span>',array('class'=>'btn btn-xs btn-block btn-default btn-modal-delete','data-toggle'=>'modal','data-cid'=>$customer->id,'data-name'=>$customer->name)); ?>
+            </div>
           </div>
         </div>
-        <div class="form-group">
-          <?php echo form_label(lang('field_phone'), 'phone', array('class'=>'control-label col-md-2')); ?>
-          <div class="col-md-10">
-          <?php echo form_dropdown($phone); ?>
-          </div>
-        </div>
-        <div class="form-group">
-          <?php echo form_label(lang('field_province'), 'province', array('class'=>'control-label col-md-2')); ?>
-          <div class="col-md-10">
-          <?php echo form_dropdown($province); ?>
-          </div>
-        </div>
-        <div class="form-group">
-          <?php echo form_label(lang('field_city'), 'city', array('class'=>'control-label col-md-2')); ?>
-          <div class="col-md-10">
-          <?php echo form_dropdown($city); ?>
-          </div>
-        </div>
-        <div class="form-group">
-          <?php echo form_label(lang('field_district'), 'district', array('class'=>'control-label col-md-2')); ?>
-          <div class="col-md-10">
-          <?php echo form_dropdown($district); ?>
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="col-md-offset-2 col-md-10">
-          <?php echo form_button($submit); ?>
-          </div>
-        </div>
-        <?php echo form_close(); ?>
       </div>
     </div>
+    <?php endforeach ?>
   </div>
-  <?php
-    echo $customer_table;
-    echo $this->pagination->create_links();
-   ?>
+  <div class="text-center"><?php echo $this->pagination->create_links(); ?></div>
+  <?php endif ?>
 </div>
 
+<!-- <script src="<?php echo base_url(); ?>static/otrack/js/customers/index.js"></script> -->
 
 <script>
   $(function() {
-    $('#names, #phones, #provinces, #cities, #districts').select2({
-      placeholder: '<?php echo lang("placeholder_select"); ?>',
-    });
 
     $('.btn-modal-delete').on('click', function(e) {
       cid = $(this).data('cid');
@@ -125,7 +90,7 @@
         buttons: [{
             id: 'btn-delete',
             icon: 'glyphicon glyphicon-trash',
-            label: 'Delete',
+            label: '<?php echo lang("action_delete"); ?>',
             action: function(dialog) {
               ajax_delete(cid, name, dialog, this)
             }
@@ -148,57 +113,6 @@
           if (data) {
             dialog.close();
             BootstrapDialog.alert('<?php echo lang("message_customer_deleted"); ?>', function () {
-              location.reload();
-            });
-          } else {
-            button.enable();
-            button.stopSpin();
-            dialog.setClosable(true);
-          }
-        }
-      });
-    }
-
-    $('#btn-view-all').on('click', function(e) {
-      window.location.replace('<?php echo base_url("customers"); ?>');
-    });
-
-    $('#btn-delete-all').on('click', function(e) {
-      <?php if ($number_of_customers == 0): ?>
-      BootstrapDialog.alert('<?php echo lang("no_customers_found"); ?>');
-      <?php else: ?>
-      BootstrapDialog.show({
-        title: '<?php echo lang("title_delete_all_customer"); ?>',
-        message: '<?php echo lang("message_delete_all_customer"); ?>',
-        type: 'type-danger',
-        buttons: [{
-            id: 'btn-delete',
-            icon: 'glyphicon glyphicon-trash',
-            cssClass: 'btn-warning',
-            label: 'Delete All',
-            action: function(dialog) {
-              ajax_delete_all(dialog, this)
-            }
-        }],
-      });
-      <?php endif ?>
-    });
-
-    function ajax_delete_all (dialog, button) {
-      $.ajax({
-        url: '<?php echo base_url("customers/delete_all") ?>',
-        type: 'POST',
-        dataType: 'json',
-        data: {uid: '<?php echo $this->session->userdata("user_id"); ?>'},
-        beforeSend: function () {
-          button.disable();
-          button.spin();
-          dialog.setClosable(false);
-        },
-        success: function (data) {
-          if (data) {
-            dialog.close();
-            BootstrapDialog.alert('<?php echo lang("message_all_customer_deleted"); ?>', function () {
               location.reload();
             });
           } else {

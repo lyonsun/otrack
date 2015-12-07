@@ -19,7 +19,7 @@ class Customers extends CI_Controller {
     }
 
     $this->load->library(array('pagination'));
-    $this->load->model(array('customer'));
+    $this->load->model(array('customers_model'));
   }
 
 	function index()
@@ -29,96 +29,29 @@ class Customers extends CI_Controller {
     $this->data['title'] = $this->lang->line('customer_heading');
     $this->data['status'] = $this->session->flashdata('status');
     $this->data['message'] = (validation_errors() ? validation_errors() : $this->session->flashdata('message'));
+    
+    $page = intval($this->input->get('page'));
+    $page = empty($page) ? 1 : $page;
+    $offset = ($page - 1) * PAGE_SIZE;
 
-    $this->data['number_of_customers'] = $this->customer->count();
+    $getData = $this->input->get();
 
-    $postData = $this->input->post();
-    $names = $phones = $provinces = $cities = $districts = array();
-
-    if ($postData) {
-      $names = isset($postData['names']) ? $postData['names'] : array();
-      $phones = isset($postData['phones']) ? $postData['phones'] : array();
-      $provinces = isset($postData['provinces']) ? $postData['provinces'] : array();
-      $cities = isset($postData['cities']) ? $postData['cities'] : array();
-      $districts = isset($postData['districts']) ? $postData['districts'] : array();
-
-      $criteria = array(
-        'name'=>$names,
-        'phone' => $phones,
-        'province' => $provinces,
-        'city' => $cities,
-        'district' => $districts
-      );
-
-      $customers = $this->customer->search($criteria);
+    if (isset($getData['q'])) {
+      $criteria = $getData['q'];
+      $customers = $this->customers_model->search($criteria, $offset, PAGE_SIZE);
+      $count = $this->customers_model->count_search($criteria);
+      $pagelink = $this->pagination($count, 'customers', 'q='.$criteria);
     } else {
-      $page = intval($this->input->get('page'));
-      $page = empty($page) ? 1 : $page;
-      $offset = ($page - 1) * PAGE_SIZE;
-      $pagelink = $this->pagination($this->data['number_of_customers'], 'customers');
-
-      $customers = $this->customer->get_all($offset, PAGE_SIZE);
+      $customers = $this->customers_model->get_all($offset, PAGE_SIZE);
+      $count = $this->customers_model->count();
+      $pagelink = $this->pagination($count, 'customers');
     }
 
-    $tmpl = array (
-      'table_open'  => '<div class="table-responsive"><table class="table table-striped">',
-      'heading_cell_start'  => '<th class="bg-primary">',
-      'table_close'         => '</table></div>',
-    );
+    $this->data['number_of_customers'] = $count;
+    
+    $this->data['customers'] = $customers;
 
-    $this->table->set_template($tmpl);
-
-    $heading = array(
-      $this->lang->line('field_name'),
-      $this->lang->line('field_phone'),
-      $this->lang->line('field_address'),
-      $this->lang->line('field_last_modified'),
-      $this->lang->line('field_action'),
-    );
-
-    $this->table->set_heading($heading);
-
-    if ($customers) {
-      foreach ($customers as $customer) {
-        $address = array($customer->province,$customer->city,$customer->district,$customer->address_1);
-        if (!empty($customer->address_2)) {
-          $address[] = $customer->address_2;
-        }
-        if (!empty($customer->zipcode)) {
-          $address[] = $customer->zipcode;
-        }
-        $row = array(
-          $customer->name,
-          $customer->phone,
-          implode(', ', $address),
-          date('Y-m-d H:i:s', $customer->updated_on),
-          array(
-            'data'=>
-            anchor(base_url('customers/edit').'/'.$customer->id,'<i class="fa fa-fw fa-edit"></i><span class="hidden-xs">'.$this->lang->line('action_edit').'</span>',array('class'=>'btn btn-xs btn-success'))." ".
-            anchor('#modal-delete','<i class="fa fa-fw fa-trash"></i><span class="hidden-xs">'.$this->lang->line('action_delete').'</span>',array('class'=>'btn btn-xs btn-danger btn-modal-delete','data-toggle'=>'modal','data-cid'=>$customer->id,'data-name'=>$customer->name)),
-            'width'=>'20%',
-          ),
-        );
-
-        $this->table->add_row($row);
-      }
-    } else {
-      $this->table->add_row(array('data'=>$this->lang->line('no_customers_found'),'colspan'=>'11','class'=>'text-center'));
-    }
-
-    $this->data['customer_table'] = $this->table->generate();
-
-    $this->data['selected_names'] = $names;
-    $this->data['selected_phones'] = $phones;
-    $this->data['selected_provinces'] = $provinces;
-    $this->data['selected_cities'] = $cities;
-    $this->data['selected_districts'] = $districts;
-
-    $this->data['names'] = (array)$this->customer->get_distinct('name');
-    $this->data['phones'] = (array)$this->customer->get_distinct('phone');
-    $this->data['provinces'] = (array)$this->customer->get_distinct('province');
-    $this->data['cities'] = (array)$this->customer->get_distinct('city');
-    $this->data['districts'] = (array)$this->customer->get_distinct('district');
+    $this->data['criteria'] = isset($criteria) ? $criteria : '';
 
 		$this->load->view('otrack/customers', $this->data);
 	}
@@ -151,7 +84,7 @@ class Customers extends CI_Controller {
       );
     }
 
-    if ($this->form_validation->run() == true && $this->customer->create($customer_data))
+    if ($this->form_validation->run() == true && $this->customers_model->create($customer_data))
     {
       $this->session->set_flashdata('status', 'success');
       $this->session->set_flashdata('message', $this->lang->line('message_customer_created'));
@@ -197,7 +130,7 @@ class Customers extends CI_Controller {
         'updated_on'  => time(),
       );
 
-      if ($this->customer->update($id, $customer_data)) {
+      if ($this->customers_model->update($id, $customer_data)) {
         $this->session->set_flashdata('status', 'success');
         $this->session->set_flashdata('message', $this->lang->line('message_customer_updated'));
         redirect(base_url('customers'), 'refresh');
@@ -206,7 +139,7 @@ class Customers extends CI_Controller {
         redirect(base_url('customers'), 'refresh');
       }      
     } else {
-      $customer = $this->customer->get($id);
+      $customer = $this->customers_model->get($id);
       $this->data['customer'] = $customer;
 
       $this->data['status'] = $this->session->flashdata('status');
@@ -250,7 +183,7 @@ class Customers extends CI_Controller {
       header('Content-Type: application/json');
 
       $cid = $this->input->post('cid');
-      $result = $this->customer->delete($cid);
+      $result = $this->customers_model->delete($cid);
       echo json_encode($result);
     } else {
       $this->session->set_flashdata('message', $this->lang->line('page_not_found'));
@@ -269,7 +202,7 @@ class Customers extends CI_Controller {
     {
       header('Content-Type: application/json');
 
-      $result = $this->customer->truncate();
+      $result = $this->customers_model->truncate();
       echo json_encode($result);
     } else {
       $this->session->set_flashdata('message', $this->lang->line('page_not_found'));
@@ -277,8 +210,8 @@ class Customers extends CI_Controller {
     }
   }
 
-  function pagination($total_rows = 100000, $base_url) {
-    $config['base_url'] = base_url($base_url) . "?";
+  function pagination($total_rows = 100000, $base_url, $params='') {
+    $config['base_url'] = base_url($base_url) . "?" . $params;
     $config['total_rows'] = $total_rows;
     $config['per_page'] = PAGE_SIZE;
     $config['use_page_numbers'] = TRUE;

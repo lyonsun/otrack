@@ -3,7 +3,7 @@
 /**
 * 
 */
-class Customer extends CI_Model
+class Customers_Model extends CI_Model
 {
   
   function __construct()
@@ -13,20 +13,40 @@ class Customer extends CI_Model
 
   function get_all($offset=0, $limit=0)
   {
+    $this->db->order_by('updated_on', 'desc');
     $result = $this->db->get($this->table_name, $limit, $offset)->result();
 
     return $result;
   }
 
-  function search($criteria=array())
+  function count_search($criteria='')
   {
-    foreach ($criteria as $key => $conditions) {
-      if (!empty($conditions)) {
-        $this->db->where_in($key, $conditions);
-      }
-    }
+    $this->db->like('name', $criteria);
+    $this->db->or_like('phone', $criteria);
+    $this->db->or_like('address_1', $criteria);
+    $this->db->or_like('address_2', $criteria);
+    $this->db->or_like('district', $criteria);
+    $this->db->or_like('city', $criteria);
+    $this->db->or_like('province', $criteria);
 
-    $result = $this->db->get($this->table_name)->result();
+    $result = $this->db->count_all_results($this->table_name);
+
+    return $result;
+  }
+
+  function search($criteria='', $offset=0, $limit=0)
+  {
+    $this->db->like('name', $criteria);
+    $this->db->or_like('phone', $criteria);
+    $this->db->or_like('address_1', $criteria);
+    $this->db->or_like('address_2', $criteria);
+    $this->db->or_like('district', $criteria);
+    $this->db->or_like('city', $criteria);
+    $this->db->or_like('province', $criteria);
+    
+    $this->db->order_by('updated_on', 'desc');
+
+    $result = $this->db->get($this->table_name, $limit, $offset)->result();
 
     return $result;
   }

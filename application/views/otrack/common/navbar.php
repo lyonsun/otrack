@@ -12,13 +12,7 @@
       <a class="navbar-brand" href="#"><?php echo $title; ?></a>
     </div>
     <div class="collapse navbar-collapse">
-      <ul class="nav navbar-nav navbar-right">
-      <?php if ($this->uri->total_segments() > 1): ?>
-        <li>
-          <a href="<?php echo base_url($this->uri->segment(1)); ?>"><?php echo lang('action_back'); ?></a>
-        </li>
-      <?php endif ?>
-      </ul>
+    
     </div>
   </div>
 </nav>
