@@ -14,11 +14,15 @@
   </ul>
 
   <br>
-
+  
   <?php 
     echo $order_table;
+   ?>
+  <div class="text-center">
+  <?php 
     echo $this->pagination->create_links();
    ?>
+   </div>
 </div>
 
 

@@ -105,51 +105,51 @@
     </div>
     <div class="panel-body">
       <div class="form-group">
-        <?php echo form_label(lang('field_receiver'), 'buyer', array('class'=>'col-xs-2 control-label')); ?>
-        <div class="col-xs-9">
+        <?php echo form_label(lang('field_receiver'), 'buyer', array('class'=>'col-md-2 control-label')); ?>
+        <div class="col-md-9">
         <?php echo form_dropdown($buyer); ?>
         </div>
       </div>
       <div class="form-group">
-        <label class="col-xs-2 control-label"><?php echo lang('field_products'); ?></label>
-        <div class="col-xs-6">
+        <label class="col-md-2 control-label"><?php echo lang('field_products'); ?></label>
+        <div class="col-md-6">
           <!-- <input type="text" class="form-control" name="product[0][title]" placeholder="<?php echo lang('placeholder_title'); ?>" /> -->
           <?php echo form_dropdown($product); ?>
         </div>
-        <div class="col-xs-3">
+        <div class="col-md-3">
           <input type="text" class="form-control" name="product[0][amount]" placeholder="<?php echo lang('placeholder_amount'); ?>" />
         </div>
-        <div class="col-xs-1">
+        <div class="col-md-1">
           <button type="button" class="btn btn-default addButton"><i class="fa fa-plus"></i></button>
         </div>
       </div>
       <div class="form-group" id="templateBefore">
-        <div class="col-xs-2 text-right"><b><?php echo lang('field_type'); ?></b></div>
-        <div class="col-xs-9">
+        <div class="col-md-2 text-right hidden-sm"><b><?php echo lang('field_type'); ?></b></div>
+        <div class="col-md-9">
         <?php echo form_label(form_radio($international).lang('field_international'), '', array('class'=>'radio-inline')); ?>
         <?php echo form_label(form_radio($domestic).lang('field_domestic'), '', array('class'=>'radio-inline')); ?>
         </div>
       </div>
       <div class="form-group">
-        <?php echo form_label(lang('field_delivery_time'), 'delivery_time', array('class'=>'col-xs-2 control-label')); ?>
-        <div class="col-xs-9">
+        <?php echo form_label(lang('field_delivery_time'), 'delivery_time', array('class'=>'col-md-2 control-label')); ?>
+        <div class="col-md-9">
         <?php echo form_input($delivery_time); ?>
         </div>
       </div>
       <div class="form-group">
-        <?php echo form_label(lang('field_express'), 'express_name', array('class'=>'col-xs-2 control-label')); ?>
-        <div class="col-xs-9">
+        <?php echo form_label(lang('field_express'), 'express_name', array('class'=>'col-md-2 control-label')); ?>
+        <div class="col-md-9">
         <?php echo form_dropdown($express_name); ?>
         </div>
       </div>
       <div class="form-group">
-        <?php echo form_label(lang('field_comments'), 'comments', array('class'=>'col-xs-2 control-label')); ?>
-        <div class="col-xs-9">
+        <?php echo form_label(lang('field_comments'), 'comments', array('class'=>'col-md-2 control-label')); ?>
+        <div class="col-md-9">
         <?php echo form_input($comments); ?>
         </div>
       </div>
       <div class="form-group">
-        <div class="col-xs-offset-2 col-xs-9">
+        <div class="col-md-offset-2 col-md-9">
         <?php echo form_hidden('status', '1'); ?>
         <?php echo form_button($submit); ?>
         </div>
@@ -163,14 +163,14 @@
 
 <!-- The template for adding new field -->
 <div class="form-group hide" id="productTemplate">
-  <div class="col-xs-6 col-xs-offset-2">
+  <div class="col-md-6 col-md-offset-2">
     <!-- <input type="text" class="form-control title" placeholder="<?php echo lang('placeholder_title'); ?>" /> -->
     <?php echo form_dropdown($product); ?>
   </div>
-  <div class="col-xs-3">
+  <div class="col-md-3">
     <input type="text" class="form-control amount" placeholder="<?php echo lang('placeholder_amount'); ?>" />
   </div>
-  <div class="col-xs-1">
+  <div class="col-md-1">
     <button type="button" class="btn btn-default removeButton"><i class="fa fa-minus"></i></button>
   </div>
 </div>
@@ -179,32 +179,12 @@
 <script src="<?php echo base_url(); ?>static/bs-dp3/js/bootstrap-datepicker.min.js"></script>
 <script>
   $(function() {
-    $('#buyer').select2({
-      placeholder: '<?php echo lang("placeholder_select_buyer"); ?>',
-    });
-    $('#express_name').select2({
-      placeholder: '<?php echo lang("placeholder_select_express"); ?>',
-    });
-    $('#products').select2({
-      placeholder: '<?php echo lang("placeholder_select_products"); ?>',
-    });
     $('#delivery_time').datepicker({
       autoclose: true,
       format: "yyyy-mm-dd",
       startDate: new Date(),
+      update: new Date(),
     });
-    $("#delivery_time").datepicker("update", new Date());
-
-    // $('input[name="status"]').on('change', function(e) {
-    //   console.log($(this).attr('id'))
-    //   if ($(this).attr('id') == 'pending') {
-        $("#delivery_time").datepicker("setStartDate", new Date());
-        $("#delivery_time").datepicker("setEndDate", false);
-    //   } else if ($(this).attr('id') == 'finished') {
-    //     $("#delivery_time").datepicker("setStartDate", false);    
-    //     $("#delivery_time").datepicker("setEndDate", new Date());    
-    //   };
-    // });
 
     var buyerValidators = {
       validators: {
@@ -240,7 +220,7 @@
     }
 
     var titleValidators = {
-      row: '.col-xs-6',   // The title is placed inside a <div class="col-xs-3"> element
+      row: '.col-md-6',   // The title is placed inside a <div class="col-md-3"> element
       validators: {
         notEmpty: {
           message: '<?php echo lang("title_required"); ?>'
@@ -248,7 +228,7 @@
       }
     },
     amountValidators = {
-      row: '.col-xs-3',
+      row: '.col-md-3',
       validators: {
         notEmpty: {
           message: '<?php echo lang("amount_required"); ?>'

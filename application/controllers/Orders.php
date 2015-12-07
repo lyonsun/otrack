@@ -15,7 +15,7 @@ class Orders extends CI_Controller {
       return show_error('You must be an administrator to view this page.');
     }
     $this->load->library(array('ion_auth','pagination','table','express'));
-    $this->load->model(array('customer','order','products_model'));
+    $this->load->model(array('customers_model','orders_model','products_model'));
   }
 
 	function index($status='')
@@ -25,10 +25,10 @@ class Orders extends CI_Controller {
     $this->data['status'] = $this->session->flashdata('status');
     $this->data['message'] = (validation_errors() ? validation_errors() : $this->session->flashdata('message'));
 
-    $this->data['all_order_count'] = $this->order->count();
+    $this->data['all_order_count'] = $this->orders_model->count();
 
-    $this->data['pending_order_count'] = $this->order->count('1');
-    $this->data['finished_order_count'] = $this->order->count('2');
+    $this->data['pending_order_count'] = $this->orders_model->count('1');
+    $this->data['finished_order_count'] = $this->orders_model->count('2');
 
     $page = intval($this->input->get('page'));
     $page = empty($page) ? 1 : $page;
@@ -57,16 +57,16 @@ class Orders extends CI_Controller {
     if (!$status) {
       // get all orders
       $pagelink = $this->pagination($this->data['all_order_count'], 'orders');
-      $orders = $this->order->get_all('', $offset, PAGE_SIZE);
+      $orders = $this->orders_model->get_all('', $offset, PAGE_SIZE);
     } else {
       switch ($status) {
         case '1':
           $pagelink = $this->pagination($this->data['pending_order_count'], 'orders/index/1');
-          $orders = $this->order->get_all($status, $offset, PAGE_SIZE);
+          $orders = $this->orders_model->get_all($status, $offset, PAGE_SIZE);
           break;
         case '2':
           $pagelink = $this->pagination($this->data['finished_order_count'], 'orders/index/2');
-          $orders = $this->order->get_all($status, $offset, PAGE_SIZE);
+          $orders = $this->orders_model->get_all($status, $offset, PAGE_SIZE);
           break;
         
         default:
@@ -84,7 +84,7 @@ class Orders extends CI_Controller {
       $this->table->add_row($row);
     } else {
       foreach ($orders as $order) {
-        $order_products = $this->order->get_order_products($order->id);
+        $order_products = $this->orders_model->get_order_products($order->id);
 
         $products = array();
 
@@ -147,7 +147,7 @@ class Orders extends CI_Controller {
     if ($this->form_validation->run() == true)
     {
       $buyer_id = $this->form_validation->set_value('buyer');
-      $buyer = $this->customer->get($buyer_id);
+      $buyer = $this->customers_model->get($buyer_id);
 
       $order_data = array(
         'buyer_id' => $this->form_validation->set_value('buyer'),
@@ -169,7 +169,7 @@ class Orders extends CI_Controller {
       }
     }
 
-    if ($this->form_validation->run() == true && $this->order->create($order_data, $products))
+    if ($this->form_validation->run() == true && $this->orders_model->create($order_data, $products))
     {
       $this->session->set_flashdata('status', 'success');
       $this->session->set_flashdata('message', $this->lang->line('message_order_created'));
@@ -178,7 +178,7 @@ class Orders extends CI_Controller {
     else
     {
       $this->data['title'] = $this->lang->line('heading_add_order');
-      $this->data['customers'] = $this->customer->get_all();
+      $this->data['customers'] = $this->customers_model->get_all();
 
       $this->data['products'] = $this->products_model->get();
 
@@ -196,7 +196,7 @@ class Orders extends CI_Controller {
       redirect(base_url('orders'), 'refresh');
     }
 
-    $order = $this->order->get($oid);
+    $order = $this->orders_model->get($oid);
 
     if (!$order) {
       $this->session->set_flashdata('message', $this->lang->line('order_not_found'));
@@ -215,11 +215,11 @@ class Orders extends CI_Controller {
       );
     }
 
-    if ($this->form_validation->run() == TRUE && $this->order->update($order->id, $order_data)) {
+    if ($this->form_validation->run() == TRUE && $this->orders_model->update($order->id, $order_data)) {
       $this->session->set_flashdata('message', $this->lang->line('message_tracking_number_added'));
       redirect(base_url('orders'), 'refresh');
     } else {
-      $buyer = $this->customer->get($order->buyer_id);
+      $buyer = $this->customers_model->get($order->buyer_id);
 
       $buyer_info = implode(', ', array(
         $buyer->province, 
@@ -229,7 +229,7 @@ class Orders extends CI_Controller {
         $buyer->phone)
       );
 
-      $order_products = $this->order->get_order_products($order->id);
+      $order_products = $this->orders_model->get_order_products($order->id);
       
       $this->data['title'] = $this->lang->line('heading_send_order');
       $this->data['status'] = $this->session->flashdata('status');
@@ -255,7 +255,7 @@ class Orders extends CI_Controller {
     if ($this->form_validation->run() == true)
     {
       $buyer_id = $this->form_validation->set_value('buyer');
-      $buyer = $this->customer->get($buyer_id);
+      $buyer = $this->customers_model->get($buyer_id);
 
       $order_data = array(
         'buyer_id' => $this->form_validation->set_value('buyer'),
@@ -281,7 +281,7 @@ class Orders extends CI_Controller {
       }
     }
 
-    if ($this->form_validation->run() == true && $this->order->update_order_products($oid, $order_data, $products))
+    if ($this->form_validation->run() == true && $this->orders_model->update_order_products($oid, $order_data, $products))
     {
       $this->session->set_flashdata('status', 'success');
       $this->session->set_flashdata('message', $this->lang->line('message_order_updated'));
@@ -296,12 +296,12 @@ class Orders extends CI_Controller {
         redirect(base_url('orders'), 'refresh');
       }
 
-      $order = $this->order->get($oid);
+      $order = $this->orders_model->get($oid);
       $this->data['order'] = $order;
 
-      $this->data['customers'] = $this->customer->get_all();
+      $this->data['customers'] = $this->customers_model->get_all();
 
-      $order_products = $this->order->get_order_products($order->id);
+      $order_products = $this->orders_model->get_order_products($order->id);
       $this->data['order_products'] = $order_products;
 
       $this->data['products'] = $this->products_model->get();
@@ -325,7 +325,7 @@ class Orders extends CI_Controller {
       header('Content-Type: application/json');
 
       $oid = $this->input->post('oid');
-      $result = $this->order->delete($oid);
+      $result = $this->orders_model->delete($oid);
       echo json_encode($result);
     } else {
       $this->session->set_flashdata('message', $this->lang->line('page_not_found'));
@@ -340,14 +340,14 @@ class Orders extends CI_Controller {
       redirect(base_url('orders'), 'refresh');
     }
 
-    $order = $this->order->get($oid);
+    $order = $this->orders_model->get($oid);
 
     if (!$order) {
       $this->session->set_flashdata('message', $this->lang->line('order_not_found'));
       redirect(base_url('orders'), 'refresh');
     }
 
-    $buyer = $this->customer->get($order->buyer_id);
+    $buyer = $this->customers_model->get($order->buyer_id);
 
     $buyer_info = implode(', ', array(
       $buyer->province, 
@@ -357,7 +357,7 @@ class Orders extends CI_Controller {
       $buyer->phone)
     );
 
-    $order_products = $this->order->get_order_products($order->id);
+    $order_products = $this->orders_model->get_order_products($order->id);
     
     $this->data['title'] = $this->lang->line('heading_view_order');
     $this->data['status'] = $this->session->flashdata('status');

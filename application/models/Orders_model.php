@@ -3,7 +3,7 @@
 /**
 * 
 */
-class Order extends CI_Model
+class Orders_Model extends CI_Model
 {
   
   function __construct()
