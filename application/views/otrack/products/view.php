@@ -1,6 +1,6 @@
 <?php $this->load->view('otrack/common/header') ?>
 
-<div class="container-fluid">
+<div class="container">
   <div class="row">
   <div class="col-md-8">
     <div class="thumbnail">

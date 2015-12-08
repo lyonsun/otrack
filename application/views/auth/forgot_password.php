@@ -1,5 +1,5 @@
 <?php $this->load->view('auth/common/header'); ?>
-<div class="container-fluid">
+<div class="container">
   <div class="row">
     <div class="col-md-offset-3 col-md-6">      
       <div class="panel panel-default">
