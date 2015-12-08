@@ -3,7 +3,7 @@
   <div class="row">
   <div class="col-md-8">
     <div class="thumbnail">
-      <img data-src="<?php echo $product_image; ?>" src="<?php echo $product_image && file_exists(FCPATH.'uploads/'.$product_image) ? $product_image : 'https://placehold.it/250x100/aaa/000?text='.lang('field_images'); ?>" width="100%" alt="product_image">
+      <img data-src="<?php echo $product_image; ?>" data-src="<?php echo $product_image && file_exists(FCPATH.'uploads/'.$product_image) ? $product_image : 'holder.js/100%x50?bg=000&fg=fff&text='.lang('field_images'); ?>" alt="" style="min-height:200px;width:100%;">
     </div>
   </div>
   <div class="col-md-4">

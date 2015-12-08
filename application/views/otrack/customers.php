@@ -49,9 +49,10 @@
           <b><?php echo $customer->name; ?></b>
           </h5>
           <div class="text-danger"><?php echo $customer->phone; ?></div>
-          <div style="min-height:80px;">
+          <div style="min-height:60px;">
             <?php echo implode(', ', $address); ?>
           </div>
+          <hr>
           <div class="row">
             <div class="col-xs-6">
               <?php echo anchor(base_url('customers/edit').'/'.$customer->id,'<i class="fa fa-fw fa-edit"></i><span>'.$this->lang->line('action_edit').'</span>',array('class'=>'btn btn-xs btn-block btn-success')); ?>

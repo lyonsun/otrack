@@ -41,9 +41,9 @@
     $status = 'success';
     }
     ?>
-    <div class="item col-sm-6 col-md-4 col-lg-3">
+    <div class="item col-sm-6 col-md-4">
       <div class="thumbnail">
-        <img class="list-group-image" src="holder.js/400x50?bg=000&fg=fff&text=<?php echo lang('field_images'); ?>" alt="" width="100%" />
+        <img class="list-group-image" data-src="holder.js/100%x50/auto?bg=000&fg=fff&text=<?php echo lang('field_images'); ?>" alt="" />
         <div class="caption">
           <h5 style="min-height:50px;">
           <b><?php echo $product->name; ?></b>
