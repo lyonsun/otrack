@@ -1,7 +1,7 @@
 <?php if(!defined('BASEPATH')) exit('Direct Access Not Allowed');
 
 /* This Application Must Be Used With BootStrap 3 *  */
-$config['full_tag_open'] = "<ul class='pagination pagination-sm'>";
+$config['full_tag_open'] = "<ul class='pagination'>";
 $config['full_tag_close'] ="</ul>";
 $config['num_tag_open'] = '<li>';
 $config['num_tag_close'] = '</li>';
