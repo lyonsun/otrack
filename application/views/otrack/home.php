@@ -39,7 +39,7 @@
           <h3 class="panel-title"><?php echo lang('heading_order_trends'); ?></h3>
         </div>
         <div class="panel-body">
-          <div id="morris-area-chart" style="max-height:200px !important;"></div>
+          <div id="order_trends_line" style="max-height:200px !important;"></div>
         </div>
       </div>
     </div>
@@ -53,7 +53,7 @@
 
     $.get('<?php echo base_url("home"); ?>/order_trends', function(data) {
       Morris.Line({
-        element: 'morris-area-chart',
+        element: 'order_trends_line',
         data: JSON.parse(data),
         xkey: 'period',
         ykeys: ['order'],
