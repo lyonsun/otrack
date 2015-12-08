@@ -16,9 +16,6 @@
     <link href="<?php echo base_url(); ?>static/fv/css/formValidation.min.css" rel="stylesheet">
     <!-- Dropzone -->
     <link href="<?php echo base_url(); ?>static/dropzone/dropzone.css" rel="stylesheet">
-    <!-- Select2 CSS -->
-    <link href="<?php echo base_url(); ?>static/select2-3.5.2/select2.css" rel="stylesheet" />
-    <link href="<?php echo base_url(); ?>static/select2-3.5.2/select2-bootstrap.css" rel="stylesheet" />
     <!-- Bootstrap Datetime Picker CSS -->
     <link href="<?php echo base_url(); ?>static/bs-dp3/css/bootstrap-datepicker3.min.css" rel="stylesheet">
     <!-- Touch Spin -->
@@ -28,17 +25,11 @@
     <!-- Otrack CSS -->
     <!-- <link href="<?php echo base_url(); ?>static/otrack/css/styles.css" rel="stylesheet"> -->
     <!-- Custom CSS -->
-    <link href="<?php echo base_url(); ?>static/otrack/css/light-bootstrap-dashboard.css" rel="stylesheet">
+    <!-- <link href="<?php echo base_url(); ?>static/otrack/css/light-bootstrap-dashboard.css" rel="stylesheet"> -->
     <link href="<?php echo base_url(); ?>static/otrack/css/fix-light-bootstrap-dashboard.css" rel="stylesheet">
     <?php $this->load->view('otrack/common/js'); ?>
   </head>
   <body>
-    <div class="wrapper">
-
-      <?php $this->load->view('otrack/common/sidebar'); ?>
-
-      <div class="main-panel">
-
-        <?php $this->load->view('otrack/common/navbar'); ?>
-
-        <div class="content">
+    <div id="wrapper">
+      <?php $this->load->view('otrack/common/navbar'); ?>
+      <div id="main-panel">

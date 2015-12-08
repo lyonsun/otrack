@@ -4,7 +4,7 @@
   <div class="row">
   <div class="col-md-8">
     <div class="thumbnail">
-      <img data-src="<?php echo $product_image; ?>" src="<?php echo $product_image; ?>" alt="product_image" width='200px' min-height='500px'>
+      <img data-src="<?php echo $product_image; ?>" src="<?php echo $product_image && file_exists(FCPATH.'uploads/'.$product_image) ? $product_image : 'https://placehold.it/250x100/aaa/000?text='.lang('field_images'); ?>" width="100%" alt="product_image">
     </div>
   </div>
   <div class="col-md-4">

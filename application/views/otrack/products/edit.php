@@ -99,7 +99,7 @@
 
 <script>
 $(function() {
-  $('select').select2();
+  // $('select').select2();
 
   $("input[name='stock']").TouchSpin({
     verticalbuttons: true,
