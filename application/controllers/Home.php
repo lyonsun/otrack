@@ -16,7 +16,7 @@ class Home extends CI_Controller {
 		}
 
 		$this->load->library('ion_auth');
-		$this->load->model(array('customer','order','products_model'));
+		$this->load->model(array('customers_model','orders_model','products_model'));
 	}
 
 	function index()
@@ -25,22 +25,63 @@ class Home extends CI_Controller {
 		$this->data['status'] = $this->session->flashdata('status');
 		$this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
 
-    $this->data['number_of_customers'] = $this->customer->count();
-    $this->data['number_of_orders'] = $this->order->count();
-    $this->data['number_of_products'] = $this->products_model->count();
-
-
-    $this->data['number_of_international_orders'] = $this->order->count('', 1);
-    $this->data['number_of_domestic_orders'] = $this->order->count('', 2);
-
-    $this->data['number_of_pending_orders'] = $this->order->count(1, '');
-    $this->data['number_of_finished_orders'] = $this->order->count(2, '');
-
     // show first 10 products
     $this->data['products'] = $this->products_model->get(0, 10);
 		
 		$this->load->view('otrack/home', $this->data);
 	}
+
+  function customers()
+  {    
+    $result = array(
+      'color' => 'success',
+      'icon' => 'users',
+      'link' => base_url('customers'),
+      'number' => $this->customers_model->count(),
+      'text' => lang('customer_heading'),
+    );
+
+    echo json_encode($result);
+  }
+
+  function orders()
+  {    
+    $result = array(
+      'color' => 'primary',
+      'icon' => 'file',
+      'link' => base_url('orders'),
+      'number' => $this->orders_model->count(),
+      'text' => lang('order_heading'),
+    );
+
+    echo json_encode($result);
+  }
+
+  function products()
+  {    
+    $result = array(
+      'color' => 'info',
+      'icon' => 'list',
+      'link' => base_url('products'),
+      'number' => $this->products_model->count(),
+      'text' => lang('product_heading'),
+    );
+
+    echo json_encode($result);
+  }
+
+  function pending_orders()
+  {    
+    $result = array(
+      'color' => 'danger',
+      'icon' => 'exclamation-circle',
+      'link' => base_url('orders').'/index/1',
+      'number' => $this->orders_model->count(1),
+      'text' => lang('field_pending'),
+    );
+
+    echo json_encode($result);
+  }
 
   function order_trends()
   {
@@ -63,7 +104,7 @@ class Home extends CI_Controller {
       $start_time = date('Y-m-d H:i:s', mktime(0, 0, 0, $month_end, 1, date('y', $t_end)));
       $end_time = date('Y-m-d H:i:s', mktime(0, 0, 0, $month_end+1, 1, date('y', $t_start)));
 
-      $data['order'] = $this->order->count_in_a_period($start_time, $end_time);
+      $data['order'] = $this->orders_model->count_in_a_period($start_time, $end_time);
       $data['period'] = $month_end>0 ? date("M", mktime(0, 0, 0, $month_end, 10)).' '.date('Y', $t_end) : date("M", mktime(0, 0, 0, ($month_end+12), 10)).' '.date('Y', $t_start);
       
       $t_end = $t_start;
@@ -75,7 +116,6 @@ class Home extends CI_Controller {
 
     $order_trends_data = array_reverse($order_trends_data);
 
-    // $this->order_trends_data['order_trends_order_trends_data'] = 
     echo json_encode($order_trends_data);
   }
 }
