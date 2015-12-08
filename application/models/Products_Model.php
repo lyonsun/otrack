@@ -28,6 +28,27 @@ class Products_Model extends CI_Model
     return $query->result();
   }
 
+  function count_search($criteria)
+  {
+    $this->db->like('name', $criteria);
+    $this->db->or_like('description', $criteria);
+
+    $count = $this->db->count_all_results($this->table_name);
+
+    return $count;
+  }
+
+  function search($criteria, $offset=0, $limit=0)
+  {
+    $this->db->like('name', $criteria);
+    $this->db->or_like('description', $criteria);
+
+    $this->db->order_by('stock', 'asc');
+    $query = $this->db->get($this->table_name, $limit, $offset);
+
+    return $query->result();
+  }
+
   function get_out_of_stock()
   {
     $this->db->where('stock <=','0');
