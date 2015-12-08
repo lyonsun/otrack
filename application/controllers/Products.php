@@ -18,72 +18,35 @@ class Products extends CI_Controller {
       return show_error('You must be an administrator to view this page.');
     }
 
-    $this->load->library(array('pagination'));
+    $this->load->library(array('pagination', 'table'));
     $this->load->model(array('products_model', 'images_model'));
   }
 
   function index()
   {
-    $this->load->library('table');
+    $getData = $this->input->get();
 
     $this->data['title'] = $this->lang->line('product_heading');
     $this->data['status'] = $this->session->flashdata('status');
     $this->data['message'] = (validation_errors() ? validation_errors() : $this->session->flashdata('message'));
 
-    $this->data['number_of_products'] = $this->products_model->count();
-
     $page = intval($this->input->get('page'));
     $page = empty($page) ? 1 : $page;
     $offset = ($page - 1) * PAGE_SIZE;
-    $pagelink = $this->pagination($this->data['number_of_products'], 'products');
-
-    $products = $this->products_model->get($offset, PAGE_SIZE);
-
-    $tmpl = array (
-      'table_open'  => '<div class="table-responsive"><table class="table table-striped">',
-      'heading_cell_start'  => '<th class="bg-primary">',
-      'table_close'         => '</table></div>',
-    );
-
-    $this->table->set_template($tmpl);
-
-    $heading = array(
-      $this->lang->line('field_name'),
-      $this->lang->line('field_description'),
-      $this->lang->line('field_stock'),
-      $this->lang->line('field_created'),
-      $this->lang->line('field_last_modified'),
-      $this->lang->line('field_action'),
-    );
-
-    $this->table->set_heading($heading);
-
-    if ($products) {
-      foreach ($products as $product) {
-        $image = $this->images_model->get_via_id($product->image_id);
-        $image_cell = $image && file_exists(FCPATH.'uploads/'.$image->title) ? '<img src="'.base_url().'uploads/'.$image->title.'" class="media-object" alt="product_img" width="25px" />' : '';
-        $row = array(
-          '<div class="media"><div class="pull-left">'.$image_cell.'</div><div class="media-body"><p class="media-heading">'.$product->name.'</p></div></div>',
-          $product->description,
-          $product->stock,
-          $product->date_added,
-          $product->date_updated,
-          array(
-            'data'=>
-            anchor(base_url('products/view').'/'.$product->id,'<i class="fa fa-fw fa-search"></i><span class="hidden-xs">'.$this->lang->line('action_view').'</span>',array('class'=>'btn btn-xs btn-primary'))." ".
-            anchor(base_url('products/edit').'/'.$product->id,'<i class="fa fa-fw fa-edit"></i><span class="hidden-xs">'.$this->lang->line('action_edit').'</span>',array('class'=>'btn btn-xs btn-success'))." ".
-            anchor('#modal-delete','<i class="fa fa-fw fa-trash"></i><span class="hidden-xs">'.$this->lang->line('action_delete').'</span>',array('class'=>'btn btn-xs btn-danger btn-modal-delete','data-toggle'=>'modal','data-pid'=>$product->id,'data-name'=>$product->name)),
-            'width'=>'20%',
-          ),
-        );
-
-        $this->table->add_row($row);
-      }
+    
+    if (isset($getData['q'])) {
+      $count = $this->products_model->count_search($getData['q']);
+      $pagelink = $this->pagination($count, 'products', 'q='.$getData['q']);
+      $products = $this->products_model->search($getData['q'], $offset, PAGE_SIZE);
     } else {
-      $this->table->add_row(array('data'=>$this->lang->line('no_products_found'),'colspan'=>'11','class'=>'text-center'));
+      $count = $this->products_model->count();
+      $pagelink = $this->pagination($count, 'products');
+      $products = $this->products_model->get($offset, PAGE_SIZE);
     }
 
-    $this->data['product_table'] = $this->table->generate();
+    $this->data['products'] = $products;
+
+    $this->data['criteria'] = isset($getData['q']) ? $getData['q'] : '';
 
     $this->load->view('otrack/products', $this->data);
   }
@@ -236,27 +199,8 @@ class Products extends CI_Controller {
     }
   }
 
-  // function delete_all()
-  // {
-  //   $this->data['title'] = $this->lang->line('heading_delete_product');
-
-  //   //validate form input
-  //   $this->form_validation->set_rules('uid', $this->lang->line('field_user_id'), 'required');
-
-  //   if ($this->form_validation->run() == true && $this->input->post('uid') == $this->session->userdata('user_id'))
-  //   {
-  //     header('Content-Type: application/json');
-
-  //     $result = $this->products_model->truncate();
-  //     echo json_encode($result);
-  //   } else {
-  //     $this->session->set_flashdata('message', $this->lang->line('page_not_found'));
-  //     redirect(base_url(), 'refresh');
-  //   }
-  // }
-
-  function pagination($total_rows = 100000, $base_url) {
-    $config['base_url'] = base_url($base_url) . "?";
+  function pagination($total_rows = 100000, $base_url, $params='') {
+    $config['base_url'] = base_url($base_url) . "?" . $params;
     $config['total_rows'] = $total_rows;
     $config['per_page'] = PAGE_SIZE;
     $config['use_page_numbers'] = TRUE;
