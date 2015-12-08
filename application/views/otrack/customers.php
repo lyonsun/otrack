@@ -1,9 +1,4 @@
 <?php $this->load->view('otrack/common/header'); ?>
-
-<div class="container">
-  <?php if ($message): ?>
-  <div class="alert alert-<?php if ($status): ?><?php echo $status; ?><?php else: ?>danger<?php endif ?>"><?php echo $message;?></div>
-  <?php endif ?>
   
   <?php
   $form_attributes = array('id'=>'form-search-customer', 'class'=>'form-search-customer form-inline', 'method'=>'GET');
@@ -72,7 +67,6 @@
   </div>
   <div class="text-center"><?php echo $this->pagination->create_links(); ?></div>
   <?php endif ?>
-</div>
 
 <!-- <script src="<?php echo base_url(); ?>static/otrack/js/customers/index.js"></script> -->
 

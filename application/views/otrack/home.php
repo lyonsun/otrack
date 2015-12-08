@@ -1,8 +1,5 @@
 <?php $this->load->view('otrack/common/header'); ?>
-<div class="container">
-  <?php if ($message): ?>
-  <div class="alert alert-<?php if ($status): ?><?php echo $status; ?><?php else: ?>danger<?php endif ?>"><?php echo $message;?></div>
-  <?php endif ?>
+
   <div class="row" id="boxes"></div>
   <div class="row">
     <div class="col-md-6">
@@ -46,8 +43,7 @@
         </div>
       </div>
     </div>
-  </div>  
-</div>
+  </div>
 
 <script src="<?php echo base_url(); ?>static/otrack/js/dashbox.js"></script>
 <script src="<?php echo base_url(); ?>static/otrack/js/home.js"></script>

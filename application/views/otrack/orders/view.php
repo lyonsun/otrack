@@ -1,10 +1,5 @@
 <?php $this->load->view('otrack/common/header'); ?>
 
-<div class="container">
-  <?php if ($message): ?>
-  <div class="alert alert-<?php if ($status): ?><?php echo $status; ?><?php else: ?>danger<?php endif ?>"><?php echo $message;?></div>
-  <?php endif ?>
-
   <div class="panel panel-default">
     <div class="panel-body">
       <h4><?php echo $order->buyer_name; ?></h4>
@@ -30,7 +25,6 @@
   <h4 class="page-header"><?php echo lang('heading_tracking_info'); ?> <small><?php echo $order->express_name; ?>: <?php echo $order->tracking_number; ?> <?php echo anchor(base_url('orders/send').'/'.$order->id,lang('action_change_tracking_number')); ?></small></h4>
 
   <div id="tracking_info"></div>
-</div>
 
 
 <script>

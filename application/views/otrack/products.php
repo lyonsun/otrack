@@ -1,8 +1,4 @@
 <?php $this->load->view('otrack/common/header'); ?>
-<div class="container">
-  <?php if ($message): ?>
-  <div class="alert alert-<?php if ($status): ?><?php echo $status; ?><?php else: ?>danger<?php endif ?>"><?php echo $message;?></div>
-  <?php endif ?>
   
   <?php
   $form_attributes = array('id'=>'form-search-product', 'class'=>'form-search-product form-inline', 'method'=>'GET');
@@ -45,14 +41,14 @@
     $status = 'success';
     }
     ?>
-    <div class="item  col-sm-4">
+    <div class="item col-sm-6 col-md-4 col-lg-3">
       <div class="thumbnail">
-        <img class="list-group-image" src="holder.js/400x150?bg=aaa&fg=fff&text=<?php echo lang('field_images'); ?>" alt="" />
+        <img class="list-group-image" src="holder.js/400x50?bg=000&fg=fff&text=<?php echo lang('field_images'); ?>" alt="" width="100%" />
         <div class="caption">
           <h5 style="min-height:50px;">
           <b><?php echo $product->name; ?></b>
           </h5>
-          <p class="list-group-item-text text-warning" style="min-height:50px;">
+          <p class="list-group-item-text text-warning" style="min-height:60px;">
             <?php echo $product->description; ?>
           </p>
           <p class="text-<?php echo $status; ?>"><?php echo lang('field_stock'); ?>: <?php echo $product->stock; ?></p>
@@ -79,7 +75,6 @@
   <?php else: ?>
   <p class="lead text-center"><?php echo lang('field_no_matches'); ?></p>
   <?php endif ?>
-</div>
 
 
 <script>

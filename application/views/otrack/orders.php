@@ -1,9 +1,5 @@
 <?php $this->load->view('otrack/common/header'); ?>
 
-<div class="container">
-  <?php if ($message): ?>
-  <div class="alert alert-<?php if ($status): ?><?php echo $status; ?><?php else: ?>danger<?php endif ?>"><?php echo $message;?></div>
-  <?php endif ?>
   <a class="btn btn-primary" href="<?php echo base_url('orders/create'); ?>"><i class="fa fa-fw fa-plus"></i><span class="hidden-xs"> <?php echo lang('action_add'); ?></span></a>
   <hr>
   
@@ -23,7 +19,6 @@
     echo $this->pagination->create_links();
    ?>
    </div>
-</div>
 
 
 <script>

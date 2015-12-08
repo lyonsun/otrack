@@ -1,6 +1,5 @@
 <?php $this->load->view('otrack/common/header') ?>
 
-<div class="container">
   <div class="row">
   <div class="col-md-8">
     <div class="thumbnail">
@@ -46,7 +45,6 @@
       <?php echo $product->description; ?>
     </div>
   </div>
-</div>
 
 <script>
   $(function() {

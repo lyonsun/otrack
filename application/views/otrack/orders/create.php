@@ -1,10 +1,5 @@
 <?php $this->load->view('otrack/common/header'); ?>
 
-<div class="container">
-  <?php if ($message): ?>
-  <div class="alert alert-<?php if ($status): ?><?php echo $status; ?><?php else: ?>danger<?php endif ?>"><?php echo $message;?></div>
-  <?php endif ?>
-
   <?php 
   $form_attributes = array('id'=>'form-create-order', 'class'=>'form-horizontal form-create-order');
 
@@ -158,7 +153,6 @@
   </div>
 
   <?php echo form_close(); ?>
-</div>
 
 
 <!-- The template for adding new field -->

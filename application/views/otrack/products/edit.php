@@ -1,8 +1,5 @@
 <?php $this->load->view('otrack/common/header'); ?>
-<div class="container">
-  <?php if ($message): ?>
-  <div class="alert alert-<?php if ($status): ?><?php echo $status; ?><?php else: ?>danger<?php endif ?>"><?php echo $message;?></div>
-  <?php endif ?>
+
   <div class="row">
     <div class="col-md-offset-2 col-md-8">
       <?php
@@ -94,7 +91,6 @@
       </div>
     </div>
   </div>
-</div>
 
 
 <script>

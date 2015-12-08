@@ -1,10 +1,5 @@
 <?php $this->load->view('otrack/common/header'); ?>
 
-<div class="container">
-  <?php if ($message): ?>
-  <div class="alert alert-<?php if ($status): ?><?php echo $status; ?><?php else: ?>danger<?php endif ?>"><?php echo $message;?></div>
-  <?php endif ?>
-
   <div class="panel panel-default">
     <div class="panel-body">
       <h4><?php echo $order->buyer_name; ?></h4>
@@ -84,8 +79,6 @@
   </div>
 
   <?php echo form_close(); ?>
-
-</div>
 
 
 <script>
