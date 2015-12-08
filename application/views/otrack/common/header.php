@@ -23,10 +23,7 @@
     <!-- Morris Charts CSS -->
     <link href="<?php echo base_url(); ?>static/morris/css/morris.css" rel="stylesheet">
     <!-- Otrack CSS -->
-    <!-- <link href="<?php echo base_url(); ?>static/otrack/css/styles.css" rel="stylesheet"> -->
-    <!-- Custom CSS -->
-    <!-- <link href="<?php echo base_url(); ?>static/otrack/css/light-bootstrap-dashboard.css" rel="stylesheet"> -->
-    <link href="<?php echo base_url(); ?>static/otrack/css/fix-light-bootstrap-dashboard.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>static/otrack/css/styles.css" rel="stylesheet">
     <?php $this->load->view('otrack/common/js'); ?>
   </head>
   <body>
