@@ -90,9 +90,6 @@
 
 <script>
   $(function() {
-    $('#express_name').select2({
-      placeholder: '<?php echo lang("placeholder_select_express"); ?>',
-    });
     
     $('#form-edit-order')
     .formValidation({

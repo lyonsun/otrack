@@ -205,24 +205,11 @@
 <script src="<?php echo base_url(); ?>static/bs-dp3/js/bootstrap-datepicker.min.js"></script>
 <script>
   $(function() {
-    $('#buyer').select2({
-      placeholder: '<?php echo lang("placeholder_select_buyer"); ?>',
-    });
-    $('#express_name').select2({
-      placeholder: '<?php echo lang("placeholder_select_express"); ?>',
-    });
-    $('#products').select2({
-      placeholder: '<?php echo lang("placeholder_select_products"); ?>',
-    });
     $('#delivery_time').datepicker({
       autoclose: true,
       format: "yyyy-mm-dd",
-      // startDate: new Date(),
+      startDate: new Date(),
     });
-    // $("#delivery_time").datepicker("update", new Date());
-
-    // $("#delivery_time").datepicker("setStartDate", new Date());
-    // $("#delivery_time").datepicker("setEndDate", false);
 
     var productIndex = parseInt('<?php echo count($order_products)-1; ?>');
 

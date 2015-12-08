@@ -183,8 +183,9 @@
       autoclose: true,
       format: "yyyy-mm-dd",
       startDate: new Date(),
-      update: new Date(),
     });
+
+    $('#delivery_time').datepicker('update', new Date());
 
     var buyerValidators = {
       validators: {

@@ -30,3 +30,6 @@
     <div id="wrapper">
       <?php $this->load->view('otrack/common/navbar'); ?>
       <div id="main-panel">
+      <div class="container">
+        <h3 class="page-header"><?php echo $title; ?></h3>
+      </div>
