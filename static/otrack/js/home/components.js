@@ -46,6 +46,11 @@ var Box = React.createClass({
   },
 
   render: function () {
+    var boxRightStyle = {
+      fontSize: 25 + 'px',
+      fontWeight: 'bold'
+    };
+
     return React.createElement(
       'div',
       { className: 'col-md-3 col-sm-6' },
@@ -68,7 +73,7 @@ var Box = React.createClass({
               ),
               React.createElement(
                 'div',
-                { className: 'col-xs-9 text-right box-right' },
+                { className: 'col-xs-9 text-right', style: boxRightStyle },
                 React.createElement(
                   'div',
                   null,
