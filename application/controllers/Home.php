@@ -30,7 +30,7 @@ class Home extends CI_Controller {
 
   function products_list()
   {
-    $result['products'] = $this->products_model->get(0, 10);
+    $result['products'] = $this->products_model->get(0, PAGE_SIZE);
     $result['title'] = $this->lang->line('heading_product_list');
     $result['nomatch_text'] = $this->lang->line('field_no_matches');
 
