@@ -24,12 +24,18 @@ class Home extends CI_Controller {
 		$this->data['title'] = $this->lang->line('home_heading');
 		$this->data['status'] = $this->session->flashdata('status');
 		$this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
-
-    // show first 10 products
-    $this->data['products'] = $this->products_model->get(0, 10);
 		
 		$this->load->view('otrack/home', $this->data);
 	}
+
+  function products_list()
+  {
+    $result['products'] = $this->products_model->get(0, 10);
+    $result['title'] = $this->lang->line('heading_product_list');
+    $result['nomatch_text'] = $this->lang->line('field_no_matches');
+
+    echo json_encode($result);
+  }
 
   function customers()
   {    

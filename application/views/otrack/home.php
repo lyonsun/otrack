@@ -2,37 +2,7 @@
 
   <div class="row" id="boxes"></div>
   <div class="row">
-    <div class="col-md-6">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title"><?php echo lang('heading_product_list'); ?></h3>
-        </div>
-        <?php if ($products): ?>
-        <div class="list-group">
-          <?php foreach ($products as $key => $value): ?>
-          <?php
-          if ($value->stock <= 1) {
-          $status = 'progress-bar-danger';
-          } else if ($value->stock <= 5) {
-          $status = 'progress-bar-warning';
-          } else {
-          $status = 'progress-bar-success';
-          }
-          ?>
-          
-          <a href="<?php echo base_url('products'); ?>/view/<?php echo $value->id; ?>" class="list-group-item">
-            <span class="badge <?php echo $status; ?>"><?php echo $value->stock; ?></span>
-            <?php echo $value->name; ?>
-          </a>
-          <?php endforeach ?>
-        </div>
-        <?php else: ?>
-        <div class="panel-body">
-          <?php echo lang('field_no_matches'); ?>
-        </div>
-        <?php endif ?>
-      </div>
-    </div>
+    <div class="col-md-6" id="products-list"></div>
     <div class="col-md-6">
       <div class="panel panel-default">
         <div class="panel-heading">
@@ -45,12 +15,11 @@
     </div>
   </div>
 
-<script src="<?php echo base_url(); ?>static/otrack/js/dashbox.js"></script>
-<script src="<?php echo base_url(); ?>static/otrack/js/home.js"></script>
+<script src="<?php echo base_url(); ?>static/otrack/js/home/components.js"></script>
+<script src="<?php echo base_url(); ?>static/otrack/js/home/index.js"></script>
 
 <script>
   $(function() {
-
     $.get('<?php echo base_url("home"); ?>/order_trends', function(data) {
       Morris.Line({
         element: 'order_trends_line',
