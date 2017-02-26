@@ -3,3 +3,5 @@ user_guide/
 uploads/*
 
 !uploads/index.html
+
+sftp-config.json
