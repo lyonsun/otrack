@@ -2,31 +2,31 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Home extends CI_Controller {
-	function __construct()
-	{
-		parent::__construct();
+  function __construct()
+  {
+    parent::__construct();
 
-		if (!$this->ion_auth->logged_in()) {
-			redirect(base_url('login'),'refresh');
-		}
-		elseif (!$this->ion_auth->is_admin()) //remove this elseif if you want to enable this for non-admins
-		{
-			//redirect them to the home page because they must be an administrator to view this
-			return show_error('You must be an administrator to view this page.');
-		}
+    if (!$this->ion_auth->logged_in()) {
+      redirect(base_url('login'),'refresh');
+    }
+    elseif (!$this->ion_auth->is_admin()) //remove this elseif if you want to enable this for non-admins
+    {
+      //redirect them to the home page because they must be an administrator to view this
+      return show_error('You must be an administrator to view this page.');
+    }
 
-		$this->load->library('ion_auth');
-		$this->load->model(array('customers_model','orders_model','products_model'));
-	}
+    $this->load->library('ion_auth');
+    $this->load->model(array('customers_model','orders_model','products_model'));
+  }
 
-	function index()
-	{
-		$this->data['title'] = $this->lang->line('home_heading');
-		$this->data['status'] = $this->session->flashdata('status');
-		$this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
-		
-		$this->load->view('otrack/home', $this->data);
-	}
+  function index()
+  {
+    $this->data['title'] = $this->lang->line('home_heading');
+    $this->data['status'] = $this->session->flashdata('status');
+    $this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
+
+    $this->load->view('otrack/home', $this->data);
+  }
 
   function products_list()
   {

@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed.');
 /**
 * 
 */
-class Products_Model extends CI_Model
+class Products_model extends CI_Model
 {
   private $table_name;  
   function __construct()

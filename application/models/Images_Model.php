@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed.');
 /**
 * 
 */
-class Images_Model extends CI_Model
+class Images_model extends CI_Model
 {
   private $table_name;  
   function __construct()
