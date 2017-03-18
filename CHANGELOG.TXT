@@ -1,233 +1,395 @@
-Sun Nov 22 12:44:30 2015
+Sat Mar 18 11:25:58 2017 +0200
+multiple fixes: 1. list only products with available stock in serveral pages, 2. list products in descending order, 3. changing stock to 0 should be accepted, 4. UI fixes.
+
+Sun Feb 26 15:12:18 2017 +0200
+ignore sftp plugin config file.
+
+Sun Feb 26 14:18:36 2017 +0200
+minor changes.
+
+Sun Feb 26 14:16:46 2017 +0200
+upgrade CI to v3.1.3.
+
+Sun Feb 26 14:14:30 2017 +0200
+upgrade CI to v3.1.3.
+
+Sun Feb 26 13:59:48 2017 +0200
+remove user guide documentation.
+
+Wed Dec 9 13:08:05 2015 +0200
+use inline style in react js.
+
+Wed Dec 9 13:06:35 2015 +0200
+render PAGE_SIZE records for product list.
+
+Wed Dec 9 11:02:25 2015 +0200
+render product list using reactjs
+
+Tue Dec 8 23:48:12 2015 +0200
+ui minor fix.
+
+Tue Dec 8 21:51:32 2015 +0200
+remove unused js.
+
+Tue Dec 8 21:49:30 2015 +0200
+thumbnail box hover effect.
+
+Tue Dec 8 21:48:50 2015 +0200
+ui fix.
+
+Tue Dec 8 20:33:49 2015 +0200
+ui fix.
+
+Tue Dec 8 20:31:15 2015 +0200
+normal pagination.
+
+Tue Dec 8 16:41:14 2015 +0200
+update bootstrap date picker.
+
+Tue Dec 8 16:40:57 2015 +0200
+ui fix.
+
+Tue Dec 8 16:24:15 2015 +0200
+use Cerulean bootstrap style.
+
+Tue Dec 8 15:54:50 2015 +0200
+ui fix.
+
+Tue Dec 8 15:54:30 2015 +0200
+add holder.js.
+
+Tue Dec 8 15:53:50 2015 +0200
+styling.
+
+Tue Dec 8 15:45:33 2015 +0200
+otrack react js files.
+
+Tue Dec 8 15:40:28 2015 +0200
+add react js.
+
+Tue Dec 8 15:39:59 2015 +0200
+ui fix.
+
+Tue Dec 8 15:36:52 2015 +0200
+ui fix.
+
+Tue Dec 8 15:29:27 2015 +0200
+product model modified.
+
+Tue Dec 8 15:28:45 2015 +0200
+product controller modification
+
+Tue Dec 8 15:28:27 2015 +0200
+home controller modification.
+
+Tue Dec 8 15:27:49 2015 +0200
+small pagination.
+
+Mon Dec 7 15:07:44 2015 +0200
+order page fix.
+
+Mon Dec 7 15:05:20 2015 +0200
+change customers list layout, change search from http post to http get.
+
+Mon Dec 7 10:01:42 2015 +0200
+remove pagination pull right style.
+
+Mon Dec 7 10:00:27 2015 +0200
+change page size constant to 6.
+
+Mon Dec 7 09:59:09 2015 +0200
+git ignore user_guide folder.
+
+Thu Nov 26 12:08:49 2015 +0200
+add return back link in top nav bar.
+
+Thu Nov 26 12:08:20 2015 +0200
+add product view page, other relevant fix.
+
+Thu Nov 26 12:07:23 2015 +0200
+fix order trends date time range issue.
+
+Mon Nov 23 16:31:33 2015 +0200
+ui fix: sidebar.
+
+Mon Nov 23 16:04:25 2015 +0200
+language fix.
+
+Mon Nov 23 15:50:50 2015 +0200
+home page fix: showing first 10 products in ascending order of stock rather than only products out of stock.
+
+Mon Nov 23 15:38:41 2015 +0200
+ui fix.
+
+Mon Nov 23 15:14:50 2015 +0200
+home page redesign: add order trends line chart. add out of stock product list.
+
+Mon Nov 23 15:12:23 2015 +0200
+ui fix: add divider to sidebar.
+
+Mon Nov 23 15:11:37 2015 +0200
+add morris chart library.
+
+Mon Nov 23 15:10:42 2015 +0200
+support uploading jpeg format images.
+
+Sun Nov 22 22:36:38 2015 +0200
+remove light bootstrap dashboard template table style.
+
+Sun Nov 22 22:35:49 2015 +0200
+ui fix: font for text logo.
+
+Sun Nov 22 22:17:42 2015 +0200
+ui fix: slide sidebar in from left rather than right when on mobile devices.
+
+Sun Nov 22 20:42:27 2015 +0200
+ui fix: move page heading into navbar.
+
+Sun Nov 22 20:14:21 2015 +0200
+ui transformation: using Light Bootstrap Dashboard Free from Creative Tim.
+
+Sun Nov 22 14:46:01 2015 +0200
+minor language fix.
+
+Sun Nov 22 13:45:33 2015 +0200
+update change log. update version number and last updated time. add tag 0.2.0.
+
+Sun Nov 22 13:44:42 2015 +0200
+update db structure.
+
+Sun Nov 22 13:29:56 2015 +0200
+add initial sql structure.
+
+Sun Nov 22 12:44:30 2015 +0200
 minor language and ui fix.
 
-Sun Nov 22 12:35:15 2015
+Sun Nov 22 12:35:15 2015 +0200
 update language files.
 
-Sun Nov 22 12:26:45 2015
+Sun Nov 22 12:26:45 2015 +0200
 add image uploads directory, and git ignore files in this folder.
 
-Sun Nov 22 12:26:00 2015
+Sun Nov 22 12:26:00 2015 +0200
 add drop zone js plugin.
 
-Sun Nov 22 12:25:35 2015
+Sun Nov 22 12:25:35 2015 +0200
 add touch spin js plugin.
 
-Sun Nov 22 12:24:21 2015
+Sun Nov 22 12:24:21 2015 +0200
 refine order controller, model and views to fit new product MVC.
 
-Sun Nov 22 12:12:35 2015
+Sun Nov 22 12:12:35 2015 +0200
 add product controller, model and views.
 
-Sun Nov 22 11:47:04 2015
+Sun Nov 22 11:47:04 2015 +0200
 add image controller and model.
 
-Tue Nov 17 22:25:50 2015
+Tue Nov 17 22:25:50 2015 +0200
 set updated time to current time when create customer.
 
-Wed Jul 1 06:42:16 2015
+Wed Jul 1 11:42:16 2015 +0800
 formating.
 
-Wed Jul 1 06:04:57 2015
+Wed Jul 1 11:04:57 2015 +0800
 missing language item 'action_retry'.
 
-Wed Jul 1 05:53:02 2015
+Wed Jul 1 10:53:02 2015 +0800
 add chinese language support. change language to chinese.
 
-Fri Jun 26 09:26:50 2015
+Fri Jun 26 14:26:50 2015 +0800
 minor fix.
 
-Fri Jun 26 05:37:30 2015
+Fri Jun 26 10:37:30 2015 +0800
 support google analytics.
 
-Sun Jun 14 19:04:13 2015
+Mon Jun 15 00:04:13 2015 +0800
 home page fix.
 
-Sun Jun 14 17:30:17 2015
+Sun Jun 14 22:30:17 2015 +0800
 order fix, add charts onto home page.
 
-Sun Jun 14 17:27:51 2015
+Sun Jun 14 22:27:51 2015 +0800
 add highcharts.
 
-Sat Jun 13 18:02:35 2015
+Sat Jun 13 23:02:35 2015 +0800
 minor fix on orders page:
 put product amount after product title on orders list and highlight it, one product per line.
 change changing tracking number link.
 
-Fri Jun 12 22:27:51 2015
+Sat Jun 13 03:27:51 2015 +0800
 order fix: add order type - international vs domestic; support edit and delete order.
 
-Sat May 30 07:54:04 2015
+Sat May 30 12:54:04 2015 +0800
 order page fix: add comments.
 
-Sat May 30 07:25:15 2015
+Sat May 30 12:25:15 2015 +0800
 customer page fix: display address in one column.
 
-Sat May 30 07:24:45 2015
+Sat May 30 12:24:45 2015 +0800
 order page fix: select express from dropdown list.
 
-Sat May 30 06:53:23 2015
+Sat May 30 11:53:23 2015 +0800
 edit order, view order. get order tracking information on view order page.
 
-Sat May 30 06:52:40 2015
+Sat May 30 11:52:40 2015 +0800
 add express library for express tracking.
 
-Fri May 29 10:19:38 2015
+Fri May 29 15:19:38 2015 +0800
 order list, order create form, model for order data handling.
 
-Fri May 29 10:17:20 2015
+Fri May 29 15:17:20 2015 +0800
 add orders count in home page.
 
-Fri May 29 06:53:05 2015
+Fri May 29 11:53:05 2015 +0800
 customers page fix.
 
-Fri May 29 06:51:47 2015
+Fri May 29 11:51:47 2015 +0800
 typo error.
 
-Thu May 28 06:18:40 2015
+Thu May 28 11:18:40 2015 +0800
 login page ui fix.
 
-Wed Apr 22 16:45:16 2015
+Wed Apr 22 21:45:16 2015 +0800
 add bs date picker 3. other ui fix.
 
-Wed Apr 22 08:36:40 2015
+Wed Apr 22 13:36:40 2015 +0800
 separate js out from head, load it from sole file.
 
-Tue Apr 21 18:35:22 2015
+Tue Apr 21 23:35:22 2015 +0800
 minor fix.
 
-Tue Apr 21 15:54:34 2015
+Tue Apr 21 20:54:34 2015 +0800
 fix.
 
-Mon Apr 20 19:46:33 2015
+Tue Apr 21 00:46:33 2015 +0800
 Rename ion_auth_model.php to Ion_auth_model.php
-Mon Apr 20 19:45:40 2015
+Tue Apr 21 00:45:40 2015 +0800
 Rename customer.php to Customer.php
-Mon Apr 20 19:44:28 2015
+Tue Apr 21 00:44:28 2015 +0800
 Rename orders.php to Orders.php
-Mon Apr 20 19:44:01 2015
+Tue Apr 21 00:44:01 2015 +0800
 Rename home.php to Home.php
-Mon Apr 20 19:43:40 2015
+Tue Apr 21 00:43:40 2015 +0800
 Rename customers.php to Customers.php
-Mon Apr 20 19:43:20 2015
+Tue Apr 21 00:43:20 2015 +0800
 Rename auth.php to Auth.php
-Mon Apr 20 17:26:13 2015
+Mon Apr 20 22:26:13 2015 +0800
 forgot/reset password, other ui fix.
 
-Mon Apr 20 17:09:30 2015
+Mon Apr 20 22:09:30 2015 +0800
 update config.
 
-Sun Apr 19 19:48:35 2015
+Mon Apr 20 00:48:35 2015 +0800
 ui fix.
 
-Sun Apr 19 19:42:05 2015
+Mon Apr 20 00:42:05 2015 +0800
 ui fix.
 
-Sun Apr 19 19:32:29 2015
+Mon Apr 20 00:32:29 2015 +0800
 ui fix.
 
-Sun Apr 19 19:32:17 2015
+Mon Apr 20 00:32:17 2015 +0800
 customers page, support: search, view all, delete all.
 
-Sun Apr 19 19:30:28 2015
+Mon Apr 20 00:30:28 2015 +0800
 set page size const, update cn city, select2 bootstrap css.
 
-Sun Apr 19 13:20:42 2015
+Sun Apr 19 18:20:42 2015 +0800
 pagination support.
 
-Sun Apr 19 12:59:23 2015
+Sun Apr 19 17:59:23 2015 +0800
 customer creation form validation fix.
 
-Sun Apr 19 12:56:19 2015
+Sun Apr 19 17:56:19 2015 +0800
 selectable province/city/district in customer editing form.
 
-Sun Apr 19 12:04:15 2015
+Sun Apr 19 17:04:15 2015 +0800
 selectable province/city/district in customer creation form.
 
-Sun Apr 19 12:03:32 2015
+Sun Apr 19 17:03:32 2015 +0800
 update cn city json.
 
-Sun Apr 19 11:58:42 2015
+Sun Apr 19 16:58:42 2015 +0800
 add china-province-city-district json file.
 
-Sun Apr 19 11:58:04 2015
+Sun Apr 19 16:58:04 2015 +0800
 add select2.
 
-Sun Apr 19 10:43:34 2015
+Sun Apr 19 15:43:34 2015 +0800
 support customer editing.
 
-Sun Apr 19 09:49:39 2015
+Sun Apr 19 14:49:39 2015 +0800
 form validation on customer creation.
 
-Sun Apr 19 09:48:21 2015
+Sun Apr 19 14:48:21 2015 +0800
 add form validation.
 
-Sun Apr 19 09:09:10 2015
+Sun Apr 19 14:09:10 2015 +0800
 customer creation/deletion fix.
 
-Sun Apr 19 09:08:46 2015
+Sun Apr 19 14:08:46 2015 +0800
 login, forgot password ui fix.
 
-Sun Apr 19 08:56:46 2015
+Sun Apr 19 13:56:46 2015 +0800
 support deleting customer.
 
-Sun Apr 19 08:56:04 2015
+Sun Apr 19 13:56:04 2015 +0800
 number of customers in home page.
 
-Sun Apr 19 08:55:33 2015
+Sun Apr 19 13:55:33 2015 +0800
 auth redirect fix.
 
-Sun Apr 19 08:54:59 2015
+Sun Apr 19 13:54:59 2015 +0800
 route fix, go production.
 
-Sun Apr 19 08:54:18 2015
+Sun Apr 19 13:54:18 2015 +0800
 templete ui fix.
 
-Sun Apr 19 08:53:46 2015
+Sun Apr 19 13:53:46 2015 +0800
 add bootstrap3 dialog.
 
-Sat Apr 18 20:59:43 2015
+Sun Apr 19 01:59:43 2015 +0800
 support customer creation, other ui fix.
 
-Sat Apr 18 20:58:03 2015
+Sun Apr 19 01:58:03 2015 +0800
 footer css fix.
 
-Sat Apr 18 20:57:14 2015
+Sun Apr 19 01:57:14 2015 +0800
 auto load form validation library
 
-Sat Apr 18 19:39:35 2015
+Sun Apr 19 00:39:35 2015 +0800
 login, forgot password, customers, orders, etc.
 
-Sat Apr 18 19:35:44 2015
+Sun Apr 19 00:35:44 2015 +0800
 ui fix.
 
-Sat Apr 18 19:35:04 2015
+Sun Apr 19 00:35:04 2015 +0800
 auth lang fix.
 
-Sat Apr 18 19:34:00 2015
+Sun Apr 19 00:34:00 2015 +0800
 logout routes.
 
-Sat Apr 18 19:33:34 2015
+Sun Apr 19 00:33:34 2015 +0800
 auto load ion auth.
 
-Sat Apr 18 19:33:06 2015
+Sun Apr 19 00:33:06 2015 +0800
 add font awesome fonts.
 
-Wed Apr 15 03:34:26 2015
+Wed Apr 15 08:34:26 2015 +0800
 login, logout
 
-Mon Apr 13 19:14:01 2015
+Tue Apr 14 00:14:01 2015 +0800
 ui fix.
 
-Mon Apr 13 18:57:38 2015
+Mon Apr 13 23:57:38 2015 +0800
 add customer page.
 
-Mon Apr 13 18:54:59 2015
+Mon Apr 13 23:54:59 2015 +0800
 split ui.
 
-Mon Apr 13 18:53:58 2015
+Mon Apr 13 23:53:58 2015 +0800
 auto load url, form helper.
 
-Mon Apr 13 17:53:53 2015
+Mon Apr 13 22:53:53 2015 +0800
 first commit
 
