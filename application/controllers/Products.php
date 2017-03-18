@@ -48,7 +48,7 @@ class Products extends CI_Controller {
 
     $this->data['criteria'] = isset($getData['q']) ? $getData['q'] : '';
 
-    $this->load->view('otrack/products', $this->data);
+    $this->load->view('otrack/products/index', $this->data);
   }
 
   function create()

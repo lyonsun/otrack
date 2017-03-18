@@ -43,7 +43,7 @@ class Orders extends CI_Controller {
     $this->table->set_template($tmpl);
 
     $heading = array(
-      $this->lang->line('field_id'),
+      // $this->lang->line('field_id'),
       $this->lang->line('field_receiver'),
       $this->lang->line('field_products'),
       $this->lang->line('field_express'),
@@ -114,7 +114,7 @@ class Orders extends CI_Controller {
         }
 
         $row = array(
-          $order->id,
+          // $order->id,
           $order->buyer_name,
           implode('<br>', $products),
           $order->express_name,
@@ -132,7 +132,7 @@ class Orders extends CI_Controller {
 
     $this->data['order_table'] = $this->table->generate();
 
-		$this->load->view('otrack/orders', $this->data);
+		$this->load->view('otrack/orders/index', $this->data);
 	}
 
   function create()
@@ -180,7 +180,7 @@ class Orders extends CI_Controller {
       $this->data['title'] = $this->lang->line('heading_add_order');
       $this->data['customers'] = $this->customers_model->get_all();
 
-      $this->data['products'] = $this->products_model->get();
+      $this->data['products'] = $this->products_model->get_available_stock();
 
       $this->data['status'] = $this->session->flashdata('status');
       $this->data['message'] = (validation_errors() ? validation_errors() : ($this->ion_auth->errors() ? $this->ion_auth->errors() : $this->session->flashdata('message')));

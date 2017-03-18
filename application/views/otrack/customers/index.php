@@ -49,7 +49,7 @@
           <b><?php echo $customer->name; ?></b>
           </h5>
           <div class="text-danger"><?php echo $customer->phone; ?></div>
-          <div style="min-height:60px;">
+          <div style="min-height:70px;">
             <?php echo implode(', ', $address); ?>
           </div>
           <hr>

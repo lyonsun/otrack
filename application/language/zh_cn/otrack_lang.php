@@ -42,6 +42,7 @@ $lang['heading_edit_product']                 = '编辑商品';
 $lang['heading_delete_product']               = '删除商品';
 $lang['heading_product_info']                 = '商品信息';
 $lang['heading_product_list']                 = '商品列表';
+$lang['heading_stock_list']                   = '现有库存列表';
 
 $lang['no_products_found']                    = '找不到任何商品.';
 
@@ -81,7 +82,7 @@ $lang['field_stock']                          = '库存';
 $lang['field_images']                         = '图片';
 
 $lang['field_id']                             = '编号';
-$lang['field_receiver']                       = '订单接收人';
+$lang['field_receiver']                       = '买家';
 $lang['field_type']                           = '类型';
 $lang['field_status']                         = '状态';
 $lang['field_products']                       = '商品';
@@ -104,6 +105,8 @@ $lang['field_express_company_code']           = '快递公司编号';
 $lang['field_all']                            = '所有';
 $lang['field_optional']                       = '选填';
 
+$lang['field_left']                           = '剩余';
+
 // Actions
 $lang['action_edit']                          = '编辑';
 $lang['action_delete']                        = '删除';
@@ -123,7 +126,7 @@ $lang['action_cancel']                        = '取消';
 $lang['action_back']                          = '返回';
 $lang['action_view_details']                  = '查看详情';
 
-$lang['buyer_required']                       = '订单接收人为必填项';
+$lang['buyer_required']                       = '买家为必填项';
 $lang['type_required']                        = '类型为必填项';
 $lang['delivery_time_required']               = '发货时间为必填项';
 $lang['date_should_in_format']                = '日期格式不正确';
@@ -137,7 +140,7 @@ $lang['placeholder_select']                   = '填入或者点击选择';
 $lang['placeholder_select_province']          = '选择省份';
 $lang['placeholder_select_city']              = '选择城市';
 $lang['placeholder_select_district']          = '选择区县';
-$lang['placeholder_select_buyer']             = '选择订单接收人';
+$lang['placeholder_select_buyer']             = '选择买家';
 $lang['placeholder_select_express']           = '选择快递';
 $lang['placeholder_select_products']          = '选择商品';
 

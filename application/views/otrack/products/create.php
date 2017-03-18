@@ -59,7 +59,7 @@
             <div class="input-group select2-bootstrap-append">
               <?php echo form_dropdown($images); ?>
               <span class="input-group-btn">
-                <a class="btn btn-default" data-toggle="modal" href='#modal-id'><i class="fa fa-plus"></i></a>
+                <a class="btn btn-primary" data-toggle="modal" href='#modal-id'><i class="fa fa-plus"></i></a>
               </span>
             </div>
           </div>
@@ -94,13 +94,16 @@ $(function() {
   // $('select').select2();
 
   $("input[name='stock']").TouchSpin({
-    verticalbuttons: true,
-    min: 1,
+    // verticalbuttons: true,
+    min: 0,
     max: 1000,
+    initval: 1,
     step: 1,
     decimals: 0,
     boostat: 5,
     maxboostedstep: 10,
+    buttondown_class: "btn btn-primary",
+    buttonup_class: "btn btn-primary"
   });
 
   var md = new Dropzone(

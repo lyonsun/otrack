@@ -69,7 +69,7 @@ var Box = React.createClass({
               React.createElement(
                 'div',
                 { className: 'col-xs-3' },
-                React.createElement('i', { className: "fa fa-" + this.state.icon + " fa-5x" })
+                React.createElement('i', { className: "fa fa-" + this.state.icon + " fa-3x" })
               ),
               React.createElement(
                 'div',

@@ -53,7 +53,7 @@ class Customers extends CI_Controller {
 
     $this->data['criteria'] = isset($criteria) ? $criteria : '';
 
-		$this->load->view('otrack/customers', $this->data);
+		$this->load->view('otrack/customers/index', $this->data);
 	}
 
 	function create()

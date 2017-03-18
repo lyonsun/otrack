@@ -42,6 +42,7 @@ $lang['heading_edit_product']                 = 'Edit Product';
 $lang['heading_delete_product']               = 'Delete Product';
 $lang['heading_product_info']                 = 'Product Information';
 $lang['heading_product_list']                 = 'Product List';
+$lang['heading_stock_list']                   = 'Stock List';
 
 $lang['no_products_found']                    = 'No products found.';
 
@@ -103,6 +104,8 @@ $lang['field_express_company_code']           = 'Express Company Code';
 
 $lang['field_all']                            = 'All';
 $lang['field_optional']                       = 'Optional';
+
+$lang['field_left']                           = 'Left';
 
 // Actions
 $lang['action_edit']                          = 'Edit';

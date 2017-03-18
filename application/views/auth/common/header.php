@@ -7,7 +7,7 @@
     <meta name="author" content="Lyon Sun <sunly917@gmail.com>">
     <title><?php echo $title?$title." - ":""; ?><?php echo $this->lang->line('site_title'); ?></title>
     <!-- Bootstrap CSS -->
-    <link href="<?php echo base_url(); ?>static/bs3/css/cerulean.min.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>static/bs3/css/lumen.min.css" rel="stylesheet">
     <!-- Font Awesome CSS -->
     <link href="<?php echo base_url(); ?>static/fa/css/font-awesome.min.css" rel="stylesheet">
     <!-- Otrack CSS -->

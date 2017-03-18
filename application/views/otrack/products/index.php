@@ -45,10 +45,10 @@
       <div class="thumbnail">
         <img class="list-group-image" data-src="holder.js/100%x50/auto?bg=000&fg=fff&text=<?php echo lang('field_images'); ?>" alt="" />
         <div class="caption">
-          <h5 style="min-height:50px;">
+          <h5 style="min-height:30px;">
           <b><?php echo $product->name; ?></b>
           </h5>
-          <p class="list-group-item-text text-warning" style="min-height:60px;">
+          <p class="list-group-item-text text-primary" style="min-height:60px; font-size: 16px;">
             <?php echo $product->description; ?>
           </p>
           <p class="text-<?php echo $status; ?>"><?php echo lang('field_stock'); ?>: <?php echo $product->stock; ?></p>

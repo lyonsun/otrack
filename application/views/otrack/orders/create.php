@@ -20,7 +20,7 @@
   $product_options = array(''=>'');
   if ($products) {
     foreach ($products as $product) {
-      $product_options[$product->id] = $product->name.' - ['.$product->stock.' Left]';
+      $product_options[$product->id] = $product->name.' - ['.$product->stock.' '. lang('field_left').']';
     }
   }
 
@@ -173,6 +173,8 @@
 <script src="<?php echo base_url(); ?>static/bs-dp3/js/bootstrap-datepicker.min.js"></script>
 <script>
   $(function() {
+    $('select').select2();
+
     $('#delivery_time').datepicker({
       autoclose: true,
       format: "yyyy-mm-dd",

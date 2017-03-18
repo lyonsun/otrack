@@ -129,6 +129,8 @@
 <script>
 $(function() {
 
+  $('select').select2();
+
   jQuery.extend({
     getValues: function(url) {
       var result = null;

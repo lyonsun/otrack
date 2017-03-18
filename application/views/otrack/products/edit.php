@@ -98,13 +98,15 @@ $(function() {
   // $('select').select2();
 
   $("input[name='stock']").TouchSpin({
-    verticalbuttons: true,
-    min: 1,
+    // verticalbuttons: true,
+    min: 0,
     max: 1000,
     step: 1,
     decimals: 0,
     boostat: 5,
     maxboostedstep: 10,
+    buttondown_class: "btn btn-primary",
+    buttonup_class: "btn btn-primary"
   });
 
   var md = new Dropzone(

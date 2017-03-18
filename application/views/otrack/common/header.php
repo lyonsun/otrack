@@ -7,7 +7,7 @@
     <meta name="author" content="Lyon Sun <sunly917@gmail.com>">
     <title><?php echo $title?$title." - ":""; ?><?php echo $this->lang->line('site_title'); ?></title>
     <!-- Bootstrap CSS -->
-    <link href="<?php echo base_url(); ?>static/bs3/css/cerulean.min.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>static/bs3/css/lumen.min.css" rel="stylesheet">
     <!-- Font Awesome CSS -->
     <link href="<?php echo base_url(); ?>static/fa/css/font-awesome.min.css" rel="stylesheet">
     <!-- Bootstrap Dialog CSS -->
@@ -22,6 +22,9 @@
     <link href="<?php echo base_url(); ?>static/touchspin/jquery.bootstrap-touchspin.min.css" rel="stylesheet">
     <!-- Morris Charts CSS -->
     <link href="<?php echo base_url(); ?>static/morris/css/morris.css" rel="stylesheet">
+    <!-- SELECT 2 -->
+    <link href="<?php echo base_url(); ?>static/select2-3.5.2/select2.css" rel="stylesheet" />
+    <link href="<?php echo base_url(); ?>static/select2-3.5.2/select2-bootstrap.css" rel="stylesheet" />
     <!-- Otrack CSS -->
     <link href="<?php echo base_url(); ?>static/otrack/css/styles.css" rel="stylesheet">
     <?php $this->load->view('otrack/common/js'); ?>
@@ -34,6 +37,6 @@
         <?php if (isset($message)): ?>
         <div class="alert alert-<?php if ($status): ?><?php echo $status; ?><?php else: ?>danger<?php endif ?>"><?php echo $message;?></div>
         <?php endif ?>
-        <h3 class="page-header"><?php echo $title; ?></h3>
+        <h4 class="page-header"><?php echo $title; ?></h4>
       </div>
       <div class="container">

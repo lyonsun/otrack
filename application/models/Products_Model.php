@@ -22,7 +22,7 @@ class Products_model extends CI_Model
 
   function get($offset=0, $limit=0)
   {
-    $this->db->order_by('stock', 'asc');
+    $this->db->order_by('stock', 'desc');
     $query = $this->db->get($this->table_name, $limit, $offset);
 
     return $query->result();
@@ -43,7 +43,7 @@ class Products_model extends CI_Model
     $this->db->like('name', $criteria);
     $this->db->or_like('description', $criteria);
 
-    $this->db->order_by('stock', 'asc');
+    $this->db->order_by('stock', 'desc');
     $query = $this->db->get($this->table_name, $limit, $offset);
 
     return $query->result();
@@ -52,6 +52,16 @@ class Products_model extends CI_Model
   function get_out_of_stock()
   {
     $this->db->where('stock <=','0');
+    $query = $this->db->get($this->table_name);
+
+    return $query->result();
+  }
+
+  function get_available_stock()
+  {
+    $this->db->where('stock >','0');
+
+    $this->db->order_by('stock', 'desc');
     $query = $this->db->get($this->table_name);
 
     return $query->result();
